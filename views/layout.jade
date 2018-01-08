@@ -1,7 +1,17 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+        title= 'Utaria | Le jeu de la date !'
+        link(rel='stylesheet' href='//fonts.googleapis.com/css?family=Lato:400,600')
+        link(rel='stylesheet' href='/stylesheets/style.css')
+        link(rel='icon' href='/favicon.ico')
+
+    body
+        section.content
+            block content
+
+        footer
+            a(href="https://utaria.fr" target="_blank")
+                div.logo
+
+            div.copyright 2018 &mdash; Tous droits réservés.

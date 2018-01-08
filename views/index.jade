@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    img.logo(src="/images/logo.png")
+    // script(type="text/javascript" src="/socket.io/socket.io.js")
+    // script.
+        var socket = io.connect('http://localhost:3000');
+        socket.on('toClient', function(message) {
+            console.log(message);
+        });
