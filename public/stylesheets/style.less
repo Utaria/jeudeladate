@@ -28,6 +28,14 @@ body {
   }
 }
 
+canvas.particles {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
 section.content {
   display: block;
   position: absolute;
@@ -37,14 +45,79 @@ section.content {
   top: 0;
   right: 0;
   bottom: 0;
-  padding: 10% 0;
+  padding: 6% 0;
   text-align: center;
   color: white;
   overflow: hidden;
 }
 
+h1.main {
+  display: block;
+  position: relative;
+  height: 65*2px;
+  margin-top: -50px;
+  overflow: hidden;
+
+  text-transform: uppercase;
+  font-size: 3em;
+  text-shadow: rgb(0, 0, 0, .5) 1px 1px,
+  rgb(0, 0, 0, .5) 2px 2px,
+  rgb(0, 0, 0, .5) 3px 3px;
+}
+
+h1.main span {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  text-align: center;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  transform: translateY(-30px);
+  transition: all ease-in-out .3s;
+}
+
+h1.main span.echo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+p.desc {
+  margin: 30px 0;
+  color: #BBBBBB;
+  font: normal normal normal 17px "Lato";
+  letter-spacing: .1em;
+
+  animation: animdesc 30s 0s infinite alternate;
+}
+
+div.btn-play {
+  width: 200px;
+  padding: 10px 0;
+  margin: 40px auto;
+
+  font: normal normal bold 19px "Lato";
+  text-transform: uppercase;
+  letter-spacing: .2em;
+
+  border-radius: 5px;
+  background: #D84315;
+  border: 5px solid #D84315;
+  color: white;
+
+  transition: all ease-in-out .1s;
+}
+div.btn-play:hover {
+  cursor: pointer;
+  background: transparent;
+  letter-spacing: .3em;
+}
+
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: #039BE5;
+  font-size: 1.1em;
 }
 
 
@@ -77,4 +150,9 @@ footer {
     position: relative;
     bottom: 15px;
   }
+}
+
+@keyframes animdesc {
+  0%   { letter-spacing:  .1em; }
+  100% { letter-spacing: .25em; }
 }
