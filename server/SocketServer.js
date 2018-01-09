@@ -1,5 +1,6 @@
 const Player = require('./Player');
 const Level = require('./Level');
+const Block = require('./Block');
 
 function SocketServer(io) {
     this.io = io;
@@ -11,8 +12,9 @@ SocketServer.prototype = {
     init: function() {
         this.io.on("connection", this.newSocket.bind(this));
 
-        // Load levels
+        // Load levels & blocks
         Level.load();
+        Block.load();
     },
 
     newSocket: function(socket) {

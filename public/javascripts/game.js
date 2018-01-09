@@ -6,7 +6,6 @@ var Game = /** @class */ (function () {
         this.clickContainer.addEventListener("click", this.onClick.bind(this));
         this.clicks = 0;
         this.lastClick = null;
-        setInterval(this.updateClicks.bind(this), 5000);
         this.connect();
     }
     Game.prototype.connect = function () {
@@ -19,24 +18,28 @@ var Game = /** @class */ (function () {
             console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
         });
-        this.socket.on("nextLevel", function (level) {
+        this.socket.on("newBlock", function (block) {
+            document.querySelector("img.block").
+                setAttribute("src", "/images/blocs/" + block.name + ".png");
+        });
+        this.socket.on("levelInfo", function (level) {
             self.level = level;
-            self.level.clicksNeeded = self.level.clicks;
-            document.querySelector("h2.title").innerHTML = "Niveau " + self.level.nb;
+            document.querySelector(".level-info").innerHTML = "Niveau " + level.nb + " (" + level.currentExperience + "/" + level.experienceNeeded + ")";
+        });
+        this.socket.on("coinsInfo", function (coins) {
+            self.coins = coins;
+            document.querySelector(".coins-info").innerHTML = coins + " pièces";
         });
     };
-    Game.prototype.updateClicks = function () {
-        this.socket.emit("saveRemainingClicks", this.level.clicksNeeded);
-        this.clicks = 0;
-    };
     Game.prototype.onClick = function () {
+        var self = this;
         var now = Date.now();
         if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
             return;
-        if (--this.level.clicksNeeded <= 0) {
-            this.socket.emit("GetNextLevel");
-            return;
-        }
+        this.clickContainer.classList.remove("clicked");
+        setTimeout(function () {
+            self.clickContainer.classList.add("clicked");
+        }, 50);
         this.clicks++;
         this.lastClick = now;
     };

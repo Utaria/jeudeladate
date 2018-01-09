@@ -1,8 +1,12 @@
 extends layout
 
 block content
+    div.level-info
+    div.coins-info
+
     h2.title Chargement...
     div.click-container
+        img(class="block")
 
     script(type="text/javascript" src="/socket.io/socket.io.js")
     script(type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js")

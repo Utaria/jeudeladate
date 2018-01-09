@@ -1,5 +1,6 @@
 const Model = require('./Model');
 const Level = require('./Level');
+const Block = require('./Block');
 const uuidv4 = require('uuid/v4');
 
 function Player(socket, cookie, ip) {
@@ -8,7 +9,6 @@ function Player(socket, cookie, ip) {
     this._cookie = cookie;
     this._ip = ip;
     this._level = null;
-    this._clicks = 0;
 
     this._load();
 }
@@ -31,9 +31,13 @@ Player.prototype = {
                 } else {
                     // Load all attributes ...
                     self._name = data.name;
-                    self.setLevel(data.level_id, data.remaining_clicks);
 
-                    // ... and save current IP and last connection time!
+                    // ... and send info to the client!
+                    self.setLevel(data.level_id, data.experience);
+                    self._socket.emit("coinsInfo", data.coins);
+                    self._socket.emit("newBlock", Block.randomForLevel(self._level).toJSON());
+
+                    // Also ave current IP and last connection time!
                     Model.savePlayerInfo(data.id, self._ip);
                 }
             });
@@ -71,17 +75,15 @@ Player.prototype = {
         return this._ip;
     },
 
-    setLevel: function(levelId, remainingClicks) {
+    setLevel: function(levelId, experience) {
         const update = this._level != null;
         this._level = Level.getById(levelId);
 
         // Send data to the client!
         const level = this._level.toJSON();
+        level.currentExperience = experience || 0;
 
-        if (remainingClicks != null)
-            level.clicks = remainingClicks;
-
-        this._socket.emit("nextLevel", level);
+        this._socket.emit("levelInfo", level);
 
         // And update the database!
         if (update)

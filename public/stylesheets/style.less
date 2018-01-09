@@ -7,6 +7,11 @@
   outline: none;
   border: none;
 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -194,13 +199,29 @@ div.btn-play {
 .click-container {
   display: block;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 
   margin: 50px auto;
-  cursor: pointer;
+  cursor: none;
+}
 
-  background: red;
+.click-container.clicked {
+  animation: animblock ease-in-out .2s;
+}
+
+.level-info {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.coins-info {
+  display: block;
+  position: absolute;
+  top: 35px;
+  right: 15px;
 }
 
 
@@ -211,4 +232,10 @@ div.btn-play {
 @keyframes animdesc {
   0%   { letter-spacing:  .1em; }
   100% { letter-spacing: .25em; }
+}
+
+@keyframes animblock {
+  0%   { transform: translateX(-8px) translateY(8px); }
+  50%  { transform: translateX(8px) translateY(8px); }
+  100% { transform: translateX(0) translateY(0); }
 }

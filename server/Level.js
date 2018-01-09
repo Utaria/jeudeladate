@@ -1,9 +1,9 @@
 const Model = require('./Model');
 
-function Level(id, number, clicks) {
+function Level(id, number, experienceNeeded) {
     this._id = id;
     this._nb = number;
-    this._clicks = clicks;
+    this._experienceNeeded = experienceNeeded;
 }
 
 Level.prototype = {
@@ -16,12 +16,12 @@ Level.prototype = {
         return this._nb;
     },
 
-    getClicks: function() {
-        return this._clicks;
+    getNeededExperience: function() {
+        return this._experienceNeeded;
     },
 
     toJSON: function() {
-        return { id: this._id, nb: this._nb, clicks: this._clicks };
+        return { id: this._id, nb: this._nb, experienceNeeded: this._experienceNeeded };
     }
 
 };
@@ -33,7 +33,7 @@ Level.load = function() {
             return false;
 
         for (let level of levels)
-            Level.levels.push(new Level(level.id, level.nb, level.clicks));
+            Level.levels.push(new Level(level.id, level.nb, level.experience_needed));
     });
 };
 Level.getById = function(id) {

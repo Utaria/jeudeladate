@@ -47,6 +47,18 @@ Model.prototype = {
 
     getLevels: function(callback) {
         db.query("select * from levels", callback);
+    },
+
+
+    /*   BLOCS   */
+
+    getBlocks: function(callback) {
+        db.query(
+            "select level_id, block_id, name, chance " +
+            "from blocks join levels_blocks " +
+            "on levels_blocks.block_id = blocks.id",
+            callback
+        );
     }
 
 };
