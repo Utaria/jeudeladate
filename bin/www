@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('jeudeladate:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('jeudeladate:server');
+const http = require('http');
+const SocketServer = require('../server/SocketServer');
 
 /**
  * Get port from environment and store in Express.
@@ -39,12 +39,7 @@ server.on('listening', onListening);
  * Socket io handling.
  */
 
-io.sockets.on("connection", function(socket) {
-   socket.emit("toClient", {
-       type: 'status',
-       msg: 'Connection established.'
-   });
-});
+new SocketServer(io);
 
 /**
  * Normalize a port into a number, string, or false.

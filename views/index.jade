@@ -2,28 +2,25 @@ extends layout
 
 block content
     img.logo(src="/images/logo.png")
-    h1.main
-        span Envie de nouveau ?
-        span Besoin du serveur ?
-        span Marre d'attendre ?
-        span Besoin de s'occuper ?
-        span On est là, pas d'inquiétude.
 
-    p.desc Aidez-nous à découvrir la date d'ouverture du serveur !<br/>Invitez des amis et gagnez des lots surprises !
+    div.index-container
+        h1.main
+            span Envie de nouveau ?
+            span Besoin du serveur ?
+            span Marre d'attendre ?
+            span Besoin de s'occuper ?
+            span On est là, pas d'inquiétude.
+            span Ce jeu est fait pour vous.
 
-    a(href="/jouer")
-        div.btn-play Jouer
+        p.desc Aidez-nous à découvrir la date d'ouverture du serveur !<br/>Invitez des amis et gagnez des surprises hyper cool !
 
-    p
-        a(href="/prix") Je peux gagner quoi ?
-        span &emsp;&mdash;&emsp;
-        a(href="/conditions") Conditions
-    // script(type="text/javascript" src="/socket.io/socket.io.js")
-    // script.
-        var socket = io.connect('http://localhost:3000');
-        socket.on('toClient', function(message) {
-            console.log(message);
-        });
+        div.btn-play
+            a(href="/jouer") Jouer
+
+        p
+            a(href="/prix") Je peux gagner quoi ?
+            span &emsp;&mdash;&emsp;
+            a(href="/budujeu") Quel est le but du jeu ?
 
     script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.1.0/particles.min.js")
     script(type="text/javascript" src="/javascripts/index.js")

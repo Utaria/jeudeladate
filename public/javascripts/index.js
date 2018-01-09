@@ -21,7 +21,7 @@ window.addEventListener("load", function() {
     Particles.init({
         selector: '.particles',
         color: '#555555',
-        maxParticles: 30,
+        maxParticles: 50,
         connectParticles: true,
         speed: 0.6
     });
