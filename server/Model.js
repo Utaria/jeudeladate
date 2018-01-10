@@ -36,12 +36,6 @@ Model.prototype = {
         });
     },
 
-    saveRemainingClicks: function(cookie, clicks) {
-        db.query("UPDATE players SET remaining_clicks = ? WHERE cookie = ?", [clicks, cookie], function(err) {
-            if (err) console.error(err);
-        });
-    },
-
 
     /*   LEVELS   */
 
@@ -54,7 +48,8 @@ Model.prototype = {
 
     getBlocks: function(callback) {
         db.query(
-            "select level_id, block_id, name, chance " +
+            "select level_id, block_id, name, clicks, " +
+            "experience_min, experience_max, coin_min, coin_max, chance " +
             "from blocks join levels_blocks " +
             "on levels_blocks.block_id = blocks.id",
             callback

@@ -35,7 +35,7 @@ Player.prototype = {
                     // ... and send info to the client!
                     self.setLevel(data.level_id, data.experience);
                     self._socket.emit("coinsInfo", data.coins);
-                    self._socket.emit("newBlock", Block.randomForLevel(self._level).toJSON());
+                    self.newBlock();
 
                     // Also ave current IP and last connection time!
                     Model.savePlayerInfo(data.id, self._ip);
@@ -90,8 +90,8 @@ Player.prototype = {
             Model.savePlayerLevel(this._cookie, levelId);
     },
 
-    saveRemainingClicks: function(clicks) {
-        Model.saveRemainingClicks(this._cookie, clicks);
+    newBlock: function() {
+        this._socket.emit("newBlock", Block.randomForLevel(this._level).toJSON());
     }
 
 };

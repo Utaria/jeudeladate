@@ -28,9 +28,9 @@ SocketServer.prototype = {
             player.setLevel(player.getLevel().getNb() + 1);
         });
 
-        socket.on("saveRemainingClicks", function(clicks) {
+        socket.on("newBlock", function() {
             const player = Player.getWithSocket(socket);
-            player.saveRemainingClicks(clicks);
+            player.newBlock();
         });
 
         socket.on("disconnect", function() {

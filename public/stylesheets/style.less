@@ -204,24 +204,142 @@ div.btn-play {
 
   margin: 50px auto;
   cursor: none;
-}
 
-.click-container.clicked {
-  animation: animblock ease-in-out .2s;
+  &.clicked {
+    animation: animblock ease-in-out .2s;
+  }
 }
 
 .level-info {
   display: block;
   position: absolute;
+  width: 200px;
+  height: 50px;
+  background: url("../images/overlay.png") no-repeat left -50px;
+
   top: 15px;
   right: 15px;
+
+  .progressbar {
+    display: block;
+    position: absolute;
+
+    width: 148px;
+    height: 21px;
+
+    left: 4px;
+    top: 15px;
+
+    span {
+      display: block;
+      position: relative;
+      float: left;
+      width: 13px;
+      height: 21px;
+      margin: 0 1px;
+
+      background: #6BE0F4;
+      border-radius: 1px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  span.meta {
+    display: block;
+    position: absolute;
+
+    text-align: right;
+    bottom: -7px;
+    right: 48px;
+
+    color: #DDD;
+    font: normal normal bold 12px "Lato", Arial, sans-serif;
+    text-transform: uppercase;
+  }
 }
 
 .coins-info {
   display: block;
   position: absolute;
-  top: 35px;
+  width: 200px;
+  height: 50px;
+
+  background: url("../images/overlay.png") no-repeat left top;
+
+  top: 85px;
   right: 15px;
+
+  span {
+    display: block;
+    position: absolute;
+
+    top: 15px;
+    left: 10px;
+
+    color: #FFD949;
+    font: normal normal bold 15px "Lato", Arial, sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+.pickaxe {
+  display: none;
+  position: absolute;
+  width: 112.5px;
+  height: 112.5px;
+
+  background: url("../images/pickaxe.png") no-repeat center center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+
+  transition: transform ease-in-out .1s;
+
+  transform: rotateZ(-80deg);
+  z-index: 5;
+
+  &.clicked {
+    animation: animpickaxe ease-in-out .2s;
+  }
+
+  &.inverted {
+    transform: rotate(0deg);
+  }
+
+  &.inverted.clicked {
+    animation: animpickaxeinverted ease-in-out .2s;
+  }
+}
+
+.items {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 4;
+
+  .experience {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: url("../images/overlay.png") no-repeat -48px -100px;
+  }
+
+  .coin {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: url("../images/overlay.png") no-repeat 0 -100px;
+  }
 }
 
 
@@ -238,4 +356,16 @@ div.btn-play {
   0%   { transform: translateX(-8px) translateY(8px); }
   50%  { transform: translateX(8px) translateY(8px); }
   100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes animpickaxe {
+  0%   { transform: rotateZ(-100deg); }
+  50%  { transform: rotateZ(-60deg); }
+  100% { transform: rotateZ(-80deg); }
+}
+
+@keyframes animpickaxeinverted {
+  0%   { transform: rotateZ(-20deg); }
+  50%  { transform: rotateZ(20deg); }
+  100% { transform: rotateZ(0deg); }
 }

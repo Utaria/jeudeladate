@@ -1,9 +1,13 @@
 const Model = require('./Model');
 
-function Block(id, name) {
+function Block(id, name, clicks) {
     this._id = id;
     this._name = name;
+    this._clicks = clicks;
     this._chances = {};
+
+    this._experienceWin = [];
+    this._coinWin = [];
 }
 
 Block.prototype = {
@@ -27,8 +31,24 @@ Block.prototype = {
         this._chances[levelId] = chance;
     },
 
+    setExperienceWinValues: function(min, max) {
+        this._experienceWin = [min, max];
+    },
+
+    setCoinWinValues: function(min, max) {
+        this._coinWin = [min, max];
+    },
+
     toJSON: function() {
-        return { name: this._name };
+        return {
+            name: this._name,
+            clicks: this._clicks,
+
+            win: {
+                experience: randomIntFromInterval(this._experienceWin[0], this._experienceWin[1]),
+                coin: randomIntFromInterval(this._coinWin[0], this._coinWin[1])
+            }
+        };
     }
 
 };
@@ -43,7 +63,10 @@ Block.load = function() {
             let blockObj = Block.getById(block.block_id);
 
             if (blockObj == null) {
-                blockObj = new Block(block.block_id, block.name);
+                blockObj = new Block(block.block_id, block.name, block.clicks);
+                blockObj.setExperienceWinValues(block.experience_min, block.experience_max);
+                blockObj.setCoinWinValues(block.coin_min, block.coin_max);
+
                 Block.blocks.push(blockObj);
             }
 
@@ -71,5 +94,9 @@ Block.randomForLevel = function(level) {
 
     return null;
 };
+
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 module.exports = Block;
