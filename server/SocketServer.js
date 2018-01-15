@@ -23,9 +23,8 @@ SocketServer.prototype = {
             Player.newInstance(socket, cookie, address);
         });
 
-        socket.on("GetNextLevel", function() {
-            const player = Player.getWithSocket(socket);
-            player.setLevel(player.getLevel().getNb() + 1);
+        socket.on("updateData", function(data) {
+            Player.getWithSocket(socket).update(data);
         });
 
         socket.on("newBlock", function() {

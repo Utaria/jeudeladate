@@ -92,6 +92,15 @@ Player.prototype = {
 
     newBlock: function() {
         this._socket.emit("newBlock", Block.randomForLevel(this._level).toJSON());
+    },
+
+    update: function(data) {
+        this.coins = data.coins;
+        Model.savePlayerData(this._cookie, data);
+
+        // Check for a new level!
+        if (data.level.currentExperience >= this._level.getNeededExperience())
+            this.setLevel(this._level.getId() + 1);
     }
 
 };

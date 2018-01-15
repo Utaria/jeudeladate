@@ -8,6 +8,7 @@ var Game = /** @class */ (function () {
         this.pickaxe = document.querySelector(".pickaxe");
         this.clicks = 0;
         this.lastClick = null;
+        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
         this.connect();
     }
     Game.prototype.connect = function () {
@@ -22,6 +23,9 @@ var Game = /** @class */ (function () {
         });
         this.socket.on("newBlock", function (block) {
             self.block = block;
+            self.clickContainer.querySelector(".meta-block").innerHTML =
+                "Encore " + block.clicks + " coup" + ((block.clicks > 1) ? "s" : "") + " !";
+            self.block.clicks--;
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
         });
@@ -58,6 +62,16 @@ var Game = /** @class */ (function () {
         var DIST = 200;
         var origX = this.clickContainer.offsetLeft + this.clickContainer.offsetWidth / 2;
         var origY = this.clickContainer.offsetTop + this.clickContainer.offsetHeight / 2;
+        // Clear unused tooltips
+        var tooltips = document.querySelectorAll(".tooltip");
+        for (var i = 0; i < tooltips.length; i++)
+            tooltips[i].parentElement.removeChild(tooltips[i]);
+        // Clear old items
+        var nodes = [].slice.call(container.childNodes);
+        for (var _i = 0, nodes_1 = nodes; _i < nodes_1.length; _i++) {
+            var node = nodes_1[_i];
+            this.onItemMouseOver(node, null);
+        }
         // Prepare elements
         container.innerHTML = "";
         var _loop_1 = function (i) {
@@ -79,6 +93,12 @@ var Game = /** @class */ (function () {
         for (var i = 0; i < coins + experience; i++) {
             _loop_1(i);
         }
+    };
+    Game.prototype.sendData = function () {
+        this.socket.emit("updateData", {
+            level: this.level,
+            coins: this.coins
+        });
     };
     /*   EVENTS   */
     Game.prototype.onClick = function () {
@@ -107,6 +127,8 @@ var Game = /** @class */ (function () {
             }, 1000);
             return;
         }
+        this.clickContainer.querySelector(".meta-block").innerHTML =
+            "Encore " + this.block.clicks + " coup" + ((this.block.clicks > 1) ? "s" : "") + " !";
         this.block.clicks--;
         this.lastClick = now;
     };
@@ -120,6 +142,16 @@ var Game = /** @class */ (function () {
             this.level.currentExperience++;
             this.updateLevelInfo();
         }
+        // Print item tooltip
+        var tooltip = document.createElement("div");
+        tooltip.className = "tooltip";
+        tooltip.innerHTML = "+1";
+        tooltip.style.top = (element.offsetTop - 10) + "px";
+        tooltip.style.left = element.offsetLeft + "px";
+        tooltip.style.width = element.offsetWidth + "px";
+        document.body.appendChild(tooltip);
+        // Update data on server!
+        this.sendDataIfNeeded();
         element.parentNode.removeChild(element);
     };
     Game.prototype.onMouseMove = function (event) {
@@ -149,3 +181,14 @@ var Game = /** @class */ (function () {
 window.addEventListener("load", function () {
     new Game();
 });
+function debounce(callback, delay) {
+    var timer;
+    return function () {
+        var args = arguments;
+        var context = this;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            callback.apply(context, args);
+        }, delay);
+    };
+}

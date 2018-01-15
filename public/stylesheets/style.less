@@ -208,6 +208,15 @@ div.btn-play {
   &.clicked {
     animation: animblock ease-in-out .2s;
   }
+
+  .meta-block {
+    display: block;
+    position: relative;
+    width: 300px;
+    margin: 25px 0 25px -75px;
+    font: normal normal normal 17px "Lato", Arial, sans-serif;
+    text-transform: uppercase;
+  }
 }
 
 .level-info {
@@ -342,6 +351,15 @@ div.btn-play {
   }
 }
 
+.tooltip {
+  display: block;
+  position: absolute;
+  color: yellow;
+  text-align: center;
+  font: normal normal bold 17px "Lato", Arial, sans-serif;
+  animation: tooltip ease-in-out 2s forwards;
+}
+
 
 /* ----------------------------------------------- */
 /*    DIVERS                                       */
@@ -368,4 +386,9 @@ div.btn-play {
   0%   { transform: rotateZ(-20deg); }
   50%  { transform: rotateZ(20deg); }
   100% { transform: rotateZ(0deg); }
+}
+
+@keyframes tooltip {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
 }

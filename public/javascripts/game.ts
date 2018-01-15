@@ -16,6 +16,9 @@ class Game {
     private block: any;
     private coins: number;
 
+    // Debounce methods
+    private sendDataIfNeeded : Function;
+
     public constructor() {
         this.clickContainer = document.querySelector(".click-container");
 
@@ -26,6 +29,8 @@ class Game {
 
         this.clicks = 0;
         this.lastClick = null;
+
+        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
 
         this.connect();
     }
@@ -45,6 +50,10 @@ class Game {
 
         this.socket.on("newBlock", function(block) {
             self.block = block;
+            self.clickContainer.querySelector(".meta-block").innerHTML =
+                "Encore " + block.clicks + " coup" + ((block.clicks > 1) ? "s" : "") + " !";
+            self.block.clicks--;
+
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
         });
@@ -93,6 +102,17 @@ class Game {
         let origX = this.clickContainer.offsetLeft + this.clickContainer.offsetWidth/2;
         let origY = this.clickContainer.offsetTop + this.clickContainer.offsetHeight/2;
 
+        // Clear unused tooltips
+        const tooltips = document.querySelectorAll(".tooltip");
+        for (let i = 0; i < tooltips.length; i++)
+            tooltips[i].parentElement.removeChild(tooltips[i]);
+
+
+        // Clear old items
+        let nodes = [].slice.call(container.childNodes);
+        for (let node of nodes)
+            this.onItemMouseOver(node, null);
+
         // Prepare elements
         container.innerHTML = "";
 
@@ -116,6 +136,13 @@ class Game {
                 self.onItemMouseOver(this, event);
             });
         }
+    }
+
+    private sendData() {
+        this.socket.emit("updateData", {
+            level: this.level,
+            coins: this.coins
+        });
     }
 
 
@@ -155,6 +182,9 @@ class Game {
             return;
         }
 
+        this.clickContainer.querySelector(".meta-block").innerHTML =
+            "Encore " + this.block.clicks + " coup" + ((this.block.clicks > 1) ? "s" : "") + " !";
+
         this.block.clicks--;
         this.lastClick = now;
     }
@@ -169,6 +199,18 @@ class Game {
             this.level.currentExperience++;
             this.updateLevelInfo();
         }
+
+        // Print item tooltip
+        const tooltip = document.createElement("div");
+        tooltip.className = "tooltip";
+        tooltip.innerHTML = "+1";
+        tooltip.style.top = (element.offsetTop - 10) + "px";
+        tooltip.style.left = element.offsetLeft + "px";
+        tooltip.style.width = element.offsetWidth + "px";
+        document.body.appendChild(tooltip);
+
+        // Update data on server!
+        this.sendDataIfNeeded();
 
         element.parentNode.removeChild(element);
     }
@@ -202,3 +244,16 @@ class Game {
 window.addEventListener("load", function() {
     new Game();
 });
+
+function debounce(callback, delay) {
+    let timer;
+    return function(){
+        const args = arguments;
+        const context = this;
+
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            callback.apply(context, args);
+        }, delay)
+    }
+}
