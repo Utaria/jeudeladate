@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1.main.simple Classement du jeu
+
+    .limiter
+        .container-table100
+            .wrap-table100
+                .table100
+                    table
+                        thead
+                            tr.table100-head
+                                th.column1 # Position
+                                th.column2 Nom du joueur
+                                th.column3 Niveau
+                                th.column4 Experience
+                        tbody
+                            for row, i in data
+                                tr
+                                    td # #{++i}
+                                    td #{row.name}
+                                    td #{row.level_id}
+                                    td #{row.experience}

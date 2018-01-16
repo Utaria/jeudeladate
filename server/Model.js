@@ -1,7 +1,4 @@
-const mysql = require('mysql');
-const config = require('../config');
-
-const db = mysql.createPool(config.db);
+const db = require('./db');
 
 function Model() {
 
