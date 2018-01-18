@@ -1,59 +1,66 @@
-CREATE TABLE blocks
+create table blocks
 (
-  id             INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name           VARCHAR(60)     NOT NULL,
-  clicks         INT DEFAULT '0' NOT NULL,
-  experience_min INT DEFAULT '0' NOT NULL,
-  experience_max INT DEFAULT '0' NOT NULL,
-  coin_min       INT DEFAULT '0' NOT NULL,
-  coin_max       INT DEFAULT '0' NOT NULL
+  id int auto_increment
+    primary key,
+  name varchar(60) not null,
+  clicks int default '0' not null,
+  experience_min int default '0' not null,
+  experience_max int default '0' not null,
+  coin_min int default '0' not null,
+  coin_max int default '0' not null,
+  usekeys_chance float default '0' null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE levels
+create table levels
 (
-  id                INT AUTO_INCREMENT
-    PRIMARY KEY,
-  nb                INT NOT NULL,
-  experience_needed INT NOT NULL
+  id int auto_increment
+    primary key,
+  nb int not null,
+  experience_needed int not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE levels_blocks
+create table levels_blocks
 (
-  id       INT AUTO_INCREMENT
-    PRIMARY KEY,
-  level_id INT    NOT NULL,
-  block_id INT    NOT NULL,
-  chance   DOUBLE NOT NULL
+  id int auto_increment
+    primary key,
+  level_id int not null,
+  block_id int not null,
+  chance double not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE players
+create table players
 (
-  id              INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name            VARCHAR(80)                         NULL,
-  cookie          VARCHAR(255) DEFAULT '0'            NOT NULL,
-  ip              VARCHAR(50) DEFAULT '0'             NOT NULL,
-  connection_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  level_id        INT DEFAULT '1'                     NOT NULL,
-  experience      INT DEFAULT '0'                     NULL,
-  coins           INT DEFAULT '0'                     NULL,
-  CONSTRAINT cookie
-  UNIQUE (cookie)
+  id int auto_increment
+    primary key,
+  name varchar(80) null,
+  cookie varchar(255) default '0' not null,
+  ip varchar(50) default '0' not null,
+  connection_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+  level_id int default '1' not null,
+  experience int default '0' null,
+  coins int default '0' null,
+  constraint cookie
+  unique (cookie)
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE INDEX level_id
-  ON players (level_id);
+create index level_id
+  on players (level_id)
+;
+
 
 -- INSERTS
 
-INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max) VALUES (1, 'fer', 10, 5, 10, 1, 2);
-INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max) VALUES (2, 'or', 50, 25, 50, 5, 10);
-INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max) VALUES (3, 'diamant', 100, 5000, 10000, 50, 75);
+INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (1, 'fer', 10, 5, 10, 1, 2, 1);
+INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (2, 'or', 50, 25, 50, 5, 10, 0);
+INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (3, 'diamant', 100, 5000, 10000, 50, 75, 0);
 
 INSERT INTO jeudeladate.levels (id, nb, experience_needed) VALUES (1, 1, 50);
 INSERT INTO jeudeladate.levels (id, nb, experience_needed) VALUES (2, 2, 100);

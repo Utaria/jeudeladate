@@ -7,7 +7,7 @@ block content
         .container-table100
             .wrap-table100
                 .table100
-                    table
+                    table.ranking
                         thead
                             tr.table100-head
                                 th.column1 # Position
@@ -18,6 +18,9 @@ block content
                             for row, i in data
                                 tr
                                     td # #{++i}
-                                    td #{row.name}
+                                    td
+                                        img(src="https://crafatar.com/renders/head/Utarwyn" style="width:40px;float:left")
+                                        span(style="font-weight:bold;text-transform:uppercase") #{row.name}
+
                                     td #{row.level_id}
                                     td #{row.experience}

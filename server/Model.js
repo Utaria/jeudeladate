@@ -50,7 +50,7 @@ Model.prototype = {
 
     getBlocks: function(callback) {
         db.query(
-            "select level_id, block_id, name, clicks, " +
+            "select level_id, block_id, name, clicks, usekeys_chance, " +
             "experience_min, experience_max, coin_min, coin_max, chance " +
             "from blocks join levels_blocks " +
             "on levels_blocks.block_id = blocks.id",

@@ -1,9 +1,11 @@
 const Model = require('./Model');
 
-function Block(id, name, clicks) {
+function Block(id, name, clicks, useKeysChance) {
     this._id = id;
     this._name = name;
     this._clicks = clicks;
+    this._useKeysChance = useKeysChance;
+
     this._chances = {};
 
     this._experienceWin = [];
@@ -43,6 +45,7 @@ Block.prototype = {
         return {
             name: this._name,
             clicks: this._clicks,
+            useKeys: Math.random() < this._useKeysChance,
 
             win: {
                 experience: randomIntFromInterval(this._experienceWin[0], this._experienceWin[1]),
@@ -63,7 +66,7 @@ Block.load = function() {
             let blockObj = Block.getById(block.block_id);
 
             if (blockObj == null) {
-                blockObj = new Block(block.block_id, block.name, block.clicks);
+                blockObj = new Block(block.block_id, block.name, block.clicks, block.usekeys_chance);
                 blockObj.setExperienceWinValues(block.experience_min, block.experience_max);
                 blockObj.setCoinWinValues(block.coin_min, block.coin_max);
 

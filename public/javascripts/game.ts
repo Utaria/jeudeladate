@@ -16,14 +16,25 @@ class Game {
     private block: any;
     private coins: number;
 
+    private keys: any[][];
+
     // Debounce methods
     private sendDataIfNeeded : Function;
 
     public constructor() {
         this.clickContainer = document.querySelector(".click-container");
 
+        this.keys = [];
+        let i = 0;
+
+        for (let code = 48; code < 91; code++) {
+            this.keys[i] = [i, String.fromCharCode(code)];
+            i++;
+        }
+
         document.addEventListener("click", this.onClick.bind(this));
         document.addEventListener("mousemove", this.onMouseMove.bind(this));
+        document.addEventListener("keydown", this.onKeyDown.bind(this));
 
         this.pickaxe = document.querySelector(".pickaxe");
 
@@ -56,6 +67,8 @@ class Game {
 
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
+
+            self.newBlockKey();
         });
 
         this.socket.on("levelInfo", function(level) {
@@ -138,6 +151,14 @@ class Game {
         }
     }
 
+    private newBlockKey() {
+        if (this.block == null || !this.block.useKeys) return;
+
+        this.block.nextKey = this.keys[Math.round(Math.random() * Object.keys(this.keys).length)];
+        console.log(Math.round(Math.random() * Object.keys(this.keys).length));
+        console.log(this.block.nextKey);
+    }
+
     private sendData() {
         this.socket.emit("updateData", {
             level: this.level,
@@ -157,7 +178,8 @@ class Game {
 
         if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
             return;
-        if (this.block == null)
+        // Prevent clicking with no block or a key-based block
+        if (this.block == null || this.block.useKeys)
             return;
 
         this.clickContainer.classList.remove("clicked");
@@ -215,13 +237,22 @@ class Game {
         element.parentNode.removeChild(element);
     }
 
+    private onKeyDown(event) {
+        if (this.block != null && this.block.useKeys) {
+
+            console.log(event.keyCode);
+
+            this.newBlockKey();
+        }
+    }
+
     private onMouseMove(event) {
         let calcX = event.clientX - (this.clickContainer.offsetLeft + this.clickContainer.offsetWidth/2);
         let distX = Math.abs(calcX);
         let distY = Math.abs(event.clientY - (this.clickContainer.offsetTop + this.clickContainer.offsetHeight/2));
         let dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
 
-        if (dist < 150) {
+        if (dist < 150 && this.block != null && !this.block.useKeys) {
             if (calcX < 0)
                 this.pickaxe.classList.add("inverted");
             else

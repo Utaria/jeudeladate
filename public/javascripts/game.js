@@ -3,8 +3,15 @@ var Game = /** @class */ (function () {
         this.MIN_DELAY = 120;
         this.SERVER_ENDPOINT = "http://localhost:3000";
         this.clickContainer = document.querySelector(".click-container");
+        this.keys = [];
+        var i = 0;
+        for (var code = 48; code < 91; code++) {
+            this.keys[i] = [i, String.fromCharCode(code)];
+            i++;
+        }
         document.addEventListener("click", this.onClick.bind(this));
         document.addEventListener("mousemove", this.onMouseMove.bind(this));
+        document.addEventListener("keydown", this.onKeyDown.bind(this));
         this.pickaxe = document.querySelector(".pickaxe");
         this.clicks = 0;
         this.lastClick = null;
@@ -28,6 +35,7 @@ var Game = /** @class */ (function () {
             self.block.clicks--;
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
+            self.newBlockKey();
         });
         this.socket.on("levelInfo", function (level) {
             self.level = level;
@@ -94,6 +102,13 @@ var Game = /** @class */ (function () {
             _loop_1(i);
         }
     };
+    Game.prototype.newBlockKey = function () {
+        if (this.block == null || !this.block.useKeys)
+            return;
+        this.block.nextKey = this.keys[Math.round(Math.random() * Object.keys(this.keys).length)];
+        console.log(Math.round(Math.random() * Object.keys(this.keys).length));
+        console.log(this.block.nextKey);
+    };
     Game.prototype.sendData = function () {
         this.socket.emit("updateData", {
             level: this.level,
@@ -108,7 +123,8 @@ var Game = /** @class */ (function () {
             return;
         if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
             return;
-        if (this.block == null)
+        // Prevent clicking with no block or a key-based block
+        if (this.block == null || this.block.useKeys)
             return;
         this.clickContainer.classList.remove("clicked");
         this.pickaxe.classList.remove("clicked");
@@ -154,12 +170,18 @@ var Game = /** @class */ (function () {
         this.sendDataIfNeeded();
         element.parentNode.removeChild(element);
     };
+    Game.prototype.onKeyDown = function (event) {
+        if (this.block != null && this.block.useKeys) {
+            console.log(event.keyCode);
+            this.newBlockKey();
+        }
+    };
     Game.prototype.onMouseMove = function (event) {
         var calcX = event.clientX - (this.clickContainer.offsetLeft + this.clickContainer.offsetWidth / 2);
         var distX = Math.abs(calcX);
         var distY = Math.abs(event.clientY - (this.clickContainer.offsetTop + this.clickContainer.offsetHeight / 2));
         var dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-        if (dist < 150) {
+        if (dist < 150 && this.block != null && !this.block.useKeys) {
             if (calcX < 0)
                 this.pickaxe.classList.add("inverted");
             else
