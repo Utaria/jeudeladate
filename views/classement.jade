@@ -19,8 +19,8 @@ block content
                                 tr
                                     td # #{++i}
                                     td
-                                        img(src="https://crafatar.com/renders/head/Utarwyn" style="width:40px;float:left")
-                                        span(style="font-weight:bold;text-transform:uppercase") #{row.name}
+                                        img(src="https://crafatar.com/renders/head/#{row.name}" style="width:40px;float:left")
+                                        span(style="font-weight:bold") #{row.name}
 
                                     td #{row.level_id}
                                     td #{row.experience}

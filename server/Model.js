@@ -34,7 +34,7 @@ Model.prototype = {
     },
 
     savePlayerData: function(cookie, data) {
-        db.query("UPDATE players SET experience = ?, coins = ? WHERE cookie = ?", [data.level.currentExperience, data.coins, cookie], function(err) {
+        db.query("UPDATE players SET experience = ?, total_experience = ?, coins = ? WHERE cookie = ?", [data.level.currentExperience, data.totalExperience, data.coins, cookie], function(err) {
             if (err) console.error(err);
         })
     },

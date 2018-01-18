@@ -46,6 +46,10 @@ a {
   }
 }
 
+.clear {
+  clear: both;
+}
+
 canvas.particles {
   position: absolute;
   display: block;
@@ -148,6 +152,7 @@ h1.main {
 
   &.simple {
     margin-top: 0;
+    height: auto;
   }
 }
 
@@ -379,10 +384,11 @@ h2.action {
   height: 80px;
   top: 30px;
   text-align: center;
+  z-index: 5;
 
   border-radius: 5px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, .9);
 
   font-family: "Lato", Arial, sans-serif;
   line-height: 80px;
@@ -586,6 +592,166 @@ tbody tr:hover {
   }
 }
 
+/* ----------------------------------------------- */
+/*    DATE D'OUVERTURE                             */
+/* ----------------------------------------------- */
+
+div.opening-date {
+  width: 650px;
+  margin: 0 auto;
+
+  span.divider {
+    font-size: 3em;
+    margin: 1em 0;
+  }
+
+  div, span {
+    width: auto;
+    float: left;
+  }
+}
+
+.progress-container {
+  display: block;
+  position: relative;
+  width: 600px;
+  height: 50px;
+  margin: 50px auto;
+
+  .progress-bar-container {
+    float: left;
+    height: 100%;
+    width: 88%;
+    padding: 10px;
+    background: #383838;
+    border-radius: 5px 0 0 0;
+  }
+
+  .percent-container {
+    float: left;
+    height: 100%;
+    width: 12%;
+    background: #fff;
+    border-radius: 0 5px 0 0;
+    border-left: 5px solid #AAAAAA;
+
+    span {
+      text-align: center;
+      color: #7998D4;
+
+      font: 18px "Lato", sans-serif;
+      line-height: 50px;
+      font-weight: 900;
+    }
+
+    .loading {
+      border: 5px solid #fff;
+      border-top: 5px solid #3498db;
+      border-bottom: 5px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin: 5px 15px;
+      animation: spin 2s linear infinite;
+    }
+  }
+
+  .desc-container {
+    clear: both;
+    width: 100%;
+    height: 100%;
+
+    background: #7998D4;
+    border-top: 3px solid #92b1ed;
+    border-radius: 0 0 5px 5px;
+
+    span {
+      font: 17px "Lato", sans-serif;
+      line-height: 47px;
+      font-weight: 700;
+
+      i.em {
+        margin: 0 5px;
+      }
+    }
+
+    span.number {
+      color: black;
+      border-bottom: 3px solid black;
+    }
+
+    &.finished {
+      background: #689f38;
+      border-top-color: #7cb342;
+    }
+  }
+}
+
+.progress-bar {
+  background-color: #1a1a1a;
+  height: 30px;
+  padding: 2px;
+  width: 100%;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+
+  span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .4s ease-in-out;
+  }
+
+  &.blue span {
+    background-color: #34c2e3;
+  }
+
+  &.orange span {
+    background-color: #fecf23;
+    background-image: linear-gradient(top, #fecf23, #fd9215);
+  }
+
+  &.green span {
+    background-color: #a5df41;
+    background-image: linear-gradient(top, #a5df41, #4ca916);
+  }
+
+  &.stripes span {
+    background-size: 30px 30px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+    transparent 75%, transparent);
+
+    animation: animate-stripes 3s linear infinite;
+  }
+
+  &.shine span {
+    position: relative;
+  }
+
+  &.shine span::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 3px;
+    animation: animate-shine 2s ease-out infinite;
+  }
+
+  &.glow span {
+    box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+    animation: animate-glow 1s ease-out infinite;
+  }
+
+}
+
 
 /* ----------------------------------------------- */
 /*    DIVERS                                       */
@@ -617,4 +783,25 @@ tbody tr:hover {
 @keyframes tooltip {
   0% { transform: translateY(0); opacity: 1; }
   100% { transform: translateY(-20px); opacity: 0; }
+}
+
+@keyframes animate-stripes {
+  0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+
+@keyframes animate-shine {
+  0% {opacity: 0; width: 0;}
+  50% {opacity: .5;}
+  100% {opacity: 0; width: 95%;}
+}
+
+@keyframes animate-glow {
+  0% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+  50% { box-shadow: 0 5px 5px rgba(255, 255, 255, .3) inset, 0 -5px 5px rgba(255, 255, 255, .3) inset;}
+  100% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

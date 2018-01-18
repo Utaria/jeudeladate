@@ -1,5 +1,40 @@
 extends layout
 
-block content
-    h1.main.simple Date d'ouverture du serveur !
+block head
+    link(rel='stylesheet' href='/stylesheets/flipclock.css')
+    script(type="text/javascript" src="/javascripts/jquery.js")
 
+block content
+    h1.main.simple Il ouvre quand le serveur ?
+
+    p.desc Débloquez toute la date d'ouverture du serveur en invitant vos amis !
+
+    div.opening-date
+        div.day
+        span.divider /
+        div.month
+        span.divider /
+        div.year
+
+    div.clear
+
+    div.progress-container
+        div.progress-bar-container
+            div.progress-bar.orange.shine
+                span
+        div.percent-container
+            span
+                div.loading
+
+        div.desc-container
+            span
+                | Encore #{''}
+                span.number --- ---
+                | #{''} d'EXP pour débloquer le prochain chiffre !&nbsp;
+                i.em.em-heart_eyes
+                i.em.em-rocket
+
+    div.clear
+
+    script(type="text/javascript" src="/javascripts/flipclock.js")
+    script(type="text/javascript" src="/javascripts/date.js")

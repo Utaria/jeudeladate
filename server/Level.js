@@ -43,5 +43,15 @@ Level.getById = function(id) {
 
     return null;
 };
+Level.getExperienceAfterLevel = function(id) {
+    if (id <= 0) return 0;
+    let exp = 0;
+
+    for (let level of Level.levels)
+        if (level.getId() <= id)
+            exp += level.getNeededExperience();
+
+    return exp;
+};
 
 module.exports = Level;

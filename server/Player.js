@@ -96,6 +96,12 @@ Player.prototype = {
 
     update: function(data) {
         this.coins = data.coins;
+
+        // Recalculate the total experience of the user ...
+        data.totalExperience = Level.getExperienceAfterLevel(this._level.getId())
+                               + data.level.currentExperience;
+
+        // ... and save its data!
         Model.savePlayerData(this._cookie, data);
 
         // Check for a new level!
