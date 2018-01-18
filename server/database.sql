@@ -1,3 +1,5 @@
+use jeudeladate;
+
 create table blocks
 (
   id int auto_increment

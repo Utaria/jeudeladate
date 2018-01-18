@@ -200,13 +200,21 @@ div.btn-play {
 /*    JEU                                          */
 /* ----------------------------------------------- */
 
+h2.action {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-align: left;
+}
+
 .click-container {
   display: block;
   position: relative;
   width: 150px;
   height: 150px;
 
-  margin: 50px auto;
+  margin: 80px auto;
   cursor: none;
 
   &.clicked {
@@ -362,6 +370,25 @@ div.btn-play {
   text-align: center;
   font: normal normal bold 17px "Lato", Arial, sans-serif;
   animation: tooltip ease-in-out 2s forwards;
+}
+
+.key-container {
+  display: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top: 30px;
+  text-align: center;
+
+  border-radius: 5px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 1);
+
+  font-family: "Lato", Arial, sans-serif;
+  line-height: 80px;
+  font-weight: bold;
+  font-size: 2em;
+  color: #383838;
 }
 
 

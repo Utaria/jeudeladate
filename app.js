@@ -9,6 +9,7 @@ const lessMiddleware = require('less-middleware');
 const index = require('./routes/index');
 const jouer = require('./routes/jouer');
 const classement = require('./routes/classement');
+const date = require('./routes/date');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/jouer', jouer);
 app.use('/classement', classement);
+app.use('/date', date);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

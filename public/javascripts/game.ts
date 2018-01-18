@@ -4,6 +4,7 @@ class Game {
     private SERVER_ENDPOINT: string = "http://localhost:3000";
 
     private clickContainer: HTMLElement;
+    private keyContainer: HTMLElement;
     private pickaxe: HTMLElement;
 
     private socket: any;
@@ -23,18 +24,20 @@ class Game {
 
     public constructor() {
         this.clickContainer = document.querySelector(".click-container");
+        this.keyContainer = document.querySelector(".key-container");
 
         this.keys = [];
         let i = 0;
 
-        for (let code = 48; code < 91; code++) {
-            this.keys[i] = [i, String.fromCharCode(code)];
+        for (let code = 65; code < 91; code++) {
+            this.keys[i] = [code, String.fromCharCode(code)];
             i++;
         }
 
         document.addEventListener("click", this.onClick.bind(this));
         document.addEventListener("mousemove", this.onMouseMove.bind(this));
         document.addEventListener("keydown", this.onKeyDown.bind(this));
+        document.addEventListener("keyup", this.onKeyUp.bind(this));
 
         this.pickaxe = document.querySelector(".pickaxe");
 
@@ -151,36 +154,8 @@ class Game {
         }
     }
 
-    private newBlockKey() {
-        if (this.block == null || !this.block.useKeys) return;
-
-        this.block.nextKey = this.keys[Math.round(Math.random() * Object.keys(this.keys).length)];
-        console.log(Math.round(Math.random() * Object.keys(this.keys).length));
-        console.log(this.block.nextKey);
-    }
-
-    private sendData() {
-        this.socket.emit("updateData", {
-            level: this.level,
-            coins: this.coins
-        });
-    }
-
-
-    /*   EVENTS   */
-
-    private onClick() {
+    private interactBlock() {
         const self = this;
-        const now = Date.now();
-
-        if (!this.canClick)
-            return;
-
-        if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
-            return;
-        // Prevent clicking with no block or a key-based block
-        if (this.block == null || this.block.useKeys)
-            return;
 
         this.clickContainer.classList.remove("clicked");
         this.pickaxe.classList.remove("clicked");
@@ -208,6 +183,46 @@ class Game {
             "Encore " + this.block.clicks + " coup" + ((this.block.clicks > 1) ? "s" : "") + " !";
 
         this.block.clicks--;
+    }
+
+    private newBlockKey() {
+        if (this.block == null || !this.block.useKeys) {
+            this.keyContainer.style.display = "none";
+            return;
+        }
+
+        const nbKeys = Object.keys(this.keys).length;
+        this.block.nextKey = this.keys[Math.round(Math.random() * nbKeys)];
+
+        this.keyContainer.innerHTML = this.block.nextKey[1];
+        this.keyContainer.setAttribute("style", "display:block");
+    }
+
+    private sendData() {
+        this.socket.emit("updateData", {
+            level: this.level,
+            coins: this.coins
+        });
+    }
+
+
+    /*   EVENTS   */
+
+    private onClick() {
+        const self = this;
+        const now = Date.now();
+
+        if (!this.canClick)
+            return;
+
+        if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
+            return;
+        // Prevent clicking with no block or a key-based block
+        if (this.block == null || this.block.useKeys)
+            return;
+
+        this.interactBlock();
+
         this.lastClick = now;
     }
 
@@ -238,10 +253,13 @@ class Game {
     }
 
     private onKeyDown(event) {
-        if (this.block != null && this.block.useKeys) {
+        if (this.block != null && this.block.useKeys && this.block.nextKey[0] == event.keyCode)
+            this.keyContainer.style.background = "orange";
+    }
 
-            console.log(event.keyCode);
-
+    private onKeyUp(event) {
+        if (this.block != null && this.block.useKeys && this.block.nextKey[0] == event.keyCode) {
+            this.interactBlock();
             this.newBlockKey();
         }
     }
