@@ -17,6 +17,10 @@ class Game {
     private block: any;
     private coins: number;
 
+    // Magic pickaxe
+    private magicPickaxeForce: number;
+    private magicPickaxeInterval: number;
+
     private keys: any[][];
 
     // Debounce methods
@@ -71,6 +75,7 @@ class Game {
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
 
+            self.loadMagicPickaxe()
             self.newBlockKey();
         });
 
@@ -82,6 +87,15 @@ class Game {
         this.socket.on("coinsInfo", function(coins) {
             self.coins = coins;
             self.updateCoinsInfo();
+        });
+
+        this.socket.on("productsInfo", function(products) {
+            for (let product of products)
+                switch (product[0]) {
+                    case 1:
+                        self.magicPickaxeForce = product[2];
+                        break;
+                }
         });
     }
 
@@ -98,7 +112,8 @@ class Game {
             bar.innerHTML += "<span></span>";
 
         // Update the meta title
-        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb;
+        if (perc > 1) perc = 1;
+        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + Math.round(perc * 100) + "%)";
     }
 
     private updateCoinsInfo() {
@@ -132,10 +147,20 @@ class Game {
         // Prepare elements
         container.innerHTML = "";
 
-        for (let i = 0; i < coins + experience; i++) {
+        const expPad = experience / 50 > 0 ? Math.ceil(experience / 50) : 1;
+        const coinPad = coins / 50 > 0 ? Math.ceil(coins / 50) : 1;
+
+        do {
             let div = document.createElement("div");
-            div.className = (i < coins) ? "coin" : "experience";
+            div.className = "experience";
             div.setAttribute("style", "left:" + origX + "px;top:" + origY + "px;transition:all ease-in-out .1s");
+
+            if (experience >= expPad)
+                div.dataset.value = expPad.toString();
+            else
+                div.dataset.value = experience;
+
+            experience -= expPad;
 
             let angle = Math.random() * Math.PI * 2;
             let x = Math.cos(angle) * DIST;
@@ -151,18 +176,50 @@ class Game {
             div.addEventListener("mouseover", function(event) {
                 self.onItemMouseOver(this, event);
             });
-        }
+        } while (experience > 0);
+
+        do {
+            let div = document.createElement("div");
+            div.className = "coin";
+            div.setAttribute("style", "left:" + origX + "px;top:" + origY + "px;transition:all ease-in-out .1s");
+
+            if (coins >= coinPad)
+                div.dataset.value = coinPad.toString();
+            else
+                div.dataset.value = coins;
+
+            coins -= coinPad;
+
+            let angle = Math.random() * Math.PI * 2;
+            let x = Math.cos(angle) * DIST;
+            let y = Math.sin(angle) * DIST;
+
+            setTimeout(function() {
+                div.style.left = (origX + x) + "px";
+                div.style.top = (origY + y) + "px";
+            }, 50);
+
+            container.appendChild(div);
+
+            div.addEventListener("mouseover", function(event) {
+                self.onItemMouseOver(this, event);
+            });
+        } while (coins > 0);
     }
 
-    private interactBlock() {
+    private interactBlock(magicPickaxe) {
         const self = this;
 
         this.clickContainer.classList.remove("clicked");
-        this.pickaxe.classList.remove("clicked");
+
+        if (magicPickaxe) magicPickaxe.classList.remove("clicked");
+        else              this.pickaxe.classList.remove("clicked");
 
         setTimeout(function() {
             self.clickContainer.classList.add("clicked");
-            self.pickaxe.classList.add("clicked");
+
+            if (magicPickaxe) magicPickaxe.classList.add("clicked");
+            else              self.pickaxe.classList.add("clicked");
         }, 50);
 
         // Block break checking ...
@@ -192,10 +249,35 @@ class Game {
         }
 
         const nbKeys = Object.keys(this.keys).length;
-        this.block.nextKey = this.keys[Math.round(Math.random() * nbKeys)];
+
+        do {
+            this.block.nextKey = this.keys[Math.round(Math.random() * nbKeys)];
+        } while (this.block.nextKey == null);
 
         this.keyContainer.innerHTML = this.block.nextKey[1];
         this.keyContainer.setAttribute("style", "display:block");
+    }
+
+    private loadMagicPickaxe() {
+        if (!this.magicPickaxeForce) return;
+        const self = this;
+
+        const magicPickaxe: HTMLElement = document.querySelector(".pickaxe.magical");
+
+        magicPickaxe.style.left = (this.clickContainer.offsetLeft + this.clickContainer.offsetWidth - 20) + "px";
+        magicPickaxe.style.top = (this.clickContainer.offsetTop) + "px";
+
+        if (this.magicPickaxeInterval)
+            clearInterval(this.magicPickaxeInterval);
+
+        this.magicPickaxeInterval = setInterval(function() {
+            if (self.block && !self.block.useKeys && self.block.clicks >= 0) {
+                magicPickaxe.style.display = "block";
+                self.interactBlock(magicPickaxe);
+            } else {
+                magicPickaxe.style.display = "none";
+            }
+        }, 1000);
     }
 
     private sendData() {
@@ -221,26 +303,27 @@ class Game {
         if (this.block == null || this.block.useKeys)
             return;
 
-        this.interactBlock();
+        this.interactBlock(null);
 
         this.lastClick = now;
     }
 
     private onItemMouseOver(element, event) {
         let isCoin = element.classList.contains("coin");
+        let value = parseInt(element.dataset.value);
 
         if (isCoin) {
-            this.coins++;
+            this.coins += value;
             this.updateCoinsInfo();
         } else {
-            this.level.currentExperience++;
+            this.level.currentExperience += value;
             this.updateLevelInfo();
         }
 
         // Print item tooltip
         const tooltip = document.createElement("div");
         tooltip.className = "tooltip";
-        tooltip.innerHTML = "+1";
+        tooltip.innerHTML = "+" + value;
         tooltip.style.top = (element.offsetTop - 10) + "px";
         tooltip.style.left = element.offsetLeft + "px";
         tooltip.style.width = element.offsetWidth + "px";
@@ -259,7 +342,7 @@ class Game {
 
     private onKeyUp(event) {
         if (this.block != null && this.block.useKeys && this.block.nextKey[0] == event.keyCode) {
-            this.interactBlock();
+            this.interactBlock(null);
             this.newBlockKey();
         }
     }

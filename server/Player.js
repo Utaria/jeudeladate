@@ -1,14 +1,19 @@
 const Model = require('./Model');
 const Level = require('./Level');
 const Block = require('./Block');
+const Product = require('./Product');
 const uuidv4 = require('uuid/v4');
 
 function Player(socket, cookie, ip) {
+    this._id = null;
     this._socket = socket;
     this._name = null;
     this._cookie = cookie;
     this._ip = ip;
     this._level = null;
+    this._coins = 0;
+
+    this._purchases = [];
 
     this._load();
 }
@@ -30,15 +35,26 @@ Player.prototype = {
                     self._initialize();
                 } else {
                     // Load all attributes ...
+                    self._id = data.id;
                     self._name = data.name;
+                    self._coins = data.coins;
 
-                    // ... and send info to the client!
-                    self.setLevel(data.level_id, data.experience);
-                    self._socket.emit("coinsInfo", data.coins);
-                    self.newBlock();
+                    // ... load also purchased products ...
+                    Model.getProductsOf(self._cookie, function(err, products) {
+                        if (!err && products != null && products.length > 0)
+                            for (let product of products)
+                                self._purchases.push(product.product_level_id);
 
-                    // Also ave current IP and last connection time!
-                    Model.savePlayerInfo(data.id, self._ip);
+
+                        // ... and send info to the client!
+                        self.setLevel(data.level_id, data.experience);
+                        self._socket.emit("coinsInfo", data.coins);
+                        self._socket.emit("productsInfo", Product.getProductsOf(self));
+                        self.newBlock();
+
+                        // Also ave current IP and last connection time!
+                        Model.savePlayerInfo(data.id, self._ip);
+                    });
                 }
             });
         }
@@ -65,6 +81,32 @@ Player.prototype = {
 
     getLevel: function() {
         return this._level;
+    },
+
+    getCoins: function() {
+        return this._coins;
+    },
+
+    getPurchases: function() {
+        return this._purchases;
+    },
+
+    hasPurchased: function(productId) {
+        for (let purchaseId of this._purchases)
+            if (purchaseId == productId)
+                return true;
+
+        return false;
+    },
+
+    buyProduct: function(productId) {
+        this._purchases.push(parseInt(productId));
+        Model.buyProduct(this._id, parseInt(productId));
+    },
+
+    removeCoins: function(coins) {
+        this._coins = Math.max(this._coins - coins, 0);
+        Model.savePlayerCoins(this._cookie, this._coins);
     },
 
     getCookie: function() {
@@ -95,10 +137,10 @@ Player.prototype = {
     },
 
     update: function(data) {
-        this.coins = data.coins;
+        this._coins = data.coins;
 
         // Recalculate the total experience of the user ...
-        data.totalExperience = Level.getExperienceAfterLevel(this._level.getId())
+        data.totalExperience = Level.getExperienceAfterLevel(this._level.getNb() - 1)
                                + data.level.currentExperience;
 
         // ... and save its data!

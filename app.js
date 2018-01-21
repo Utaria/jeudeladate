@@ -10,6 +10,8 @@ const index = require('./routes/index');
 const jouer = require('./routes/jouer');
 const classement = require('./routes/classement');
 const date = require('./routes/date');
+const apropos = require('./routes/apropos');
+const boutique = require('./routes/boutique');
 
 const app = express();
 
@@ -33,12 +35,14 @@ app.use('/', index);
 app.use('/jouer', jouer);
 app.use('/classement', classement);
 app.use('/date', date);
+app.use('/apropos', apropos);
+app.use('/boutique', boutique);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
@@ -49,7 +53,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {title: 'Erreur ' + err.status});
 });
 
 module.exports = app;

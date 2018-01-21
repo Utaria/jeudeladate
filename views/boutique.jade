@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    h1.main.simple La U-Boutique
+    p.desc Achetez des récompenses incroyables et des aides pour le jeu !
+
+    div.products
+        div.product.template
+            div.icon
+                img
+            div.content
+                h3.title
+                p.description
+            div.meta
+                div.btn-buy Acheter
+                span.price -
+                span.exp -
+                div.ok Acheté !
+
+    p.gr
+        | Vous avez&nbsp;
+        b.coins-number 0
+        | &nbsp;pièces.
+
+    a(href="/jouer") Retour au jeu
+
+    script(type="text/javascript" src="/socket.io/socket.io.js")
+    script(type="text/javascript" src="/javascripts/jscookie.js")
+    script(type="text/javascript" src="/javascripts/boutique.js")

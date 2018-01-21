@@ -160,13 +160,15 @@ h1.main {
   }
 }
 
-p.desc {
+p.desc, p.gr {
   margin: 30px 0;
   color: #BBBBBB;
   font: normal normal normal 17px "Lato";
   letter-spacing: .1em;
 
-  animation: animdesc 30s 0s infinite alternate;
+  &.desc {
+    animation: animdesc 30s 0s infinite alternate;
+  }
 }
 
 div.btn-play {
@@ -318,7 +320,7 @@ h2.action {
   }
 }
 
-.pickaxe {
+.pickaxe, .magical {
   display: none;
   position: absolute;
   width: 112.5px;
@@ -335,6 +337,10 @@ h2.action {
 
   &.clicked {
     animation: animpickaxe ease-in-out .2s;
+  }
+
+  &.magical {
+    background: url("../images/magicpickaxe.png") no-repeat center center;
   }
 
   &.inverted {
@@ -754,6 +760,215 @@ div.opening-date {
     animation: animate-glow 1s ease-out infinite;
   }
 
+}
+
+
+/* ----------------------------------------------- */
+/*    BOUTIQUE                                     */
+/* ----------------------------------------------- */
+
+.products {
+  display: block;
+  position: relative;
+  width: 720px;
+
+  margin: 0 auto;
+  
+  .product {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 150px;
+
+    margin: 20px 0;
+    border-radius: 2px;
+    background: #FFFFFF;
+
+    -moz-box-shadow: 2px 5px 2px 0px #000000;
+    -webkit-box-shadow: 2px 5px 2px 0px #000000;
+    -o-box-shadow: 2px 5px 2px 0px #000000;
+    box-shadow: 2px 5px 2px 0px #000000;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=158, Strength=2);
+
+    .icon {
+      display: block;
+      position: relative;
+      float: left;
+      width: 175px;
+      height: 100%;
+
+      background: rgb(32, 34, 37);
+      border-right: 15px solid rgb(47, 49, 54);
+
+      img {
+        width: 100px;
+        height: 100px;
+        margin: 25px;
+      }
+    }
+
+    .content {
+      display: block;
+      position: relative;
+      width: ~"calc(100% - 175px)";
+      height: 110px;
+      color: #111111;
+      text-align: left;
+      padding: 20px;
+      float: left;
+
+      font: normal normal normal 14px "Lato";
+
+      overflow: hidden;
+
+      h3.title {
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      p.description {
+        font-size: 1.1em;
+        text-align: justify;
+      }
+    }
+
+    .meta {
+      display: block;
+      position: relative;
+      width: ~"calc(100% - 175px)";
+      height: 35px;
+      float: left;
+
+      a {
+        color: white;
+      }
+
+      .exp {
+        display: block;
+        position: relative;
+        float: right;
+        color: #000000;
+        line-height: 35px;
+        font-family: "Lato", sans-serif;
+        font-weight: bold;
+        margin-right: 70px;
+
+        &:before {
+          display: block;
+          position: absolute;
+          left: -45px;
+          top: -5px;
+          content: " ";
+          width: 48px;
+          height: 48px;
+          background: url("../images/overlay.png") no-repeat -48px -100px;
+          transform: scale(.5);
+        }
+      }
+
+      .price {
+        display: block;
+        position: relative;
+        float: right;
+        color: #383838;
+        line-height: 35px;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-right: 15px;
+
+        &.error {
+          color: red;
+          text-decoration-line: line-through;
+        }
+
+        &:before {
+          display: block;
+          position: absolute;
+          left: -45px;
+          top: -5px;
+          content: " ";
+          width: 48px;
+          height: 48px;
+          background: url("../images/overlay.png") no-repeat 0 -100px;
+          transform: scale(.5);
+        }
+
+      }
+
+      .btn-buy {
+        display: block;
+        position: relative;
+        float: right;
+
+        margin: 0 15px;
+
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+
+        width: auto;
+        background: rgb(67, 181, 129);
+        transition: all ease-in-out .2s;
+
+        &.error {
+          background: crimson;
+        }
+
+        &:hover {
+          background: rgb(47, 161, 109);
+          cursor: pointer;
+        }
+      }
+
+      .ok {
+        display: none;
+        position: relative;
+        height: 35px;
+        line-height: 35px;
+        float: right;
+        margin: 0 15px;
+
+        padding-left: 120px;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        font-size: 1.2em;
+        color: #6AC259;
+
+        background: url("../images/checked.png") no-repeat center center;
+        background-size: 35px;
+
+        &.show {
+          display: block;
+        }
+      }
+    }
+
+    &.disabled:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background: rgba(255, 255, 255, .3);
+      cursor: no-drop;
+    }
+
+    &.template {
+      display: none;
+    }
+
+    &:after {
+      display: block;
+      position: relative;
+      content: " ";
+      clear: both;
+    }
+  }
 }
 
 
