@@ -8,6 +8,7 @@ class Game {
     private pickaxe: HTMLElement;
 
     private socket: any;
+    private cookie: string;
 
     private clicks: number;
     private lastClick: number;
@@ -50,7 +51,7 @@ class Game {
         this.clicks = 0;
         this.lastClick = null;
 
-        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
+        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 300);
 
         Game.loadTooltips();
         this.connect();
@@ -65,8 +66,20 @@ class Game {
         });
 
         this.socket.on("registerCookie", function(cookie) {
-            // console.log("need to register cookie", cookie);
-            window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
+            self.cookie = cookie;
+
+            // New cookie! Ask for a playername!
+            self.chooseName();
+        });
+
+        this.socket.on("updateName", function(ok) {
+            if (ok) {
+                window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
+                window.location.reload();
+            } else {
+                alert("Ce pseudonyme est déjà utilisé !");
+                self.chooseName();
+            }
         });
 
         this.socket.on("newBlock", function(block) {
@@ -104,6 +117,16 @@ class Game {
                         break;
                 }
         });
+    }
+
+    private chooseName() {
+        let playername = null;
+
+        do {
+            playername = prompt("Saisissez votre pseudo: ");
+        } while (playername == null || !playername);
+
+        this.socket.emit("updateName", playername);
     }
 
     private updateLevelInfo() {

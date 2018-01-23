@@ -17,7 +17,7 @@ var Game = /** @class */ (function () {
         this.pickaxe = document.querySelector(".pickaxe");
         this.clicks = 0;
         this.lastClick = null;
-        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
+        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 300);
         Game.loadTooltips();
         this.connect();
     }
@@ -28,8 +28,19 @@ var Game = /** @class */ (function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
         this.socket.on("registerCookie", function (cookie) {
-            // console.log("need to register cookie", cookie);
-            window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
+            self.cookie = cookie;
+            // New cookie! Ask for a playername!
+            self.chooseName();
+        });
+        this.socket.on("updateName", function (ok) {
+            if (ok) {
+                window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
+                window.location.reload();
+            }
+            else {
+                alert("Ce pseudonyme est déjà utilisé !");
+                self.chooseName();
+            }
         });
         this.socket.on("newBlock", function (block) {
             self.block = block;
@@ -63,6 +74,13 @@ var Game = /** @class */ (function () {
                 }
             }
         });
+    };
+    Game.prototype.chooseName = function () {
+        var playername = null;
+        do {
+            playername = prompt("Saisissez votre pseudo: ");
+        } while (playername == null || !playername);
+        this.socket.emit("updateName", playername);
     };
     Game.prototype.updateLevelInfo = function () {
         var container = document.querySelector(".level-info");

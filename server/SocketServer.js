@@ -27,6 +27,11 @@ SocketServer.prototype = {
         });
 
         // Game
+        socket.on("updateName", function(name) {
+            const player = Player.getWithSocket(socket);
+            if (player) socket.emit("updateName", player.updateName(name));
+        });
+
         socket.on("updateData", function(data) {
             const player = Player.getWithSocket(socket);
             if (player) player.update(data);

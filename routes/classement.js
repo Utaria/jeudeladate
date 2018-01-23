@@ -4,10 +4,10 @@ const db = require('../server/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    db.query('SELECT * FROM players ORDER BY level_id DESC, experience DESC LIMIT 0,10', function(err, rows) {
+    db.query('SELECT * FROM players ORDER BY total_experience DESC LIMIT 0,10', function(err, rows) {
         if (err) rows = {};
 
-        res.render('classement', { title: 'Classement du jeu', data: rows });
+        res.render('classement', { title: 'Classement du jeu', data: rows, i: 0 });
     });
 });
 

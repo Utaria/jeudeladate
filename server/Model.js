@@ -44,6 +44,12 @@ Model.prototype = {
         })
     },
 
+    savePlayerName: function(cookie, name) {
+        db.query("UPDATE players SET name = ? WHERE cookie = ?", [name, cookie], function(err) {
+            if (err) console.error(err);
+        })
+    },
+
 
     /*   LEVELS   */
     getLevels: function(callback) {

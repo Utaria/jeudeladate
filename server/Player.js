@@ -149,6 +149,16 @@ Player.prototype = {
         // Check for a new level!
         if (data.level.currentExperience >= this._level.getNeededExperience())
             this.setLevel(this._level.getId() + 1);
+    },
+
+    updateName: function(name) {
+        for (let player of Player.players)
+            if (player._name == name)
+                return false;
+
+        this._name = name;
+        Model.savePlayerName(this._cookie, name);
+        return true;
     }
 
 };
