@@ -18,6 +18,7 @@ var Game = /** @class */ (function () {
         this.clicks = 0;
         this.lastClick = null;
         this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
+        Game.loadTooltips();
         this.connect();
     }
     Game.prototype.connect = function () {
@@ -27,7 +28,7 @@ var Game = /** @class */ (function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
         this.socket.on("registerCookie", function (cookie) {
-            console.log("need to register cookie", cookie);
+            // console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
         });
         this.socket.on("newBlock", function (block) {
@@ -53,7 +54,11 @@ var Game = /** @class */ (function () {
                 var product = products_1[_i];
                 switch (product[0]) {
                     case 1:
+                    case 2:
                         self.magicPickaxeForce = product[2];
+                        break;
+                    case 5:
+                        self.doubleCkick = true;
                         break;
                 }
             }
@@ -206,7 +211,7 @@ var Game = /** @class */ (function () {
             else {
                 magicPickaxe.style.display = "none";
             }
-        }, 1000);
+        }, 1000 / this.magicPickaxeForce);
     };
     Game.prototype.sendData = function () {
         this.socket.emit("updateData", {
@@ -226,6 +231,9 @@ var Game = /** @class */ (function () {
         if (this.block == null || this.block.useKeys)
             return;
         this.interactBlock(null);
+        // Double click bonus!
+        if (this.doubleCkick)
+            this.interactBlock(null);
         this.lastClick = now;
     };
     Game.prototype.onItemMouseOver = function (element, event) {
@@ -241,7 +249,7 @@ var Game = /** @class */ (function () {
         }
         // Print item tooltip
         var tooltip = document.createElement("div");
-        tooltip.className = "tooltip";
+        tooltip.className = "game-tooltip";
         tooltip.innerHTML = "+" + value;
         tooltip.style.top = (element.offsetTop - 10) + "px";
         tooltip.style.left = element.offsetLeft + "px";
@@ -282,6 +290,18 @@ var Game = /** @class */ (function () {
             document.body.style.cursor = "initial";
             this.canClick = false;
         }
+    };
+    Game.loadTooltips = function () {
+        new window["Tooltip"](document.querySelector(".menu .boutique"), {
+            placement: 'left',
+            offset: '0, 20',
+            title: "Boutique"
+        });
+        new window["Tooltip"](document.querySelector(".menu .classement"), {
+            placement: 'left',
+            offset: '0, 20',
+            title: "Classement"
+        });
     };
     return Game;
 }());

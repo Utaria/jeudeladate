@@ -2,6 +2,17 @@ extends layout
 
 block content
     h1.main.simple Classement du jeu
+    p.desc
+        | Le premier
+        b  gagnera un CODE PROMO -50% sur la boutique
+        |  rien que pour lui !&nbsp;
+        i.em.em-heart_eyes
+        br
+        | Les autres auront le droit à une récompense aussi !&nbsp;
+        i.em.em-grin
+        br
+        br
+        | Seuls les 10 premiers sont affichés !
 
     .limiter
         .container-table100
@@ -19,8 +30,11 @@ block content
                                 tr
                                     td # #{++i}
                                     td
-                                        img(src="https://crafatar.com/renders/head/#{row.name}" style="width:40px;float:left")
-                                        span(style="font-weight:bold") #{row.name}
+                                        img.avatar(src="https://crafatar.com/renders/head/#{row.name}")
+                                        span.username(style="font-weight:bold") #{row.name}
 
                                     td #{row.level_id}
-                                    td #{row.experience}
+                                    td #{row.total_experience.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+
+
+    a(href="/jouer") Retour au jeu

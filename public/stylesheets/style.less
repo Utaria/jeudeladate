@@ -21,23 +21,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: url('../images/background.jpg') no-repeat center center fixed;
   background-size: cover;
-
-  &:before {
-    display: block;
-    position: absolute;
-    content: " ";
-
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-
-    background: rgba(0, 0, 0, .9);
-  }
 }
 
 body, html {
-  height: 100%
+  height: 100%;
 }
 
 a {
@@ -64,38 +51,64 @@ canvas.particles {
 
 section.content {
   display: block;
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: ~"calc(100% - 97px)";
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
   padding: 6% 0;
   text-align: center;
   color: white;
-  overflow: hidden;
+
+  &:before {
+    display: block;
+    position: absolute;
+    content: " ";
+    z-index: -1;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    background: rgba(0, 0, 0, .9);
+  }
 }
 
 footer {
   display: block;
-  position: absolute;
+  position: relative;
   width: 100%;
   height: auto;
-  bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
   font: normal normal normal 14px "Lato";
   letter-spacing: .2em;
+  padding: 20px 0;
   color: #DDDDDD;
+
+  &:before {
+    display: block;
+    position: absolute;
+    content: " ";
+    z-index: -1;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    background: rgba(0, 0, 0, .9);
+  }
 
   div.logo {
     display: block;
-    position: absolute;
+    position: relative;
     width: 154px;
     height: 30px;
-    bottom: 40px;
     left: 50%;
     margin-left: -77px;
     background-image: url('../images/logo.png');
@@ -104,7 +117,7 @@ footer {
 
   div.copyright {
     position: relative;
-    bottom: 15px;
+    margin-top: 10px;
   }
 }
 
@@ -117,10 +130,7 @@ footer {
   display: block;
   position: relative;
   width: 100%;
-  height: 320px;
-
-  top: 30%;
-  margin-top: -160px;
+  margin-top: 30px;
 }
 
 h1.main {
@@ -320,6 +330,50 @@ h2.action {
   }
 }
 
+.menu {
+  display: block;
+  position: absolute;
+  width: 48px;
+  height: auto;
+
+  right: 15px;
+  top: 150px;
+
+  z-index: 10;
+
+  a {
+    display: block;
+    position: relative;
+    width: 48px;
+    height: 48px;
+  }
+
+  div.item {
+    display: block;
+    position: relative;
+    margin: 25px 0;
+    height: 48px;
+
+    &.boutique {
+      background: url("../images/overlay.png") no-repeat -96px -100px;
+
+      &:hover {
+        background-position-y: -148px;
+        cursor: pointer;
+      }
+    }
+
+    &.classement {
+      background: url("../images/overlay.png") no-repeat -144px -100px;
+
+      &:hover {
+        background-position-y: -148px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 .pickaxe, .magical {
   display: none;
   position: absolute;
@@ -378,7 +432,7 @@ h2.action {
   }
 }
 
-.tooltip {
+.game-tooltip {
   display: block;
   position: absolute;
   color: yellow;
@@ -432,6 +486,17 @@ h2.action {
 
 .wrap-table100 {
   width: 1170px;
+}
+
+table.ranking {
+  img.avatar {
+    width: 40px;
+    position: absolute;
+    top: 8px;
+  }
+  span.username {
+    padding-left: 50px;
+  }
 }
 
 table {
@@ -579,6 +644,10 @@ tbody tr:hover {
   .column5,
   .column6 {
     text-align: left;
+  }
+
+  table.ranking span.username {
+    padding-left: 0;
   }
 
   .column4,

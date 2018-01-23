@@ -21,7 +21,7 @@ class Boutique {
         });
 
         this.socket.on("registerCookie", function(cookie) {
-            console.log("need to register cookie", cookie);
+            // console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
         });
 

@@ -20,6 +20,8 @@ class Game {
     // Magic pickaxe
     private magicPickaxeForce: number;
     private magicPickaxeInterval: number;
+    // Double click
+    private doubleCkick: boolean;
 
     private keys: any[][];
 
@@ -50,6 +52,7 @@ class Game {
 
         this.sendDataIfNeeded = debounce(this.sendData.bind(this), 1000);
 
+        Game.loadTooltips();
         this.connect();
     }
 
@@ -62,7 +65,7 @@ class Game {
         });
 
         this.socket.on("registerCookie", function(cookie) {
-            console.log("need to register cookie", cookie);
+            // console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
         });
 
@@ -75,7 +78,7 @@ class Game {
             document.querySelector("img.block").
                 setAttribute("src", "/images/blocs/" + block.name + ".png");
 
-            self.loadMagicPickaxe()
+            self.loadMagicPickaxe();
             self.newBlockKey();
         });
 
@@ -93,7 +96,11 @@ class Game {
             for (let product of products)
                 switch (product[0]) {
                     case 1:
+                    case 2:
                         self.magicPickaxeForce = product[2];
+                        break;
+                    case 5:
+                        self.doubleCkick = true;
                         break;
                 }
         });
@@ -277,7 +284,7 @@ class Game {
             } else {
                 magicPickaxe.style.display = "none";
             }
-        }, 1000);
+        }, 1000 / this.magicPickaxeForce);
     }
 
     private sendData() {
@@ -305,6 +312,10 @@ class Game {
 
         this.interactBlock(null);
 
+        // Double click bonus!
+        if (this.doubleCkick)
+            this.interactBlock(null);
+
         this.lastClick = now;
     }
 
@@ -322,7 +333,7 @@ class Game {
 
         // Print item tooltip
         const tooltip = document.createElement("div");
-        tooltip.className = "tooltip";
+        tooltip.className = "game-tooltip";
         tooltip.innerHTML = "+" + value;
         tooltip.style.top = (element.offsetTop - 10) + "px";
         tooltip.style.left = element.offsetLeft + "px";
@@ -369,6 +380,19 @@ class Game {
             document.body.style.cursor = "initial";
             this.canClick = false;
         }
+    }
+
+    private static loadTooltips() {
+        new window["Tooltip"](document.querySelector(".menu .boutique"), {
+            placement: 'left',
+            offset: '0, 20',
+            title: "Boutique"
+        });
+        new window["Tooltip"](document.querySelector(".menu .classement"), {
+            placement: 'left',
+            offset: '0, 20',
+            title: "Classement"
+        });
     }
 
 }

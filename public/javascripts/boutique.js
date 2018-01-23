@@ -11,7 +11,7 @@ var Boutique = /** @class */ (function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
         this.socket.on("registerCookie", function (cookie) {
-            console.log("need to register cookie", cookie);
+            // console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
         });
         this.socket.on("newBlock", function () {
