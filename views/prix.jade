@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1.main.simple Le grand jeu UTARIA !
+    p.desc J'y gagne quoi moi à jouer à ce jeu ?
+
+    div.prix
+        p
+            | Toute d'abord notre reconnaissance !
+            br
+            | Et puis il y a aussi :
+
+        ul
+            li des <b>réductions de folie</b> dans la future boutique !
+            li un grade d'une valeur de <b>10 euros</b> !
+            li un grade d'une valeur de <b>5 euros</b> !
+            li des cosmétiques <b>ultra rares</b> !
+            li et encore plein d'autres prix !
+
+        p
+            | Et surtout,&nbsp;
+            a(href="/date")
+                b.bl la date d'ouverture du serveur
+            |  !
+
+    p(style="margin-top:40px")
+            | Et vous ferez plaisir au développeur aussi&nbsp;&nbsp;&nbsp;&nbsp;
+            i.em.em-heart_eyes
+
+    br
+    br
+    a(href="/") Retour à l'accueil

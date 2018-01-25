@@ -170,6 +170,14 @@ h1.main {
   }
 }
 
+p, ul li {
+  font: normal normal normal 18px "Lato";
+}
+
+ul {
+  list-style: disc;
+}
+
 p.desc, p.gr {
   margin: 30px 0;
   color: #BBBBBB;
@@ -1044,6 +1052,33 @@ div.opening-date {
 /* ----------------------------------------------- */
 /*    DIVERS                                       */
 /* ----------------------------------------------- */
+
+.prix {
+  width: 720px;
+  text-align: left;
+  margin: 0 auto;
+
+  ul {
+    margin: 25px 40px;
+    list-style: square;
+
+    li {
+      margin: 5px 0;
+    }
+
+    b {
+      text-transform: uppercase;
+      color: #E7BC0F;
+    }
+  }
+
+  b.bl {
+    text-transform: uppercase;
+    color: #7998D4;
+    font-weight: 900;
+    border-bottom: #7998D4 3px solid;
+  }
+}
 
 @keyframes animdesc {
   0%   { letter-spacing:  .1em; }

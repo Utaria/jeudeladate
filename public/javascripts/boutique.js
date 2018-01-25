@@ -10,6 +10,9 @@ var Boutique = /** @class */ (function () {
         this.socket.on("connect", function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
+        this.socket.on("disconnect", function () {
+            window.location.href = "/jouer/erreur";
+        });
         this.socket.on("registerCookie", function (cookie) {
             // console.log("need to register cookie", cookie);
             window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });

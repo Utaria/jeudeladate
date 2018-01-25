@@ -27,6 +27,9 @@ var Game = /** @class */ (function () {
         this.socket.on("connect", function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
+        this.socket.on("disconnect", function () {
+            window.location.href = "/jouer/erreur";
+        });
         this.socket.on("registerCookie", function (cookie) {
             self.cookie = cookie;
             // New cookie! Ask for a playername!
