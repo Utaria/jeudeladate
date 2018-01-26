@@ -20,10 +20,14 @@ SocketServer.prototype = {
     },
 
     newSocket: function(socket) {
+        const self = this;
+
         // Global
         socket.on("doConnection", function(cookie) {
             const address = socket.handshake.headers["x-real-ip"] || socket.request.connection.remoteAddress;
             Player.newInstance(socket, cookie, address);
+
+            self.log("New player connected! (" + Player.players.length + ")");
         });
 
         // Game
@@ -93,7 +97,31 @@ SocketServer.prototype = {
         // Global
         socket.on("disconnect", function() {
             Player.removeInstance(socket);
+            self.log("A player disconnects! (" + Player.players.length + ")");
         });
+    },
+
+    /** Functions to format printed dates in log **/
+    log: function(message) {
+        const date = new Date();
+        const prefix = "[" + this.pad(date.getDate(), 2) + "-" +
+                             this.pad(date.getMonth() + 1, 2) + "-" +
+                             date.getFullYear() + " " +
+                             this.pad(date.getHours(), 2) + ":" +
+                             this.pad(date.getMinutes(), 2) + ":" +
+                             this.pad(date.getSeconds(), 2) +
+                             " INFO]";
+
+        console.log(prefix + " " + message);
+    },
+
+    pad: function(number, length) {
+        let str = String(number);
+
+        while (str.length < length)
+            str = "0" + str;
+
+        return str;
     }
 
 };

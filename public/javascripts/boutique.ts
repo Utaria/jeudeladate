@@ -1,6 +1,6 @@
 class Boutique {
 
-    private SERVER_ENDPOINT: string = "http://localhost:3000";
+    private SERVER_ENDPOINT: string = "http://192.168.1.28:3000";
 
     private buying: boolean;
     private coins: number;
@@ -20,7 +20,13 @@ class Boutique {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
 
-        this.socket.on("disconnect", function() {
+        this.socket.on("connect_error", function() {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("connect_timeout", function() {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("reconnect_error", function() {
             window.location.href = "/jouer/erreur";
         });
 

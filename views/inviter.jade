@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    h1.main.simple J'invite mes amis !
+    p.desc Attendez... comment je fais moi ?
+
+    div.prix
+        p
+            br
+            | Ce que vous y gagnez :
+
+        ul
+            li vous <b>doublez vos chances</b> de gagner les récompenses à chaque ami invité !
+            li vous gagnez <b>des pièces et de l'expérience</b> !
+            li vous contribuez à la découverte de <b class="bl">la date d'ouverture</b> !
+
+        p
+            | Et comment je fais ?
+            br
+            br
+            | Il vous suffit d'envoyer le lien ci-dessous à vos amis. Chaque ami doit s'inscrire et atteindre le <b>niveau 3 pour que vous puissiez gagner vos récompenses</b> !
+
+        div.invite-link-box
+            div.icon
+            input(type="text" id="linkfield" class="linkfield" value="Chargement..." readonly=true)
+
+
+    p(style="margin:40px 0")
+        | Alors, pourquoi attendre ? C'est gratuit et ça nous fait connaître !&nbsp;&nbsp;
+        i.em.em-heart_eyes
+
+    a(href="/jouer") Retour au jeu
+
+
+    script(type="text/javascript" src="/javascripts/jscookie.js")
+    script(type="text/javascript" src="/javascripts/clipboard.js")
+    script(type="text/javascript" src="/javascripts/inviter.js")

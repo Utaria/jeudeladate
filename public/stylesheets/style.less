@@ -242,6 +242,7 @@ h2.action {
   position: relative;
   width: 150px;
   height: 150px;
+  z-index: 5;
 
   margin: 80px auto;
   cursor: none;
@@ -379,6 +380,12 @@ h2.action {
         cursor: pointer;
       }
     }
+
+    &.inviterami {
+      background: url("../images/overlay.png") no-repeat -48px -148px;
+      animation: shake 3s cubic-bezier(.36,.07,.19,.97) both infinite;
+      transform: translate3d(0, 0, 0);
+    }
   }
 }
 
@@ -395,7 +402,7 @@ h2.action {
   transition: transform ease-in-out .1s;
 
   transform: rotateZ(-80deg);
-  z-index: 5;
+  z-index: 6;
 
   &.clicked {
     animation: animpickaxe ease-in-out .2s;
@@ -1080,6 +1087,56 @@ div.opening-date {
   }
 }
 
+.invite-link-box {
+  display: block;
+  position: relative;
+  margin: 30px;
+  height: 40px;
+
+  cursor: pointer;
+
+  .icon {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 100%;
+
+    background: #e67e22;
+    color: white;
+    float: left;
+
+    &:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: -3px;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG7SURBVDhPlZS9L0NhFMY7IGEyCEMjIbH4CF0QGxZi9DFY/ANiINEwGawMBvwDlk5EJFomYjNIWKSrxSAiKZFqtX7nvY+rtx+4T/LLe+7znHPStO9tJKwKhUIX7MMdpOGgWCzGFIcTg3MseOcMCC8Ls2r7nxiYh7wW5OEEEpCTl4E2tf8uGv1l6IV6TJFlk/Jt6aLs2qqybESRL7xnCzm3ZdUWfU1QT/M4DMn2RdZhy0zkcdmVIozCJiQhBRvMtCh24rkJ/1LLTL2KgiKYgVdrLBXeI/RYD4+27MxLXLbvhstFUPprfsI13LgpRL0OjZCSZd4JR4NW/Igg8APAqCLLZmEH2iHptbhlxxx/L6MehFV4gGW8Zs4BcN+ZifqIo3IZpr0BpcuGzee8klchskOOqp/M3s03ry14z6j7Ia3MieccbFHWqS0owj012us0LtsXkd3BKViBBYgqqi4abrXwVJYvbLsaBxCHCehWVFs03WthQpaTlp1bZqKufjXKRaP9n9nAB0zJ64QL803U/1tmojHGQNZNIuonlU6hln2LoWnIeCs88WzapQy37FsMt8IS2JVY4+xTFEKRyBdNYd39vGuVZgAAAABJRU5ErkJggg==) center center no-repeat;
+    }
+  }
+
+  input {
+    width: 320px;
+    height: 100%;
+    padding: 0 10px;
+    border-radius: 0;
+
+    font-size: 1.1em;
+    font-weight: bold;
+
+    border: 3px solid #e67e22;
+    clear: both;
+
+    transition: background-color ease-out .2s;
+  }
+
+  &:hover input {
+    background: #DDD;
+  }
+}
+
 @keyframes animdesc {
   0%   { letter-spacing:  .1em; }
   100% { letter-spacing: .25em; }
@@ -1127,4 +1184,11 @@ div.opening-date {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
 }

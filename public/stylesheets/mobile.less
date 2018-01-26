@@ -23,6 +23,58 @@
     }
   }
 
+  .products {
+    width: 100%;
+
+    .product {
+      height: 235px;
+
+      .icon {
+        width: 100px;
+        img {
+          width: 50px;
+          height: 50px;
+          margin: 25px 20px;
+        }
+      }
+
+      .content {
+        width: ~"calc(100% - 100px)";
+        height: 160px;
+        padding: 10px;
+
+        h3.title {
+          font-size: 1.3em;
+        }
+      }
+
+      .meta {
+        width: ~"calc(100% - 100px)";
+        height: 70px;
+
+        .btn-buy {
+          float: none;
+        }
+      }
+    }
+  }
+
+  .prix {
+    padding: 0 20px;
+    width: 100%;
+
+    .invite-link-box {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+
+      input {
+        width: ~"calc(100% - 40px)";
+        font-size: .8em;
+      }
+    }
+  }
+
   div.opening-date {
     width: 100%;
 
@@ -74,8 +126,85 @@
     height: 80px;
   }
 
-  p.desc {
-    animation: none;
+  // GAME
+
+  h2.action {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    left: 0;
+  }
+
+  .level-info, .coins-info {
+    position: relative;
+    margin: auto;
+    top: 0;
+    right: 0;
+  }
+  .coins-info {
+    margin-top: 20px;
+  }
+
+  .click-container {
+    margin: 40px auto;
+    width: 125px;
+    height: 200px;
+
+    img {
+      width: 125px;
+      height: 125px;
+    }
+
+    .meta-block {
+      width: 100%;
+      margin: 25px 0;
+    }
+  }
+
+  .key-container {
+    display: none;
+  }
+
+  .pickaxe {
+    display: none !important;
+    opacity: 0;
+  }
+
+  .menu {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 48px;
+    top: 0;
+    right: 0;
+    margin-top: 60px;
+
+    a {
+      float: left;
+      width: 33.3%;
+    }
+
+    div.item {
+      height: 48px;
+      width: 48px;
+      margin: 0 auto;
+    }
+
+    &:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      clear: both;
+    }
+  }
+
+
+  p.desc, p.gr {
+    letter-spacing: .1em;
+
+    &.desc {
+      animation: none;
+    }
   }
 
   canvas.particles {

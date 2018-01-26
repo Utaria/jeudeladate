@@ -1,6 +1,6 @@
 var Boutique = /** @class */ (function () {
     function Boutique() {
-        this.SERVER_ENDPOINT = "http://localhost:3000";
+        this.SERVER_ENDPOINT = "http://192.168.1.28:3000";
         this.coins = 0;
         this.connect();
     }
@@ -10,7 +10,13 @@ var Boutique = /** @class */ (function () {
         this.socket.on("connect", function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });
-        this.socket.on("disconnect", function () {
+        this.socket.on("connect_error", function () {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("connect_timeout", function () {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("reconnect_error", function () {
             window.location.href = "/jouer/erreur";
         });
         this.socket.on("registerCookie", function (cookie) {

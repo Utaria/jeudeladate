@@ -12,6 +12,8 @@ function Player(socket, cookie, ip) {
     this._ip = ip;
     this._level = null;
     this._coins = 0;
+    this._refersTo = null;
+    this._experience = 0;
 
     this._purchases = [];
 
@@ -38,6 +40,7 @@ Player.prototype = {
                     self._id = data.id;
                     self._name = data.name;
                     self._coins = data.coins;
+                    self._refersTo = data.refers_to;
 
                     // ... load also purchased products ...
                     Model.getProductsOf(self._cookie, function(err, products) {
@@ -79,12 +82,24 @@ Player.prototype = {
         return this._socket.id;
     },
 
+    getId: function() {
+        return this._id;
+    },
+
     getLevel: function() {
         return this._level;
     },
 
     getCoins: function() {
         return this._coins;
+    },
+
+    getExperience: function() {
+        return this._experience;
+    },
+
+    getSocket: function() {
+        return this._socket;
     },
 
     getPurchases: function() {
@@ -124,12 +139,37 @@ Player.prototype = {
         // Send data to the client!
         const level = this._level.toJSON();
         level.currentExperience = experience || 0;
+        this._experience = level.currentExperience;
 
         this._socket.emit("levelInfo", level);
 
         // And update the database!
-        if (update)
+        if (update) {
             Model.savePlayerLevel(this._cookie, levelId);
+
+            // Check for level 3 and give rewards to the referer!
+            if (this._level.getNb() === 3 && this._refersTo != null) {
+                const referer = Player.getWithId(this._refersTo);
+
+                // Connected!
+                if (referer) {
+                    referer.update({
+                        coins: referer.getCoins() + 1000,
+                        level: {
+                            currentExperience: referer.getExperience() + 50.0
+                        }
+                    });
+
+                    const level2 = referer.getLevel().toJSON();
+                    level2.currentExperience = referer.getExperience();
+
+                    referer.getSocket().emit("coinsInfo", referer.getCoins());
+                    referer.getSocket().emit("levelInfo", level2);
+                } else {
+                    Model.addStatsToPlayer(this._refersTo, 1000, 50.0);
+                }
+            }
+        }
     },
 
     newBlock: function() {
@@ -143,21 +183,37 @@ Player.prototype = {
         data.totalExperience = Level.getExperienceAfterLevel(this._level.getNb() - 1)
                                + data.level.currentExperience;
 
-        // ... and save its data!
-        Model.savePlayerData(this._cookie, data);
+        this._experience = data.level.currentExperience;
 
-        // Check for a new level!
-        if (data.level.currentExperience >= this._level.getNeededExperience())
+        // ... check for a new level ...
+        if (data.level.currentExperience >= this._level.getNeededExperience()) {
             this.setLevel(this._level.getId() + 1);
+            data.level.currentExperience = 0;
+        }
+
+        // ... and save player's data!
+        Model.savePlayerData(this._cookie, data);
     },
 
-    updateName: function(name) {
+    updateName: function(obj) {
+        const name = obj.name;
+        const self = this;
+
         for (let player of Player.players)
             if (player._name == name)
                 return false;
 
         this._name = name;
+
         Model.savePlayerName(this._cookie, name);
+
+        // Save the referer key if authorized!
+        if (obj.rfKey)
+            Model.saveReferer(this._cookie, this._ip, obj.rfKey, function(refersTo) {
+                if (refersTo)
+                    self._refersTo = refersTo;
+            });
+
         return true;
     }
 
@@ -174,6 +230,13 @@ Player.newInstance = function(socket, cookie, ip) {
     let player = new Player(socket, cookie, ip);
     Player.players.push(player);
     return player;
+};
+Player.getWithId = function(id) {
+    for (let player of Player.players)
+        if (player.getId() === id)
+            return player;
+
+    return null;
 };
 Player.getWithSocket = function(socket) {
     for (let player of Player.players)

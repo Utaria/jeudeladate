@@ -1,6 +1,22 @@
 extends layout
 
 block content
+    div.pickaxe
+    div.pickaxe.magical
+
+    div.items
+
+    h2.action
+        | Le but du jeu ?
+        br
+        | Casser les blocs, tout simplement !
+
+    div.click-container
+        img(class="block")
+        div.meta-block
+
+    div.key-container X
+
     div.level-info
         div.progressbar
         span.meta
@@ -12,22 +28,8 @@ block content
             div.item.boutique
         a(href="/classement")
             div.item.classement
-
-    div.pickaxe
-    div.pickaxe.magical
-
-    div.items
-
-    h2.action
-        | But du jeu :
-        br
-        | Casser les blocs !
-
-    div.click-container
-        img(class="block")
-        div.meta-block
-
-    div.key-container X
+        a(href="/jouer/inviter")
+            div.item.inviterami
 
     script(type="text/javascript" src="/socket.io/socket.io.js")
     script(type="text/javascript" src="/javascripts/jscookie.js")

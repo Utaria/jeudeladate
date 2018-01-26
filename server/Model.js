@@ -1,4 +1,5 @@
 const db = require('./db');
+const rs = require('randomstring');
 
 function Model() {
 
@@ -17,7 +18,9 @@ Model.prototype = {
     },
 
     newPlayer: function(cookie, ip, callback) {
-        db.query("INSERT INTO players(cookie, ip) values(?, ?)", [cookie, ip], callback);
+        const refererKey = rs.generate(10);
+
+        db.query("INSERT INTO players(cookie, ip, refererkey) values(?, ?, ?)", [cookie, ip, refererKey], callback);
     },
 
     savePlayerInfo: function(id, ip) {
@@ -44,10 +47,48 @@ Model.prototype = {
         })
     },
 
+    addStatsToPlayer: function(id, coins, experience) {
+        db.query("UPDATE players SET coins = coins + ?, experience = experience + ?, total_experience = total_experience + ? WHERE id = ?", [coins, experience, experience, id], function(err) {
+            if (err) console.error(err);
+        })
+    },
+
     savePlayerName: function(cookie, name) {
         db.query("UPDATE players SET name = ? WHERE cookie = ?", [name, cookie], function(err) {
             if (err) console.error(err);
         })
+    },
+
+    saveReferer: function(cookie, referantIp, refererKey, callback) {
+        db.query("SELECT id, ip from players WHERE refererkey = ?", [refererKey], function(err, rows) {
+            if (!err && rows && rows.length === 1) {
+                const id = rows[0].id;
+                const ip = rows[0].ip;
+
+                // Not the same IP to apply the refers_to key!
+                // (anti-abuse solution)
+                if (ip === referantIp) {
+                    callback(null);
+                    return;
+                }
+
+                db.query("UPDATE players SET refers_to = ? WHERE cookie = ?", [id, cookie], function(err) {
+                    if (err) console.error(err);
+                    else     callback(id);
+                });
+            } else {
+                callback(null);
+            }
+        })
+    },
+
+    getRefererKey: function(cookie, callback) {
+        db.query("SELECT refererkey FROM players where cookie = ?", [cookie], function(err, rows) {
+            if (!err && rows && rows.length === 1)
+                callback(rows[0].refererkey);
+            else
+                callback(null);
+        });
     },
 
 
