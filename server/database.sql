@@ -1,99 +1,111 @@
 use jeudeladate;
 
-CREATE TABLE blocks
+create table blocks
 (
-  id             INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name           VARCHAR(60)       NOT NULL,
-  clicks         INT DEFAULT '0'   NOT NULL,
-  experience_min INT DEFAULT '0'   NOT NULL,
-  experience_max INT DEFAULT '0'   NOT NULL,
-  coin_min       INT DEFAULT '0'   NOT NULL,
-  coin_max       INT DEFAULT '0'   NOT NULL,
-  usekeys_chance FLOAT DEFAULT '0' NULL
+  id int auto_increment
+    primary key,
+  name varchar(60) not null,
+  clicks int default '0' not null,
+  experience_min int default '0' not null,
+  experience_max int default '0' not null,
+  coin_min int default '0' not null,
+  coin_max int default '0' not null,
+  usekeys_chance float default '0' null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE date_breakpoints
+create table date_breakpoints
 (
-  id                INT AUTO_INCREMENT
-    PRIMARY KEY,
-  date              VARCHAR(10)     NOT NULL,
-  experience_needed INT DEFAULT '0' NOT NULL
+  id int auto_increment
+    primary key,
+  date varchar(10) not null,
+  experience_needed int default '0' not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE levels
+create table levels
 (
-  id                INT AUTO_INCREMENT
-    PRIMARY KEY,
-  nb                INT NOT NULL,
-  experience_needed INT NOT NULL
+  id int auto_increment
+    primary key,
+  nb int not null,
+  experience_needed int not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE levels_blocks
+create table levels_blocks
 (
-  id       INT AUTO_INCREMENT
-    PRIMARY KEY,
-  level_id INT    NOT NULL,
-  block_id INT    NOT NULL,
-  chance   DOUBLE NOT NULL
+  id int auto_increment
+    primary key,
+  level_id int not null,
+  block_id int not null,
+  chance double not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE players
+create table players
 (
-  id               INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name             VARCHAR(80)                         NULL,
-  cookie           VARCHAR(255) DEFAULT '0'            NOT NULL,
-  ip               VARCHAR(50) DEFAULT '0'             NOT NULL,
-  connection_time  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  level_id         INT DEFAULT '1'                     NOT NULL,
-  experience       INT DEFAULT '0'                     NULL,
-  total_experience INT DEFAULT '0'                     NOT NULL,
-  coins            INT DEFAULT '0'                     NULL,
-  CONSTRAINT cookie
-  UNIQUE (cookie)
+  id int auto_increment
+    primary key,
+  name varchar(80) null,
+  cookie varchar(150) default '0' not null,
+  ip varchar(50) default '0' not null,
+  connection_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+  level_id int default '1' not null,
+  experience int default '0' null,
+  total_experience int default '0' not null,
+  coins int default '0' null,
+  refererkey varchar(10) not null,
+  refers_to int null,
+  constraint players_name_uindex
+  unique (name),
+  constraint cookie
+  unique (cookie)
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE INDEX level_id
-  ON players (level_id);
+create index level_id
+  on players (level_id)
+;
 
-CREATE TABLE players_products
+create table players_products
 (
-  id               INT AUTO_INCREMENT
-    PRIMARY KEY,
-  player_id        INT                                 NOT NULL,
-  product_level_id INT                                 NOT NULL,
-  date             TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+  id int auto_increment
+    primary key,
+  player_id int not null,
+  product_level_id int not null,
+  date timestamp default CURRENT_TIMESTAMP not null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE products
+create table products
 (
-  id          INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name        VARCHAR(255) NOT NULL,
-  description MEDIUMTEXT   NULL,
-  image       VARCHAR(255) NULL
+  id int auto_increment
+    primary key,
+  name varchar(255) not null,
+  description mediumtext null,
+  image mediumtext null
 )
-  ENGINE = InnoDB;
+  engine=InnoDB
+;
 
-CREATE TABLE products_levels
+create table products_levels
 (
-  id         INT AUTO_INCREMENT
-    PRIMARY KEY,
-  level      INT    NOT NULL,
-  value      DOUBLE NOT NULL,
-  product_id INT    NOT NULL,
-  min_level  INT    NULL,
-  price      INT    NOT NULL
+  id int auto_increment
+    primary key,
+  level int not null,
+  value double not null,
+  product_id int not null,
+  min_level int null,
+  price int not null
 )
-  ENGINE = InnoDB;
-
+  engine=InnoDB
+;
 
 
 
