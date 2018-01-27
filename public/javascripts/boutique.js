@@ -9,7 +9,7 @@ var Boutique = /** @class */ (function () {
     }
     Boutique.prototype.connect = function () {
         var self = this;
-        this.socket = window["io"].connect(this.SERVER_ENDPOINT);
+        this.socket = window["io"].connect(this.SERVER_ENDPOINT, { secure: this.SERVER_ENDPOINT.startsWith('https://') });
         this.socket.on("connect", function () {
             self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
         });

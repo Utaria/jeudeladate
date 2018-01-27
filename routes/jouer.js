@@ -5,7 +5,7 @@ const config = require('../storage/config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('jouer', { title: 'Jouer à notre jeu !', socketurl: config.base + ":" + config.port });
+    res.render('jouer', { title: 'Jouer à notre jeu !', socketurl: config.base + ':' + config.port });
 });
 
 router.get('/inviter', function(req, res, next) {
