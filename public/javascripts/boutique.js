@@ -94,6 +94,8 @@ var Boutique = /** @class */ (function () {
                 element.querySelector(".btn-buy").innerHTML = "Niveau insuffisant";
                 element.querySelector(".btn-buy").classList.add("error");
                 element.classList.add("disabled");
+                if (product.nextLevel)
+                    element.querySelector(".btn-buy").innerHTML = "Niveau " + product.nextLevel[3] + " requis";
             }
             template.parentNode.appendChild(element);
         }

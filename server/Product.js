@@ -47,10 +47,18 @@ Product.prototype = {
     },
 
     getAvailableLevelOf: function(player) {
+        const next = this.getNextLevelOf(player);
+        if (next === null || next[3] > player.getLevel().getNb())
+            return null;
+
+        return next;
+    },
+
+    getNextLevelOf: function(player) {
         const current = this.getCurrentLevelOf(player);
 
         for (let level of this._levels)
-            if (level[1] === current[1] + 1 && level[3] <= player.getLevel().getNb())
+            if (level[1] === current[1] + 1)
                 return level;
 
         if (current[1] + 1 > this._levels.length)
@@ -106,6 +114,7 @@ Product.getAvailableProductsOfPlayer = function(player) {
 
         obj.currentLevel = product.getCurrentLevelOf(player);
         obj.availableLevel = product.getAvailableLevelOf(player);
+        obj.nextLevel = product.getNextLevelOf(player);
 
         re.push(obj);
     }

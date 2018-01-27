@@ -113,11 +113,13 @@ class Boutique {
                     element.querySelector(".btn-buy").style.display = "none";
                     element.querySelector(".ok").classList.add("show");
                 }
-
             } else {
                 element.querySelector(".btn-buy").innerHTML = "Niveau insuffisant";
                 element.querySelector(".btn-buy").classList.add("error");
                 element.classList.add("disabled");
+
+                if (product.nextLevel)
+                    element.querySelector(".btn-buy").innerHTML = "Niveau " + product.nextLevel[3] + " requis";
             }
 
             template.parentNode.appendChild(element);

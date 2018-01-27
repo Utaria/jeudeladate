@@ -21,8 +21,7 @@ class Game {
     // Magic pickaxe
     private magicPickaxeForce: number;
     private magicPickaxeInterval: number;
-    // Double click
-    private doubleCkick: boolean;
+    private nbClick: number;
 
     private mobile: boolean;
     private keys: any[][];
@@ -154,10 +153,19 @@ class Game {
                 switch (product[0]) {
                     case 1:
                     case 2:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
                         self.magicPickaxeForce = product[2];
                         break;
                     case 5:
-                        self.doubleCkick = true;
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        self.nbClick = product[2];
                         break;
                 }
         });
@@ -190,7 +198,7 @@ class Game {
 
         // Update the meta title
         if (perc > 1) perc = 1;
-        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + Math.round(perc * 100) + "%)";
+        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + Math.round(perc * 10000) / 100 + "%)";
     }
 
     private updateCoinsInfo() {
@@ -227,8 +235,8 @@ class Game {
         // Prepare elements
         container.innerHTML = "";
 
-        const expPad = experience / 50 > 0 ? Math.ceil(experience / 50) : 1;
-        const coinPad = coins / 50 > 0 ? Math.ceil(coins / 50) : 1;
+        const expPad = experience / 30 > 0 ? Math.ceil(experience / 30) : 1;
+        const coinPad = coins / 30 > 0 ? Math.ceil(coins / 30) : 1;
 
         do {
             let div = document.createElement("div");
@@ -383,10 +391,7 @@ class Game {
         if (this.block == null || this.block.useKeys)
             return;
 
-        this.interactBlock(null);
-
-        // Double click bonus!
-        if (this.doubleCkick)
+        for (let i = 0; i < self.nbClick; i++)
             this.interactBlock(null);
 
         this.lastClick = now;

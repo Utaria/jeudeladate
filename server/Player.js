@@ -156,7 +156,7 @@ Player.prototype = {
                     referer.update({
                         coins: referer.getCoins() + 1000,
                         level: {
-                            currentExperience: referer.getExperience() + 50.0
+                            currentExperience: referer.getExperience() + 5000.0
                         }
                     });
 
@@ -166,7 +166,7 @@ Player.prototype = {
                     referer.getSocket().emit("coinsInfo", referer.getCoins());
                     referer.getSocket().emit("levelInfo", level2);
                 } else {
-                    Model.addStatsToPlayer(this._refersTo, 1000, 50.0);
+                    Model.addStatsToPlayer(this._refersTo, 1000, 5000.0);
                 }
             }
         }

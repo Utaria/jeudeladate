@@ -103,10 +103,19 @@ var Game = /** @class */ (function () {
                 switch (product[0]) {
                     case 1:
                     case 2:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
                         self.magicPickaxeForce = product[2];
                         break;
                     case 5:
-                        self.doubleCkick = true;
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        self.nbClick = product[2];
                         break;
                 }
             }
@@ -134,7 +143,7 @@ var Game = /** @class */ (function () {
         // Update the meta title
         if (perc > 1)
             perc = 1;
-        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + Math.round(perc * 100) + "%)";
+        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + Math.round(perc * 10000) / 100 + "%)";
     };
     Game.prototype.updateCoinsInfo = function () {
         document.querySelector(".coins-info span").innerHTML = this.coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -162,8 +171,8 @@ var Game = /** @class */ (function () {
         }
         // Prepare elements
         container.innerHTML = "";
-        var expPad = experience / 50 > 0 ? Math.ceil(experience / 50) : 1;
-        var coinPad = coins / 50 > 0 ? Math.ceil(coins / 50) : 1;
+        var expPad = experience / 30 > 0 ? Math.ceil(experience / 30) : 1;
+        var coinPad = coins / 30 > 0 ? Math.ceil(coins / 30) : 1;
         var _loop_1 = function () {
             var div = document.createElement("div");
             div.className = "experience";
@@ -290,9 +299,7 @@ var Game = /** @class */ (function () {
         // Prevent clicking with no block or a key-based block
         if (this.block == null || this.block.useKeys)
             return;
-        this.interactBlock(null);
-        // Double click bonus!
-        if (this.doubleCkick)
+        for (var i = 0; i < self.nbClick; i++)
             this.interactBlock(null);
         this.lastClick = now;
     };
