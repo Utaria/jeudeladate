@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('../server/Model');
-const config = require('../config');
+const config = require('../storage/config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
