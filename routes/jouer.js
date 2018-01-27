@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('../server/Model');
+const config = require('../config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('jouer', { title: 'Jouer à notre jeu !' });
+    res.render('jouer', { title: 'Jouer à notre jeu !', socketurl: config.base + ":" + config.port });
 });
 
 router.get('/inviter', function(req, res, next) {

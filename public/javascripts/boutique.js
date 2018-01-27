@@ -1,7 +1,10 @@
 var Boutique = /** @class */ (function () {
     function Boutique() {
-        this.SERVER_ENDPOINT = "http://192.168.1.28:3000";
         this.coins = 0;
+        // Getting socket endpoint...
+        var input = document.getElementById("apiendpoint");
+        this.SERVER_ENDPOINT = input.getAttribute("value");
+        input.parentNode.removeChild(input);
         this.connect();
     }
     Boutique.prototype.connect = function () {
@@ -79,7 +82,6 @@ var Boutique = /** @class */ (function () {
                     element.querySelector(".exp").innerHTML = "Niv. " + product.currentLevel[1] + " >> Niv. " + product.availableLevel[1];
                 else
                     element.querySelector(".exp").style.display = "none";
-                console.log(product);
                 // Max level
                 if (product.availableLevel[1] === "max") {
                     element.querySelector(".price").style.display = "none";

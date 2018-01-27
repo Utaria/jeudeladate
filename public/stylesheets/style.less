@@ -131,6 +131,42 @@ footer {
   position: relative;
   width: 100%;
   margin-top: 30px;
+
+  .socials {
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 48px;
+    margin: 20px auto;
+
+    a {
+      display: block;
+      position: relative;
+      float: left;
+      width: 33.3%;
+      height: 100%;
+      top: 0;
+
+      transition: all ease-in-out .2s;
+
+      &.fb {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHsSURBVGhD7ZjNLgNhGEZ7ZS1i5a/TEvdDLCywE0sXoTMSEZZW4t8FWEqIlg0Lo41nIprzxfv1pWMxJzm7d56e9GfTWkVFRcX/ptFMk3orPa63Oi+NVpqPw8Frfb7m3oIyRqORpOv0AmN2TTlxTCSdJoyVYr2ZzSvLzuAjpLFSTNIjZdkZ53feYE9ZdmCkVJVlh0bKVFl2aMTr1FKWb+xc5efXD3m395q/v+ffoGcKlWWHRjxOLmb5yem9Uhl6rlBZdmjE42b/nf8Jeq5QWXZoxOPFzYMyw9BzhcqyQyMeu89vyvxidessn17ex/thlWWHRjwO/2AHTLYzvCWVZYdGPBJ0F1JZdmjEI0F3IZVlh0ZijeGp+4obhcqyQyOxxnB5+4gbhcqyQyOxxrB3cIcbhcqyQyOxxrC9e4sbhcqyQyMeCboLqSw7NOKRoLuQyrJDIx4JugupLDs04pGgu5DKskMjHgm6C6ksOzTikaC7kMqyQyMeCboLqSw7NOKRoLuQyrJDIx4JugupLDs04pGgu5DKskMjHgm6C6ksOzTikaC7kMqy89t/LRJ0F3CEvxaT9AiGynGkP3eb2TyOleBEqzOrrDj6D68Nj5XginJGo//xzenr1Bsa/kt7/d/gYb2dzSijoqKi4l9Sq30A+M9r/MIZv3oAAAAASUVORK5CYII=) center center no-repeat;
+      }
+
+      &.twitter {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMJSURBVGhD7ZhfiA1RHMePO/emWOVPlJQ3kSIST1IkSZT8eRCR7Jt/KXmSfVDkkS28iJS950x3lza8CU8UJUq8EF50u+zeO+fMtqh7fc/sr9tlDzszZ2aVzqe+zZ07c37f3/kz55wZ5nA4HA6HIy6isdjj6iL0xuMy9IRqFLh84Ql5lvWr+XTXL5T65HL6mQ6YbGat1hQ6TUdPq6CTRNI/EK9lFFeywFV3dP+d2gxPBLtw/khXOPovFX61CwGGoV76JxUof9mYtEHokeeo6LfonMvPTNRnU5jkwHhLOziSYH7Lo0uxQUJ72zGSiKsvJV+tYLfqs9B7GyhcMgpCHu4MivNBNtCYQ5cnBkMPrfi+M0Y8ye8FoSrQY1Tka0nIZRQxGWi9o4bgn5DURrrlrxR5uHp8+QTictQrq60ULjkeD7cZA0Oo3ACrBEvoViN4CA+aysZUregHaylUSvRsgNnBEHxMXDZRkbtRK91vTqVSbTDkjhnLxRDK7qEwdiDYpd+D/0ENGrcno4eu0liEJPYZ7ouncrCDUrDkZnM6euGt0SRPldUmyiA9egrEON6vpzO07EujUU6yXoE1GALH20G5HOk0yFV4tthgaxqlkZ5Sn1ppNMhbXL2mFOxBLzwxmuQqeZXs7Sn54Sp06djeZLKELQzZZwMqsFsv70az7FUzrSnW6G0BhtMzg2G24vI8WWYLthXbddfC4Do0ajS3FWY6JsIFZJktSL7XaJqp5AWyywERzEUlqmbjDMTlR733Ird8KIpwDcyGxpnbCgsXFGuLbo/epHH1wJhISmGbcoaiTx56fUBFeqwrg0nB+qNBKmAavbDol35TYnHE5Y0079l2YJFBlx+w2p1GL0LqdK4tr7ezepgUebDO48FOGJ7CQnYPLR4Yk4or/ZLP5XqyyZHbwzMxL5+DWTbbaAy1qNX9ahc5TBL9ch5a/gTMXxkTm0B6qKH8Ef19hyL+Q0SwFAkdQq9cQ1JPcXyHlq3j2ESyQzh+wPWHOF5BhbuZP7KQSjocDofD4fgPYewnh1ftHbHR+OoAAAAASUVORK5CYII=) center center no-repeat;
+      }
+
+      &.discord {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQ5SURBVGhD7ZhZqE1RGMcvt8iQFLrSvXgQmR5kCEVIGR5ND5J5CGVIkpniDWUooTyYQokQoWR+ceNByoMMdV0p8zye6/ft/T/73n3P3vesc1wc2b/6t9b+vv+39jq7ffZeexUlJCQk/NukUqmyqqqq4bQ9FKoTvMV4R6D+9Jsr/OfgpO05+UJ0Gj3j2IP+B9RGtljwLFCJ1XxHd9EeNBY1ka3+YfCR6AL6ofPbBJ6jA3Sn0vakLZY9Fnwt8A2hXYEuo282lnjN8Q7UQfZfh8E6oSs6QfqqnUCjOQxNmFgrYr1px6H5aBlaimYguwCdUWPZPfC3JrYY3bPxDfpf0Aa6jWTLDwYZjN77w3oD28S7KZ0++RR0GD32XXWD7ytNOe1mNJS+dxFoG3I8CT00n0H/Bgr9YGcobIGeaiwbbLtSlhuIjqAvSucNY1Sg9XRb29i0TTmued5N3klzhcK1GiPNJWL29Diu4/rG7v81yG6/j4rZD/iMcvtPUNecolf+EH8f5rJDU3ODmtl+aWHAD3hH4/7OoOC2X1o4MKd5ml7dYOyqmoKCeV3VFOsGY+0/b0HAvH6gUk0zHkx3VFNwMLdFmmY09gvlLUiY31lNNRoM0+TNCers7eoMfrsdgjWVK9R8RPFvZpKH5HUCv60k+6i2FJ1UKhLy9lKyNVJjaYHFlHYC/zBvslGQDNYh2cBrK9FWKvUg3IBYsPCrDbmZsgYQm6W0E/hXqTQMiTbyOIF/o0pDEB8lSwjiFTQNZAsgZou4Ss/kAN4TKg0Td+I48E9QaQji7WQJQfy8LBlYTras4K1UWRgSy+VxAv9clYYgbh82UZTLkoHlfIsbnCPzy4/gbuWdwH9apSGIr5QlBHH7s7aXLcBiyjmDf4DKqyF4UXlnqAn9KTnui2zhFQm5czTBosz6xJxvnzTUTNQQ1RB8pHxOUGdfafbpuAtlvZJ47tOsM6mfM9RlPokIvlW+4GGuWzXtapT7J+AH7NW0fQjYVkcs5G1nYRp6qdBvg3NcRaPQdYWiOKqp+2Buhr4rmQG5XvKVoG3olz/ma8OYD9Bkug11rp1+JhNyh8wTgmDk488gZ8uG4J9PqCPHW9AT35E/jGFbJzPpentAtC053uMlIyD3FnXxJlITcvZKP+bboiF/mWa4SqzG9jkHoNXoDHqIUp45AlK2mryF9qPpqExD2Vj2SF2Cgi2V2pCzDa8xKskEj01om2+PB89NZLtpwQTSEGuCxV5O3VE/+rZTZ7t7JfS92yONHRMfhOy2fM5xLORfoPiVaE3w225zsNUXBx4j/opkgdpTGioW/xSpfXTbqswNCorReIqvoMiPD+JnaDJWmK5Qb3ulkW9u4m+Q7VoHW5l5wyD2sTIHHUR30CdkT40SWfKGMSYi2zB+hq4heziMRvntibrCRcq6le5KfY6VkJCQkPA/UVT0EyNL8qkdZgdGAAAAAElFTkSuQmCC) center center no-repeat;
+      }
+
+      &:hover {
+        transform: rotate(10deg) scale(1.3);
+        transform-origin: 50% 50%;
+      }
+    }
+  }
 }
 
 h1.main {

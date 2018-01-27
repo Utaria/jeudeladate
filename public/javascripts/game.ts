@@ -1,7 +1,7 @@
 class Game {
 
     private MIN_DELAY: number = 120;
-    private SERVER_ENDPOINT: string = "http://192.168.1.28:3000";
+    private SERVER_ENDPOINT: string;
 
     private clickContainer: HTMLElement;
     private keyContainer: HTMLElement;
@@ -34,6 +34,11 @@ class Game {
         this.clickContainer = document.querySelector(".click-container");
         this.keyContainer = document.querySelector(".key-container");
 
+        // Getting socket endpoint...
+        const input = document.getElementById("apiendpoint");
+        this.SERVER_ENDPOINT = input.getAttribute("value");
+        input.parentNode.removeChild(input);
+
         this.keys = [];
         let i = 0;
 
@@ -58,6 +63,28 @@ class Game {
 
         Game.loadTooltips();
         this.connect();
+
+        const message1 = [
+            '%c %c %c Jeu de la date v1.0.0 | UTARIA %c %c %c https://utaria.fr/',
+            'background: #cbd0d3',
+            'background: #3498db',
+            'color: #ffffff; background: #2980b9;',
+            'background: #3498db',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+        const message2 = [
+            '%c %c %c Attention, en cas de tentative de hack, vous serez banni du jeu ! %c %c %c',
+            'background: #cbd0d3',
+            'background: #f39c12',
+            'color: #ffffff; background: #e67e22;',
+            'background: #f39c12',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+
+        console.log.apply(console, message1);
+        console.log.apply(console, message2);
     }
 
     private connect() {
@@ -141,7 +168,7 @@ class Game {
 
         do {
             playername = prompt("Saisissez votre pseudo: ");
-        } while (playername == null || !playername);
+        } while (playername == null || !playername || playername === "");
 
         this.socket.emit("updateName", {
             name: playername,

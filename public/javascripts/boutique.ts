@@ -1,6 +1,6 @@
 class Boutique {
 
-    private SERVER_ENDPOINT: string = "http://192.168.1.28:3000";
+    private SERVER_ENDPOINT: string;
 
     private buying: boolean;
     private coins: number;
@@ -8,6 +8,11 @@ class Boutique {
 
     public constructor() {
         this.coins = 0;
+
+        // Getting socket endpoint...
+        const input = document.getElementById("apiendpoint");
+        this.SERVER_ENDPOINT = input.getAttribute("value");
+        input.parentNode.removeChild(input);
 
         this.connect();
     }
@@ -100,8 +105,6 @@ class Boutique {
                     element.querySelector(".exp").innerHTML = "Niv. " + product.currentLevel[1] + " >> Niv. " + product.availableLevel[1];
                 else
                     element.querySelector(".exp").style.display = "none";
-
-                console.log(product);
 
                 // Max level
                 if (product.availableLevel[1] === "max") {

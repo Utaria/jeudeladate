@@ -1,9 +1,12 @@
 var Game = /** @class */ (function () {
     function Game() {
         this.MIN_DELAY = 120;
-        this.SERVER_ENDPOINT = "http://192.168.1.28:3000";
         this.clickContainer = document.querySelector(".click-container");
         this.keyContainer = document.querySelector(".key-container");
+        // Getting socket endpoint...
+        var input = document.getElementById("apiendpoint");
+        this.SERVER_ENDPOINT = input.getAttribute("value");
+        input.parentNode.removeChild(input);
         this.keys = [];
         var i = 0;
         for (var code = 65; code < 91; code++) {
@@ -22,6 +25,26 @@ var Game = /** @class */ (function () {
         this.sendDataIfNeeded = debounce(this.sendData.bind(this), 300);
         Game.loadTooltips();
         this.connect();
+        var message1 = [
+            '%c %c %c Jeu de la date v1.0.0 | UTARIA %c %c %c https://utaria.fr/',
+            'background: #cbd0d3',
+            'background: #3498db',
+            'color: #ffffff; background: #2980b9;',
+            'background: #3498db',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+        var message2 = [
+            '%c %c %c Attention, en cas de tentative de hack, vous serez banni du jeu ! %c %c %c',
+            'background: #cbd0d3',
+            'background: #f39c12',
+            'color: #ffffff; background: #e67e22;',
+            'background: #f39c12',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+        console.log.apply(console, message1);
+        console.log.apply(console, message2);
     }
     Game.prototype.connect = function () {
         var self = this;
@@ -93,7 +116,7 @@ var Game = /** @class */ (function () {
         var playername = null;
         do {
             playername = prompt("Saisissez votre pseudo: ");
-        } while (playername == null || !playername);
+        } while (playername == null || !playername || playername === "");
         this.socket.emit("updateName", {
             name: playername,
             rfKey: get('rfKey')
