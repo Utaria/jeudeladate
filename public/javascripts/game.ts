@@ -56,6 +56,7 @@ class Game {
         this.pickaxe = document.querySelector(".pickaxe");
 
         this.clicks = 0;
+        this.nbClick = 1;
         this.lastClick = null;
 
         this.sendDataIfNeeded = debounce(this.sendData.bind(this), 300);
