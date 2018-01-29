@@ -1,9 +1,0 @@
-{
-  "dev": {
-    "driver": "mysql",
-    "user": "root",
-    "password": "root",
-    "database": "jeudeladate",
-    "port": 3307
-  }
-}
