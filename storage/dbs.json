@@ -5,13 +5,5 @@
     "password": "root",
     "database": "jeudeladate",
     "port": 3307
-  },
-
-  "prod": {
-    "driver": "mysql",
-    "user": "jeu",
-    "password": "jeu",
-    "database" : "jeudeladate"
   }
-
 }

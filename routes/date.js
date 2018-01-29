@@ -33,10 +33,12 @@ router.get('/data', function(req, res, next) {
 });
 
 router.get('/openingdate', function(req, res, next) {
-    db.query("SELECT sum(total_experience) as exp from players", function(err, rows) {
-        if (err) rows = [{exp:0}];
+    db.query("SELECT total_experience as exp from players where total_experience != 0", function(err, rows) {
+        let total = 0;
 
-        const total = rows[0].exp;
+        if (!err && rows && rows.length > 0)
+            for (let row of rows)
+                total += Math.min(row.exp, 2000000);
 
         db.query("SELECT * FROM date_breakpoints WHERE experience_needed <= ? ORDER BY experience_needed DESC LIMIT 1", [total], function(err, rows2) {
             if (err || rows2.length === 0) {
