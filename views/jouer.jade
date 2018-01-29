@@ -23,13 +23,25 @@ block content
     div.coins-info
         span
 
+    div#xptt-template
+        table
+            tr
+                td Expérience du niveau
+                td.xpniv -
+            tr
+                td Expérience totale
+                td.xptot -
+            tr
+                td Participation à la date
+                td.xpdat -
+
     div.menu
         a(href="/boutique")
-            div.item.boutique
+            div.item.boutique(title="Boutique")
         a(href="/classement")
-            div.item.classement
+            div.item.classement(title="Classement")
         a(href="/jouer/inviter")
-            div.item.inviterami
+            div.item.inviterami(title="Inviter un ami")
 
 
     input(id="apiendpoint" hidden value="#{socketurl}")

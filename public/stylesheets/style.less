@@ -303,6 +303,7 @@ h2.action {
   width: 200px;
   height: 50px;
   background: url("../images/overlay.png") no-repeat left -50px;
+  z-index: 10;
 
   top: 15px;
   right: 15px;
@@ -349,6 +350,34 @@ h2.action {
     font: normal normal bold 12px "Lato", Arial, sans-serif;
     text-transform: uppercase;
   }
+
+}
+
+#xptt-template {
+  display: none;
+}
+
+.tippy-content {
+  #xptt-template {
+    display: block;
+  }
+
+  table {
+    background: none;
+
+    tbody tr {
+      background: none;
+      height: 30px;
+
+      td {
+        color: white;
+
+        &:first-child {
+          width: 180px;
+        }
+      }
+    }
+  }
 }
 
 .coins-info {
@@ -358,6 +387,7 @@ h2.action {
   height: 50px;
 
   background: url("../images/overlay.png") no-repeat left top;
+  z-index: 10;
 
   top: 85px;
   right: 15px;

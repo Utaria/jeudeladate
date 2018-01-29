@@ -4,109 +4,108 @@ const Block = require('./Block');
 const Product = require('./Product');
 const uuidv4 = require('uuid/v4');
 
-function Player(socket, cookie, ip) {
+function Player(socket, cookie, objName) {
     this._id = null;
     this._socket = socket;
     this._name = null;
     this._cookie = cookie;
-    this._ip = ip;
+    this._ip = socket.handshake.headers["x-real-ip"] || socket.request.connection.remoteAddress;
     this._level = null;
     this._coins = 0;
     this._refersTo = null;
     this._experience = 0;
+    this._totalExperience = 0;
 
     this._purchases = [];
 
-    this._load();
+    this._load(objName);
 }
 
 Player.prototype = {
 
-    _load: function() {
+    _load: function (objName) {
         const self = this;
 
-        // Create a new player!
-        if (this._cookie === null) {
-            this._initialize();
-        }
-        // Use an exisiting cookie!
-        else {
-            Model.getPlayerForCookie(this._cookie, function(err, data) {
-                if (err || data == null) {
-                    // Or create a new one if does not exists in database!
-                    self._initialize();
-                } else {
-                    // Load all attributes ...
-                    self._id = data.id;
-                    self._name = data.name;
-                    self._coins = data.coins;
-                    self._refersTo = data.refers_to;
-
-                    // ... load also purchased products ...
-                    Model.getProductsOf(self._cookie, function(err, products) {
-                        if (!err && products != null && products.length > 0)
-                            for (let product of products)
-                                self._purchases.push(product.product_level_id);
-
-
-                        // ... and send info to the client!
-                        self.setLevel(data.level_id, data.experience);
-                        self._socket.emit("coinsInfo", data.coins);
-                        self._socket.emit("productsInfo", Product.getProductsOf(self));
-                        self.newBlock();
-
-                        // Also ave current IP and last connection time!
-                        Model.savePlayerInfo(data.id, self._ip);
-                    });
-                }
-            });
-        }
-    },
-
-    _initialize: function() {
-        const self = this;
-
-        this._cookie = Player.generateCookieToken();
-
-        Model.newPlayer(this._cookie, this._ip, function(err, data) {
-            if (err) {
-                console.error("Impossible d'enregistrer l'utilisateur (ip=" + self._ip + ") !");
-                console.error(err);
+        Model.getPlayerForCookie(this._cookie, function (err, data) {
+            if (err || data == null) {
+                // Or create a new one if does not exists in database!
+                self._initialize(objName);
             } else {
-                self._socket.emit("registerCookie", self._cookie);
+                // Load all attributes ...
+                self._id = data.id;
+                self._name = data.name;
+                self._coins = data.coins;
+                self._refersTo = data.refers_to;
+                self._totalExperience = data.total_experience;
+
+                // ... load also purchased products ...
+                Model.getProductsOf(self._cookie, function (err, products) {
+                    if (!err && products != null && products.length > 0)
+                        for (let product of products)
+                            self._purchases.push(product.product_level_id);
+
+
+                    // ... and send info to the client!
+                    self.setLevel(data.level_id, data.experience);
+                    self._socket.emit("coinsInfo", data.coins);
+                    self._socket.emit("productsInfo", Product.getProductsOf(self));
+                    self.newBlock();
+
+                    // Also ave current IP and last connection time!
+                    Model.savePlayerInfo(data.id, self._ip);
+                });
             }
         });
     },
 
-    getSocketId: function() {
+    _initialize: function (objName) {
+        const self = this;
+
+        Model.newPlayer(this._cookie, this._ip, function (err, data) {
+            if (err) {
+                console.error("Impossible d'enregistrer l'utilisateur (ip=" + self._ip + ") !");
+                console.error(err);
+            } else {
+                // Update name if needed!
+                if (objName)
+                    self.updateName(objName);
+            }
+        });
+    },
+
+    getSocketId: function () {
         return this._socket.id;
     },
 
-    getId: function() {
+    getId: function () {
         return this._id;
     },
 
-    getLevel: function() {
+    getLevel: function () {
         return this._level;
     },
 
-    getCoins: function() {
+    getCoins: function () {
         return this._coins;
     },
 
-    getExperience: function() {
+    getExperience: function () {
         return this._experience;
     },
 
-    getSocket: function() {
+    getTotalExperience: function () {
+        return this._totalExperience;
+    },
+
+    getSocket: function () {
         return this._socket;
     },
 
-    getPurchases: function() {
+    getPurchases: function () {
         return this._purchases;
     },
 
-    hasPurchased: function(productId) {
+    hasPurchased: function (productId) {
         for (let purchaseId of this._purchases)
             if (purchaseId == productId)
                 return true;
@@ -114,31 +113,32 @@ Player.prototype = {
         return false;
     },
 
-    buyProduct: function(productId) {
+    buyProduct: function (productId) {
         this._purchases.push(parseInt(productId));
         Model.buyProduct(this._id, parseInt(productId));
     },
 
-    removeCoins: function(coins) {
+    removeCoins: function (coins) {
         this._coins = Math.max(this._coins - coins, 0);
         Model.savePlayerCoins(this._cookie, this._coins);
     },
 
-    getCookie: function() {
+    getCookie: function () {
         return this._cookie;
     },
 
-    getIp: function() {
+    getIp: function () {
         return this._ip;
     },
 
-    setLevel: function(levelId, experience) {
+    setLevel: function (levelId, experience) {
         const update = this._level != null;
         this._level = Level.getById(levelId);
 
         // Send data to the client!
         const level = this._level.toJSON();
         level.currentExperience = experience || 0;
+        level.totalExperience = this._totalExperience;
         this._experience = level.currentExperience;
 
         this._socket.emit("levelInfo", level);
@@ -162,6 +162,7 @@ Player.prototype = {
 
                     const level2 = referer.getLevel().toJSON();
                     level2.currentExperience = referer.getExperience();
+                    level2.totalExperience = referer.getTotalExperience();
 
                     referer.getSocket().emit("coinsInfo", referer.getCoins());
                     referer.getSocket().emit("levelInfo", level2);
@@ -172,21 +173,21 @@ Player.prototype = {
         }
     },
 
-    newBlock: function() {
+    newBlock: function () {
         this._socket.emit("newBlock", Block.randomForLevel(this._level).toJSON());
     },
 
-    update: function(data) {
+    update: function (data) {
         this._coins = data.coins;
 
         // Recalculate the total experience of the user ...
         data.totalExperience = Level.getExperienceAfterLevel(this._level.getNb() - 1)
-                               + data.level.currentExperience;
+            + data.level.currentExperience;
 
         this._experience = data.level.currentExperience;
 
         // ... check for a new level ...
-        if (data.level.currentExperience >= this._level.getNeededExperience()) {
+        if (!this._level.isMax() && data.level.currentExperience >= this._level.getNeededExperience()) {
             this.setLevel(this._level.getId() + 1);
             data.level.currentExperience = 0;
         }
@@ -195,13 +196,9 @@ Player.prototype = {
         Model.savePlayerData(this._cookie, data);
     },
 
-    updateName: function(obj) {
+    updateName: function (obj) {
         const name = obj.name;
         const self = this;
-
-        for (let player of Player.players)
-            if (player._name == name)
-                return false;
 
         this._name = name;
 
@@ -209,12 +206,10 @@ Player.prototype = {
 
         // Save the referer key if authorized!
         if (obj.rfKey)
-            Model.saveReferer(this._cookie, this._ip, obj.rfKey, function(refersTo) {
+            Model.saveReferer(this._cookie, this._ip, obj.rfKey, function (refersTo) {
                 if (refersTo)
                     self._refersTo = refersTo;
             });
-
-        return true;
     }
 
 };
@@ -222,7 +217,7 @@ Player.prototype = {
 // Static getters!
 
 Player.players = [];
-Player.newInstance = function(socket, cookie, ip) {
+Player.newInstance = function (socket, cookie, ip) {
     for (let player of Player.players)
         if (player.getCookie() === cookie && player.getIp() === ip)
             return player;
@@ -231,27 +226,27 @@ Player.newInstance = function(socket, cookie, ip) {
     Player.players.push(player);
     return player;
 };
-Player.getWithId = function(id) {
+Player.getWithId = function (id) {
     for (let player of Player.players)
         if (player.getId() === id)
             return player;
 
     return null;
 };
-Player.getWithSocket = function(socket) {
+Player.getWithSocket = function (socket) {
     for (let player of Player.players)
         if (player.getSocketId() === socket.id)
             return player;
 
     return null;
 };
-Player.removeInstance = function(socket) {
+Player.removeInstance = function (socket) {
     for (let i = 0; i < Player.players.length; i++)
         if (Player.players[i].getSocketId() === socket.id)
             Player.players.splice(i, 1);
 };
 
-Player.generateCookieToken = function() {
+Player.generateCookieToken = function () {
     return uuidv4();
 };
 

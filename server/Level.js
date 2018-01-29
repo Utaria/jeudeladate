@@ -4,6 +4,7 @@ function Level(id, number, experienceNeeded) {
     this._id = id;
     this._nb = number;
     this._experienceNeeded = experienceNeeded;
+    this._maxLevel = false;
 }
 
 Level.prototype = {
@@ -20,8 +21,16 @@ Level.prototype = {
         return this._experienceNeeded;
     },
 
+    isMax: function() {
+        return this._maxLevel;
+    },
+
+    setMaxLevel: function(b) {
+        this._maxLevel = b;
+    },
+
     toJSON: function() {
-        return { id: this._id, nb: this._nb, experienceNeeded: this._experienceNeeded };
+        return { id: this._id, nb: this._nb, experienceNeeded: this._experienceNeeded, max: this._maxLevel };
     }
 
 };
@@ -34,6 +43,9 @@ Level.load = function() {
 
         for (let level of levels)
             Level.levels.push(new Level(level.id, level.nb, level.experience_needed));
+
+        // Define max level
+        Level.levels[Level.levels.length - 1].setMaxLevel(true);
     });
 };
 Level.getById = function(id) {

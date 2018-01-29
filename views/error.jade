@@ -1,8 +1,16 @@
 extends layout
 
 block content
-    h1 Erreur #{error.status}
-    h3 Mais qu'est-ce que vous avez fait ?
+    h1.main.simple
+        i.em.em-x
+        |  Erreur #{error.status}&nbsp;
+        i.em.em-x
+
+    i.em.em-umbrella_with_rain_drops(style="font-size:5em;margin:40px auto")
+
+    h2
+        | Mais qu'est-ce que vous faites ici ?&nbsp;
+        i.em.em-thinking_face
     br
     br
-    pre #{error.stack}
+    a(href="/") Retour à l'accueil

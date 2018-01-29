@@ -61,13 +61,16 @@ var Boutique = /** @class */ (function () {
             var product = products_1[_b];
             element = template.cloneNode(true);
             element.classList.remove("template");
+            var lvlInfo = "";
+            if (product.currentLevel && product.currentLevel[1] != 0)
+                lvlInfo = " <small style=\"font-size:0.6em\">nv. " + product.currentLevel[1] + "</small>";
             element.querySelector(".icon img").src = product.image;
-            element.querySelector(".title").innerHTML = product.name;
+            element.querySelector(".title").innerHTML = product.name + lvlInfo;
             element.querySelector(".description").innerHTML = product.description;
             if (product.availableLevel != null) {
                 element.querySelector(".price").innerHTML = product.availableLevel[4];
                 // Not enough money
-                if (this.coins && this.coins < parseInt(product.availableLevel[4])) {
+                if (this.coins !== null && this.coins < parseInt(product.availableLevel[4])) {
                     element.querySelector(".btn-buy").style.display = "none";
                     element.querySelector(".price").classList.add("error");
                 }

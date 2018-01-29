@@ -24,18 +24,31 @@ SocketServer.prototype = {
 
         // Global
         socket.on("doConnection", function(cookie) {
-            const address = socket.handshake.headers["x-real-ip"] || socket.request.connection.remoteAddress;
-            Player.newInstance(socket, cookie, address);
+            if (cookie !== null) {
+                Player.newInstance(socket, cookie);
+                self.log("New player connected! (" + Player.players.length + ")");
+            } else {
+                self.log("New player wants to register! Sending cookie and waiting...");
+                socket.emit("registerCookie", Player.generateCookieToken());
+            }
+        });
 
-            self.log("New player connected! (" + Player.players.length + ")");
+        socket.on("doRegistration", function(data) {
+            let player = Player.getWithSocket(socket);
+
+            if (!player) {
+                player = Player.newInstance(socket, data.cookie, data);
+
+                if (player)
+                    self.log("Player " + data.name + " registered! (" + Player.players.length + ")");
+
+                socket.emit("doRegistration", player != null);
+            } else {
+                socket.emit("doRegistration", false);
+            }
         });
 
         // Game
-        socket.on("updateName", function(name) {
-            const player = Player.getWithSocket(socket);
-            if (player) socket.emit("updateName", player.updateName(name));
-        });
-
         socket.on("updateData", function(data) {
             const player = Player.getWithSocket(socket);
             if (player) player.update(data);

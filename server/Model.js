@@ -23,6 +23,12 @@ Model.prototype = {
         db.query("INSERT INTO players(cookie, ip, refererkey) values(?, ?, ?)", [cookie, ip, refererKey], callback);
     },
 
+    deletePlayer: function(cookie) {
+        db.query("DELETE FROM players WHERE cookie = ?", [cookie], function(err, data) {
+            if (err) console.error(err);
+        });
+    },
+
     savePlayerInfo: function(id, ip) {
         db.query("UPDATE players SET ip = ?, connection_time = NOW() WHERE id = ?", [ip, id], function(err, data) {
             if (err) console.error(err);
@@ -60,6 +66,8 @@ Model.prototype = {
     },
 
     saveReferer: function(cookie, referantIp, refererKey, callback) {
+        console.log(refererKey);
+
         db.query("SELECT id, ip from players WHERE refererkey = ?", [refererKey], function(err, rows) {
             if (!err && rows && rows.length === 1) {
                 const id = rows[0].id;
@@ -73,7 +81,10 @@ Model.prototype = {
                 }
 
                 db.query("UPDATE players SET refers_to = ? WHERE cookie = ?", [id, cookie], function(err) {
-                    if (err) console.error(err);
+                    if (err) {
+                        console.error(err);
+                        callback(null);
+                    }
                     else     callback(id);
                 });
             } else {
