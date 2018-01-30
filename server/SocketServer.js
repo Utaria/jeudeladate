@@ -44,7 +44,7 @@ SocketServer.prototype = {
 
                 socket.emit("doRegistration", player != null);
             } else {
-                socket.emit("doRegistration", false);
+                socket.emit("doRegistration", player.getCookie());
             }
         });
 

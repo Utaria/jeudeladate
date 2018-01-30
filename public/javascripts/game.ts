@@ -114,13 +114,16 @@ class Game {
             self.chooseName();
         });
 
-        this.socket.on("doRegistration", function(ok) {
-            if (ok) {
+        this.socket.on("doRegistration", function(res) {
+            if (res === true) {
                 window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
                 window.location.reload();
+            } else if (res && typeof res === "string") {
+                window['Cookies'].set('utaria-game-token', res, { expires: 365 });
+                window.location.reload();
             } else {
-                alert("Ce pseudonyme est déjà utilisé !");
-                self.chooseName();
+                alert("Impossible de se connecter, réessayer plus tard !");
+                window.location.href.replace("jouer", "");
             }
         });
 
@@ -372,6 +375,8 @@ class Game {
             clearInterval(this.magicPickaxeInterval);
 
         this.magicPickaxeInterval = setInterval(function() {
+            if (!document.hasFocus()) return;
+
             if (self.block && !self.block.useKeys && self.block.clicks >= 0) {
                 magicPickaxe.style.display = "block";
                 self.interactBlock(magicPickaxe);

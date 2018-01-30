@@ -15,11 +15,11 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.runSql("UPDATE products_levels SET value = 1.5 WHERE id = 9", function() {
-      db.runSql("UPDATE products_levels SET value = 1.4 WHERE id = 8", function() {
-          db.runSql("UPDATE products_levels SET value = 1.3 WHERE id = 7", function() {
-              db.runSql("UPDATE products_levels SET value = 1.2 WHERE id = 6", function() {
-                  db.runSql("UPDATE products_levels SET value = 1.1 WHERE id = 2", function() {
+  db.runSql("UPDATE products_levels SET value = 4 WHERE id = 9", function() {
+      db.runSql("UPDATE products_levels SET value = 3 WHERE id = 8", function() {
+          db.runSql("UPDATE products_levels SET value = 2 WHERE id = 7", function() {
+              db.runSql("UPDATE products_levels SET value = 1.75 WHERE id = 6", function() {
+                  db.runSql("UPDATE products_levels SET value = 1.5 WHERE id = 2", function() {
                       db.runSql("UPDATE products_levels SET value = 1 WHERE id = 1", callback);
                   });
               });

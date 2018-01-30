@@ -89,6 +89,14 @@ Player.prototype = {
         return this._coins;
     },
 
+    getCookie: function () {
+        return this._cookie;
+    },
+
+    getIp: function () {
+        return this._ip;
+    },
+
     getExperience: function () {
         return this._experience;
     },
@@ -121,14 +129,6 @@ Player.prototype = {
     removeCoins: function (coins) {
         this._coins = Math.max(this._coins - coins, 0);
         Model.savePlayerCoins(this._cookie, this._coins);
-    },
-
-    getCookie: function () {
-        return this._cookie;
-    },
-
-    getIp: function () {
-        return this._ip;
     },
 
     setLevel: function (levelId, experience) {
