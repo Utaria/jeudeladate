@@ -22,30 +22,31 @@ SocketServer.prototype = {
     newSocket: function(socket) {
         const self = this;
 
-        // Global
-        socket.on("doConnection", function(cookie) {
+        // User actions
+        socket.on("connectUser", function(cookie) {
             if (cookie !== null) {
                 Player.newInstance(socket, cookie);
                 self.log("New player connected! (" + Player.players.length + ")");
             } else {
-                self.log("New player wants to register! Sending cookie and waiting...");
-                socket.emit("registerCookie", Player.generateCookieToken());
+                socket.emit("connectUser", null);
             }
         });
 
-        socket.on("doRegistration", function(data) {
-            let player = Player.getWithSocket(socket);
+        socket.on("registerUser", function(data) {
+            // On regarde si le joueur existe déjà ...
+            Player.getCookieByName(data.name, function(err, cookie) {
+                // ... s'il existe on retourne juste le cookie lié ...
+                if (!err && cookie) {
+                    socket.emit("registerUser", {err: err, cookie: cookie});
+                    return;
+                }
 
-            if (!player) {
-                player = Player.newInstance(socket, data.cookie, data);
-
-                if (player)
-                    self.log("Player " + data.name + " registered! (" + Player.players.length + ")");
-
-                socket.emit("doRegistration", player != null);
-            } else {
-                socket.emit("doRegistration", player.getCookie());
-            }
+                // ... et sinon on en créé un nouveau ...
+                Player.createUser(socket, data.name, data.rfKey, function(err, cookie) {
+                    // ... et on retourne les informations générées !
+                    socket.emit("registerUser", {err: err, cookie: cookie});
+                });
+            });
         });
 
         // Game

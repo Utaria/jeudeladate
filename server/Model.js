@@ -17,16 +17,19 @@ Model.prototype = {
         });
     },
 
+    getCookieForName: function(playername, callback) {
+        db.query("select cookie from players where name = ?", [playername], function(err, data) {
+            if (err || !data || data.length === 0)
+                callback(err, null);
+            else
+                callback(null, data[0].cookie);
+        });
+    },
+
     newPlayer: function(cookie, ip, callback) {
         const refererKey = rs.generate(10);
 
         db.query("INSERT INTO players(cookie, ip, refererkey) values(?, ?, ?)", [cookie, ip, refererKey], callback);
-    },
-
-    deletePlayer: function(cookie) {
-        db.query("DELETE FROM players WHERE cookie = ?", [cookie], function(err, data) {
-            if (err) console.error(err);
-        });
     },
 
     savePlayerInfo: function(id, ip) {
@@ -65,9 +68,7 @@ Model.prototype = {
         })
     },
 
-    saveReferer: function(cookie, referantIp, refererKey, callback) {
-        console.log(refererKey);
-
+    saveReferer: function(cookie, referantIp, refererKey) {
         db.query("SELECT id, ip from players WHERE refererkey = ?", [refererKey], function(err, rows) {
             if (!err && rows && rows.length === 1) {
                 const id = rows[0].id;
@@ -75,17 +76,11 @@ Model.prototype = {
 
                 // Not the same IP to apply the refers_to key!
                 // (anti-abuse solution)
-                if (ip === referantIp) {
-                    callback(null);
+                if (ip === referantIp)
                     return;
-                }
 
                 db.query("UPDATE players SET refers_to = ? WHERE cookie = ?", [id, cookie], function(err) {
-                    if (err) {
-                        console.error(err);
-                        callback(null);
-                    }
-                    else     callback(id);
+                    if (err) console.error(err);
                 });
             } else {
                 callback(null);

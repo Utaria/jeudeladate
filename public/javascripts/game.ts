@@ -8,6 +8,8 @@ class Game {
     private pickaxe: HTMLElement;
     private tooltipXp: any;
     private totalExp: number;
+    private modal: any;
+    private forceCloseModal: boolean;
 
     private socket: any;
     private cookie: string;
@@ -91,10 +93,15 @@ class Game {
 
     private connect() {
         const self = this;
-        this.socket = window["io"].connect(this.SERVER_ENDPOINT, {secure: this.SERVER_ENDPOINT.startsWith('https://')});
+        this.socket = window["io"].connect(this.SERVER_ENDPOINT, {secure: this.SERVER_ENDPOINT["startsWith"]('https://')});
 
         this.socket.on("connect", function() {
-            self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
+            let cookie = window['Cookies'].get('utaria-game-token');
+
+            if (cookie != null)        // Existing account on PC!
+                self.socket.emit("connectUser", cookie);
+            else
+                self.newAccount();     // New account!
         });
 
         this.socket.on("connect_error", function() {
@@ -107,24 +114,25 @@ class Game {
             window.location.href = "/jouer/erreur";
         });
 
-        this.socket.on("registerCookie", function(cookie) {
-            self.cookie = cookie;
-
-            // New cookie! Ask for a playername!
-            self.chooseName();
+        this.socket.on("connectUser", function(data) {
+            if (!data) {
+                window["Cookies"].remove("utaria-game-token");
+                self.newAccount();
+            }
         });
 
-        this.socket.on("doRegistration", function(res) {
-            if (res === true) {
-                window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
-                window.location.reload();
-            } else if (res && typeof res === "string") {
-                window['Cookies'].set('utaria-game-token', res, { expires: 365 });
-                window.location.reload();
-            } else {
-                alert("Impossible de se connecter, réessayer plus tard !");
-                window.location.href.replace("jouer", "");
+        this.socket.on("registerUser", function(data) {
+            if (data.err) {
+                alert(data.err);
+                return;
             }
+
+            self.cookie = data.cookie;
+            window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
+            self.socket.emit("connectUser", self.cookie);
+
+            self.forceCloseModal = true;
+            self.modal.close();
         });
 
         this.socket.on("newBlock", function(block) {
@@ -177,18 +185,60 @@ class Game {
         });
     }
 
-    private chooseName() {
-        let playername = null;
+    private newAccount() {
+        const self = this;
 
-        do {
-            playername = prompt("Saisissez votre pseudo: ");
-        } while (playername == null || !playername || playername === "");
+        // Create a modal to get the wanted username!
+        this.modal = new window["tingle"].modal({
+            footer: true,
+            closeLabel: "",
+            cssClass: [ "name-modal" ],
+            onOpen: function() {
+                const cont = this.modalBoxContent;
+                const input = cont.querySelector("input");
 
-        this.socket.emit("doRegistration", {
-            name: playername,
-            rfKey: get('rfKey'),
-            cookie: this.cookie
+                input.addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13)
+                        self.modal.close();
+                });
+
+                input.focus();
+            },
+            onClose: function () {
+                console.log('modal closed');
+            },
+            beforeClose: function () {
+                if (self.forceCloseModal) {
+                    self.forceCloseModal = false;
+                    return true;
+                }
+
+                const ctn = this.modalBoxContent;
+                const input = ctn.querySelector("input");
+
+                if (!input.value) return false;
+
+                self.socket.emit("registerUser", {
+                    name: input.value,
+                    rfKey: get('rfKey')
+                });
+                return false;
+            }
         });
+
+        this.modal.setContent(
+            '<h1>Bienvenue ! Choisissez votre pseudo :</h1>' +
+            '<input type="text" placeholder="Votre pseudo" />' +
+            '<p>Il sera <b>uniquement</b> utilisé pour vous identifier dans le jeu.</p>'
+        );
+
+        this.modal.addFooterBtn('Je joue !', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
+            // here goes some logic
+            self.modal.close();
+        });
+
+        // open modal
+        this.modal.open();
     }
 
     private updateLevelInfo() {
@@ -529,6 +579,17 @@ class Game {
                 template.querySelector(".xptot").innerHTML = formatMil(self.totalExp);
                 template.querySelector(".xpdat").innerHTML = formatMil(Math.min(2000000, self.totalExp)) + " / 2 000 000";
             }
+        });
+
+        // Load also the link to change account
+        document.getElementById("changeaccount").addEventListener("click", function() {
+            window["Cookies"].remove("utaria-game-token");
+            window.location.reload();
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.keyCode == 75 && event.ctrlKey && event.altKey)
+                document.getElementById("changeaccount").style.display = "block";
         });
     }
 

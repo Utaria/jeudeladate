@@ -4,7 +4,7 @@ const Block = require('./Block');
 const Product = require('./Product');
 const uuidv4 = require('uuid/v4');
 
-function Player(socket, cookie, objName) {
+function Player(socket, cookie) {
     this._id = null;
     this._socket = socket;
     this._name = null;
@@ -18,18 +18,18 @@ function Player(socket, cookie, objName) {
 
     this._purchases = [];
 
-    this._load(objName);
+    this._load();
 }
 
 Player.prototype = {
 
-    _load: function (objName) {
+    _load: function () {
         const self = this;
 
         Model.getPlayerForCookie(this._cookie, function (err, data) {
             if (err || data == null) {
-                // Or create a new one if does not exists in database!
-                self._initialize(objName);
+                console.error("Impossible de trouver l'utilisateur avec le cookie \"" + self._cookie + "\"!");
+                self._socket.emit("connectUser", null);
             } else {
                 // Load all attributes ...
                 self._id = data.id;
@@ -47,28 +47,15 @@ Player.prototype = {
 
                     // ... and send info to the client!
                     self.setLevel(data.level_id, data.experience);
+                    self._socket.emit("connectUser", true);
                     self._socket.emit("coinsInfo", data.coins);
                     self._socket.emit("productsInfo", Product.getProductsOf(self));
+
                     self.newBlock();
 
                     // Also ave current IP and last connection time!
                     Model.savePlayerInfo(data.id, self._ip);
                 });
-            }
-        });
-    },
-
-    _initialize: function (objName) {
-        const self = this;
-
-        Model.newPlayer(this._cookie, this._ip, function (err, data) {
-            if (err) {
-                console.error("Impossible d'enregistrer l'utilisateur (ip=" + self._ip + ") !");
-                console.error(err);
-            } else {
-                // Update name if needed!
-                if (objName)
-                    self.updateName(objName);
             }
         });
     },
@@ -194,22 +181,6 @@ Player.prototype = {
 
         // ... and save player's data!
         Model.savePlayerData(this._cookie, data);
-    },
-
-    updateName: function (obj) {
-        const name = obj.name;
-        const self = this;
-
-        this._name = name;
-
-        Model.savePlayerName(this._cookie, name);
-
-        // Save the referer key if authorized!
-        if (obj.rfKey)
-            Model.saveReferer(this._cookie, this._ip, obj.rfKey, function (refersTo) {
-                if (refersTo)
-                    self._refersTo = refersTo;
-            });
     }
 
 };
@@ -217,12 +188,12 @@ Player.prototype = {
 // Static getters!
 
 Player.players = [];
-Player.newInstance = function (socket, cookie, ip) {
+Player.newInstance = function (socket, cookie, objName) {
     for (let player of Player.players)
-        if (player.getCookie() === cookie && player.getIp() === ip)
+        if (player.getCookie() === cookie)
             return player;
 
-    let player = new Player(socket, cookie, ip);
+    let player = new Player(socket, cookie, objName);
     Player.players.push(player);
     return player;
 };
@@ -246,8 +217,25 @@ Player.removeInstance = function (socket) {
             Player.players.splice(i, 1);
 };
 
-Player.generateCookieToken = function () {
-    return uuidv4();
+Player.createUser = function(socket, playername, rfKey, callback) {
+    const cookie = uuidv4();
+    const ip = socket.handshake.headers["x-real-ip"] || socket.request.connection.remoteAddress;
+
+    Model.newPlayer(cookie, ip, function (err, data) {
+        if (err) {
+            console.error("Impossible d'enregistrer l'utilisateur (ip=" + ip + ") !");
+            console.error(err);
+            callback("Impossible de s'enregistrer !", null);
+        } else {
+            Model.savePlayerName(cookie, playername);
+            if (rfKey) Model.saveReferer(cookie, ip, rfKey);
+
+            callback(null, cookie);
+        }
+    });
+};
+Player.getCookieByName = function(playername, callback) {
+    Model.getCookieForName(playername, callback);
 };
 
 module.exports = Player;

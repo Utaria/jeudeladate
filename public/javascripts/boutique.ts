@@ -22,7 +22,12 @@ class Boutique {
         this.socket = window["io"].connect(this.SERVER_ENDPOINT, {secure: this.SERVER_ENDPOINT.startsWith('https://')});
 
         this.socket.on("connect", function() {
-            self.socket.emit("doConnection", window['Cookies'].get('utaria-game-token'));
+            let cookie = window['Cookies'].get('utaria-game-token');
+
+            if (cookie != null)        // Existing account on PC!
+                self.socket.emit("connectUser", cookie);
+            else
+                window.location.href = "/";
         });
 
         this.socket.on("connect_error", function() {
@@ -35,9 +40,8 @@ class Boutique {
             window.location.href = "/jouer/erreur";
         });
 
-        this.socket.on("registerCookie", function(cookie) {
-            // console.log("need to register cookie", cookie);
-            window['Cookies'].set('utaria-game-token', cookie, { expires: 365 });
+        this.socket.on("connectUser", function(cookie) {
+            if (!cookie) window.location.href = "/";
         });
 
         this.socket.on("newBlock", function() {
