@@ -1,1 +1,490 @@
-var _0x1581=['forceCloseModal','close','xptt-template','experienceNeeded','\x20/\x20','max','<b>MAX</b>','.xpniv','.xptot','.xpdat','min','\x20/\x202\x20000\x20000','setAttribute','levelInfo','WnO','OjS','toString','replace','coinsInfo','Icn','coins','updateCoinsInfo','display','length','nextKey','round','random','display:block','productsInfo','LxP','.coins-info\x20span','modal','tingle','name-modal','cBr','IuT','modalBoxContent','input','zZc','keyCode','focus','bLE','PaI','rfKey','reload','setContent','<h1>Bienvenue\x20!\x20Choisissez\x20votre\x20pseudo\x20:</h1>','<input\x20type=\x22text\x22\x20placeholder=\x22Votre\x20pseudo\x22\x20/>','<p>Il\x20sera\x20<b>uniquement</b>\x20utilisé\x20pour\x20vous\x20identifier\x20dans\x20le\x20jeu.</p>','addFooterBtn','tingle-btn\x20tingle-btn--default\x20tingle-btn--pull-right','open','.progressbar','floor','<span></span>','.meta','Niveau\x20','totalExperience','UMI','ctrlKey','altKey','changeaccount','NsR','.items','win','coin','querySelectorAll','.tooltip','parentElement','slice','call','hOP','onItemMouseOver','hasFocus','ceil','gMV','dff','createElement','className','left:','px;top:','px;transition:all\x20ease-in-out\x20.1s','dataset','cos','sin','gnv','appendChild','Jcr','psG','div','mouseover','wwF','YMm','joN','KIe','PgC','sGq','Ggy','img','xRI','DGZ','KaF','test','substr','DgX','magicPickaxeForce','.pickaxe.magical','magicPickaxeInterval','njN','ZVP','updateData','muA','cme','target','preventDefault','experience','xgO','contains','rtu','gwn','MKH','game-tooltip','width','sendDataIfNeeded','lyK','iYc','background','orange','HEH','now','Scw','nLG','EkJ','Adi','UnR','hST','oJJ','tippy','.menu\x20.item','perspective','large','0,\x2010','tooltipXp','eEK','pWw','dmL','load','JSt','vui','soA','=([^&]*)','exec','search','joz','vendor','opera','fvO','oZm','clientX','clickContainer','offsetLeft','offsetWidth','abs','clientY','offsetTop','offsetHeight','sqrt','pow','block','pickaxe','classList','inverted','remove','body','style','cursor','left','top','canClick','none','initial','querySelector','.click-container','.key-container','SERVER_ENDPOINT','getAttribute','value','removeChild','keys','UDu','level','currentExperience','totalExp','updateLevelInfo','fromCharCode','touchstart','bind','addEventListener','click','onClick','mousemove','onMouseMove','keydown','onKeyDown','keyup','onKeyUp','.pickaxe','clicks','nbClick','lastClick','sendData','%c\x20%c\x20%c\x20Jeu\x20de\x20la\x20date\x20v1.0.0\x20|\x20UTARIA\x20%c\x20%c\x20%c\x20https://utaria.fr/','background:\x20#cbd0d3','background:\x20#3498db','color:\x20#ffffff;\x20background:\x20#2980b9;','background:\x20#ffffff','%c\x20%c\x20%c\x20Attention,\x20en\x20cas\x20de\x20tentative\x20de\x20hack,\x20vous\x20serez\x20banni\x20du\x20jeu\x20!\x20%c\x20%c\x20%c','background:\x20#f39c12','color:\x20#ffffff;\x20background:\x20#e67e22;','apply','log','prototype','dXS','interactBlock','socket','connect','startsWith','https://','PXa','clicked','add','dropItems','opacity','emit','newBlock','.meta-block','innerHTML','Encore\x20','\x20coup','Cookies','get','utaria-game-token','connectUser','newAccount','connect_error','cbW','location','/jouer/erreur','href','connect_timeout','hYb','pBM','mobile','useKeys','img.block','/images/blocs/','name','.png','loadMagicPickaxe','newBlockKey','reconnect_error','VPL','MIN_DELAY','keyContainer','getElementById','apiendpoint','parentNode','onTouch','loadTooltips','qAI','registerUser','pph','err','cookie','set'];(function(_0x8c0377,_0xc6a681){var _0x113867=function(_0x5b8047){while(--_0x5b8047){_0x8c0377['push'](_0x8c0377['shift']());}};_0x113867(++_0xc6a681);}(_0x1581,0x9c));var _0x556f=function(_0x42fba0,_0x17c9d3){_0x42fba0=_0x42fba0-0x0;var _0x497b32=_0x1581[_0x42fba0];return _0x497b32;};var Game=function(){function _0x33d12f(){if(_0x556f('0x0')===_0x556f('0x1')){var _0x2f91a7=event[_0x556f('0x2')]-(this[_0x556f('0x3')][_0x556f('0x4')]+this[_0x556f('0x3')][_0x556f('0x5')]/0x2);var _0x276313=Math['abs'](_0x2f91a7);var _0x279057=Math[_0x556f('0x6')](event[_0x556f('0x7')]-(this[_0x556f('0x3')][_0x556f('0x8')]+this[_0x556f('0x3')][_0x556f('0x9')]/0x2));var _0x3f509b=Math[_0x556f('0xa')](Math['pow'](_0x276313,0x2)+Math[_0x556f('0xb')](_0x279057,0x2));if(_0x3f509b<0x96&&this[_0x556f('0xc')]!=null&&!this['block']['useKeys']){if(_0x2f91a7<0x0)this[_0x556f('0xd')][_0x556f('0xe')]['add'](_0x556f('0xf'));else this[_0x556f('0xd')][_0x556f('0xe')][_0x556f('0x10')]('inverted');this[_0x556f('0xd')]['style']['display']='block';document[_0x556f('0x11')][_0x556f('0x12')][_0x556f('0x13')]='none';this[_0x556f('0xd')][_0x556f('0x12')][_0x556f('0x14')]=event[_0x556f('0x2')]-this['pickaxe'][_0x556f('0x5')]/0x2+'px';this[_0x556f('0xd')][_0x556f('0x12')][_0x556f('0x15')]=event[_0x556f('0x7')]-this[_0x556f('0xd')][_0x556f('0x9')]/0x2+'px';this[_0x556f('0x16')]=!![];}else{this['pickaxe'][_0x556f('0x12')]['display']=_0x556f('0x17');document[_0x556f('0x11')][_0x556f('0x12')]['cursor']=_0x556f('0x18');this['canClick']=![];}}else{this['MIN_DELAY']=0x78;this[_0x556f('0x3')]=document[_0x556f('0x19')](_0x556f('0x1a'));this['keyContainer']=document[_0x556f('0x19')](_0x556f('0x1b'));var _0x3eb4a6=document['getElementById']('apiendpoint');this[_0x556f('0x1c')]=_0x3eb4a6[_0x556f('0x1d')](_0x556f('0x1e'));_0x3eb4a6['parentNode'][_0x556f('0x1f')](_0x3eb4a6);this[_0x556f('0x20')]=[];var _0x464533=0x0;for(var _0x26d212=0x41;_0x26d212<0x5b;_0x26d212++){if('UDu'!==_0x556f('0x21')){this[_0x556f('0x22')][_0x556f('0x23')]+=value;this[_0x556f('0x24')]+=value;this[_0x556f('0x25')]();}else{this['keys'][_0x464533]=[_0x26d212,String[_0x556f('0x26')](_0x26d212)];_0x464533++;}}document['addEventListener'](_0x556f('0x27'),this['onTouch'][_0x556f('0x28')](this));document[_0x556f('0x29')](_0x556f('0x2a'),this[_0x556f('0x2b')][_0x556f('0x28')](this));document[_0x556f('0x29')](_0x556f('0x2c'),this[_0x556f('0x2d')][_0x556f('0x28')](this));document[_0x556f('0x29')](_0x556f('0x2e'),this[_0x556f('0x2f')]['bind'](this));document[_0x556f('0x29')](_0x556f('0x30'),this[_0x556f('0x31')][_0x556f('0x28')](this));this['mobile']=isTouchableDevice();this[_0x556f('0xd')]=document[_0x556f('0x19')](_0x556f('0x32'));this[_0x556f('0x33')]=0x0;this[_0x556f('0x34')]=0x1;this[_0x556f('0x35')]=null;this['sendDataIfNeeded']=debounce(this[_0x556f('0x36')][_0x556f('0x28')](this),0x12c);this['loadTooltips']();this['connect']();var _0x1c5175=[_0x556f('0x37'),_0x556f('0x38'),_0x556f('0x39'),_0x556f('0x3a'),_0x556f('0x39'),_0x556f('0x38'),_0x556f('0x3b')];var _0x357723=[_0x556f('0x3c'),_0x556f('0x38'),_0x556f('0x3d'),_0x556f('0x3e'),_0x556f('0x3d'),_0x556f('0x38'),_0x556f('0x3b')];console['log'][_0x556f('0x3f')](console,_0x1c5175);console[_0x556f('0x40')]['apply'](console,_0x357723);}}_0x33d12f[_0x556f('0x41')]['connect']=function(){if(_0x556f('0x42')!=='dXS'){this[_0x556f('0x43')](null);this['newBlockKey']();}else{var _0xd510af=this;this[_0x556f('0x44')]=window['io'][_0x556f('0x45')](this[_0x556f('0x1c')],{'secure':this[_0x556f('0x1c')][_0x556f('0x46')](_0x556f('0x47'))});this[_0x556f('0x44')]['on'](_0x556f('0x45'),function(){if(_0x556f('0x48')!==_0x556f('0x48')){var _0x42da60=this;this[_0x556f('0x3')][_0x556f('0xe')]['remove'](_0x556f('0x49'));if(magicPickaxe)magicPickaxe[_0x556f('0xe')][_0x556f('0x10')](_0x556f('0x49'));else this['pickaxe'][_0x556f('0xe')][_0x556f('0x10')](_0x556f('0x49'));setTimeout(function(){_0x42da60['clickContainer']['classList'][_0x556f('0x4a')](_0x556f('0x49'));if(magicPickaxe)magicPickaxe[_0x556f('0xe')][_0x556f('0x4a')](_0x556f('0x49'));else _0x42da60['pickaxe']['classList'][_0x556f('0x4a')](_0x556f('0x49'));},0x32);if(this[_0x556f('0xc')]['clicks']<=0x0){this[_0x556f('0x4b')]();this['clickContainer'][_0x556f('0x12')]['opacity']='0';this[_0x556f('0xc')]=null;setTimeout(function(){_0x42da60[_0x556f('0x3')][_0x556f('0x12')][_0x556f('0x4c')]='1';_0x42da60[_0x556f('0x44')][_0x556f('0x4d')](_0x556f('0x4e'));},0x3e8);return;}this[_0x556f('0x3')]['querySelector'](_0x556f('0x4f'))[_0x556f('0x50')]=_0x556f('0x51')+this['block'][_0x556f('0x33')]+_0x556f('0x52')+(this[_0x556f('0xc')][_0x556f('0x33')]>0x1?'s':'')+'\x20!';this[_0x556f('0xc')]['clicks']--;}else{var _0xb75bba=window[_0x556f('0x53')][_0x556f('0x54')](_0x556f('0x55'));if(_0xb75bba!=null)_0xd510af[_0x556f('0x44')][_0x556f('0x4d')](_0x556f('0x56'),_0xb75bba);else _0xd510af[_0x556f('0x57')]();}});this['socket']['on'](_0x556f('0x58'),function(){if(_0x556f('0x59')===_0x556f('0x59')){window[_0x556f('0x5a')]['href']=_0x556f('0x5b');}else{window[_0x556f('0x5a')][_0x556f('0x5c')]='/jouer/erreur';}});this[_0x556f('0x44')]['on'](_0x556f('0x5d'),function(){if(_0x556f('0x5e')===_0x556f('0x5f')){_0xd510af['block']=block;if(_0xd510af[_0x556f('0x60')])_0xd510af[_0x556f('0xc')][_0x556f('0x61')]=![];_0xd510af['clickContainer'][_0x556f('0x19')](_0x556f('0x4f'))['innerHTML']='Encore\x20'+block['clicks']+_0x556f('0x52')+(block[_0x556f('0x33')]>0x1?'s':'')+'\x20!';_0xd510af[_0x556f('0xc')]['clicks']--;document[_0x556f('0x19')](_0x556f('0x62'))['setAttribute']('src',_0x556f('0x63')+block[_0x556f('0x64')]+_0x556f('0x65'));_0xd510af[_0x556f('0x66')]();_0xd510af[_0x556f('0x67')]();}else{window[_0x556f('0x5a')][_0x556f('0x5c')]=_0x556f('0x5b');}});this[_0x556f('0x44')]['on'](_0x556f('0x68'),function(){window[_0x556f('0x5a')][_0x556f('0x5c')]=_0x556f('0x5b');});this[_0x556f('0x44')]['on'](_0x556f('0x56'),function(_0x369381){if(_0x556f('0x69')!==_0x556f('0x69')){this[_0x556f('0x6a')]=0x78;this[_0x556f('0x3')]=document[_0x556f('0x19')](_0x556f('0x1a'));this[_0x556f('0x6b')]=document[_0x556f('0x19')](_0x556f('0x1b'));var _0x385047=document[_0x556f('0x6c')](_0x556f('0x6d'));this[_0x556f('0x1c')]=_0x385047[_0x556f('0x1d')](_0x556f('0x1e'));_0x385047[_0x556f('0x6e')][_0x556f('0x1f')](_0x385047);this[_0x556f('0x20')]=[];var _0x475443=0x0;for(var _0xa27ac8=0x41;_0xa27ac8<0x5b;_0xa27ac8++){this[_0x556f('0x20')][_0x475443]=[_0xa27ac8,String[_0x556f('0x26')](_0xa27ac8)];_0x475443++;}document[_0x556f('0x29')](_0x556f('0x27'),this[_0x556f('0x6f')][_0x556f('0x28')](this));document[_0x556f('0x29')]('click',this[_0x556f('0x2b')][_0x556f('0x28')](this));document['addEventListener'](_0x556f('0x2c'),this[_0x556f('0x2d')][_0x556f('0x28')](this));document[_0x556f('0x29')](_0x556f('0x2e'),this['onKeyDown'][_0x556f('0x28')](this));document[_0x556f('0x29')](_0x556f('0x30'),this['onKeyUp'][_0x556f('0x28')](this));this[_0x556f('0x60')]=isTouchableDevice();this[_0x556f('0xd')]=document[_0x556f('0x19')](_0x556f('0x32'));this[_0x556f('0x33')]=0x0;this[_0x556f('0x34')]=0x1;this[_0x556f('0x35')]=null;this['sendDataIfNeeded']=debounce(this[_0x556f('0x36')][_0x556f('0x28')](this),0x12c);this[_0x556f('0x70')]();this[_0x556f('0x45')]();var _0x299ff6=[_0x556f('0x37'),'background:\x20#cbd0d3',_0x556f('0x39'),_0x556f('0x3a'),_0x556f('0x39'),_0x556f('0x38'),_0x556f('0x3b')];var _0x3df023=[_0x556f('0x3c'),_0x556f('0x38'),_0x556f('0x3d'),'color:\x20#ffffff;\x20background:\x20#e67e22;',_0x556f('0x3d'),_0x556f('0x38'),_0x556f('0x3b')];console['log'][_0x556f('0x3f')](console,_0x299ff6);console[_0x556f('0x40')][_0x556f('0x3f')](console,_0x3df023);}else{if(!_0x369381){if(_0x556f('0x71')!==_0x556f('0x71')){var _0x431c3d=window['Cookies'][_0x556f('0x54')](_0x556f('0x55'));if(_0x431c3d!=null)_0xd510af[_0x556f('0x44')][_0x556f('0x4d')]('connectUser',_0x431c3d);else _0xd510af[_0x556f('0x57')]();}else{window[_0x556f('0x53')][_0x556f('0x10')](_0x556f('0x55'));_0xd510af[_0x556f('0x57')]();}}}});this['socket']['on'](_0x556f('0x72'),function(_0x310a6f){if(_0x310a6f['err']){if('pph'!==_0x556f('0x73')){_loop_1();}else{alert(_0x310a6f[_0x556f('0x74')]);return;}}_0xd510af[_0x556f('0x75')]=_0x310a6f[_0x556f('0x75')];window[_0x556f('0x53')][_0x556f('0x76')](_0x556f('0x55'),_0xd510af[_0x556f('0x75')],{'expires':0x16d});_0xd510af[_0x556f('0x44')]['emit'](_0x556f('0x56'),_0xd510af[_0x556f('0x75')]);_0xd510af[_0x556f('0x77')]=!![];_0xd510af['modal'][_0x556f('0x78')]();});this['socket']['on'](_0x556f('0x4e'),function(_0x290f20){if('Qtq'==='FGb'){var _0x2f6e7d=document[_0x556f('0x6c')](_0x556f('0x79'));var _0x494939=_0xd510af['level'];var _0x49322e,_0x5a64ea;_0x5a64ea=_0x494939['currentExperience'];if(_0x5a64ea>_0x494939[_0x556f('0x7a')])_0x5a64ea=_0x494939[_0x556f('0x7a')];_0x49322e=formatMil(_0x5a64ea)+_0x556f('0x7b')+formatMil(_0x494939[_0x556f('0x7a')]);if(_0x494939[_0x556f('0x7c')])_0x49322e=_0x556f('0x7d');_0x2f6e7d[_0x556f('0x19')](_0x556f('0x7e'))[_0x556f('0x50')]=_0x49322e;_0x2f6e7d[_0x556f('0x19')](_0x556f('0x7f'))['innerHTML']=formatMil(_0xd510af[_0x556f('0x24')]);_0x2f6e7d[_0x556f('0x19')](_0x556f('0x80'))[_0x556f('0x50')]=formatMil(Math[_0x556f('0x81')](0x1e8480,_0xd510af[_0x556f('0x24')]))+_0x556f('0x82');}else{_0xd510af[_0x556f('0xc')]=_0x290f20;if(_0xd510af[_0x556f('0x60')])_0xd510af[_0x556f('0xc')][_0x556f('0x61')]=![];_0xd510af[_0x556f('0x3')][_0x556f('0x19')](_0x556f('0x4f'))[_0x556f('0x50')]=_0x556f('0x51')+_0x290f20[_0x556f('0x33')]+'\x20coup'+(_0x290f20[_0x556f('0x33')]>0x1?'s':'')+'\x20!';_0xd510af[_0x556f('0xc')][_0x556f('0x33')]--;document['querySelector'](_0x556f('0x62'))[_0x556f('0x83')]('src','/images/blocs/'+_0x290f20[_0x556f('0x64')]+_0x556f('0x65'));_0xd510af[_0x556f('0x66')]();_0xd510af['newBlockKey']();}});this[_0x556f('0x44')]['on'](_0x556f('0x84'),function(_0xe26579){if(_0x556f('0x85')===_0x556f('0x86')){return n[_0x556f('0x87')]()[_0x556f('0x88')](/\B(?=(\d{3})+(?!\d))/g,'\x20');}else{_0xd510af[_0x556f('0x22')]=_0xe26579;_0xd510af[_0x556f('0x25')]();}});this[_0x556f('0x44')]['on'](_0x556f('0x89'),function(_0x444e92){if(_0x556f('0x8a')!=='XQm'){_0xd510af[_0x556f('0x8b')]=_0x444e92;_0xd510af[_0x556f('0x8c')]();}else{if(this[_0x556f('0xc')]==null||!this[_0x556f('0xc')][_0x556f('0x61')]){this['keyContainer'][_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0x17');return;}var _0x4d82c2=Object[_0x556f('0x20')](this[_0x556f('0x20')])[_0x556f('0x8e')];do{this['block'][_0x556f('0x8f')]=this['keys'][Math[_0x556f('0x90')](Math[_0x556f('0x91')]()*_0x4d82c2)];}while(this[_0x556f('0xc')][_0x556f('0x8f')]==null);this[_0x556f('0x6b')][_0x556f('0x50')]=this[_0x556f('0xc')][_0x556f('0x8f')][0x1];this[_0x556f('0x6b')][_0x556f('0x83')]('style',_0x556f('0x92'));}});this[_0x556f('0x44')]['on'](_0x556f('0x93'),function(_0x299109){for(var _0x21c592=0x0,_0x4febaf=_0x299109;_0x21c592<_0x4febaf[_0x556f('0x8e')];_0x21c592++){var _0x55026b=_0x4febaf[_0x21c592];switch(_0x55026b[0x0]){case 0x1:case 0x2:case 0x6:case 0x7:case 0x8:case 0x9:_0xd510af['magicPickaxeForce']=_0x55026b[0x2];break;case 0x5:case 0xa:case 0xb:case 0xc:case 0xd:case 0xe:_0xd510af[_0x556f('0x34')]=_0x55026b[0x2];break;}}});}};_0x33d12f[_0x556f('0x41')]['newAccount']=function(){if(_0x556f('0x94')!==_0x556f('0x94')){document[_0x556f('0x19')](_0x556f('0x95'))[_0x556f('0x50')]=this[_0x556f('0x8b')]['toString']()['replace'](/\B(?=(\d{3})+(?!\d))/g,'\x20');}else{var _0x16abb8=this;this[_0x556f('0x96')]=new window[(_0x556f('0x97'))][(_0x556f('0x96'))]({'footer':!![],'closeLabel':'','cssClass':[_0x556f('0x98')],'onOpen':function(){if(_0x556f('0x99')!==_0x556f('0x9a')){var _0x320120=this[_0x556f('0x9b')];var _0x408424=_0x320120[_0x556f('0x19')](_0x556f('0x9c'));_0x408424[_0x556f('0x29')](_0x556f('0x30'),function(_0x32c8da){if(_0x556f('0x9d')!=='zZc'){magicPickaxe['style'][_0x556f('0x8d')]=_0x556f('0x17');}else{if(_0x32c8da[_0x556f('0x9e')]===0xd)_0x16abb8['modal'][_0x556f('0x78')]();}});_0x408424[_0x556f('0x9f')]();}else{if(this[_0x556f('0xc')]!=null&&this[_0x556f('0xc')][_0x556f('0x61')]&&this[_0x556f('0xc')]['nextKey'][0x0]==event[_0x556f('0x9e')]){this[_0x556f('0x43')](null);this[_0x556f('0x67')]();}}},'onClose':function(){if(_0x556f('0xa0')===_0x556f('0xa0')){console[_0x556f('0x40')]('modal\x20closed');}else{alert(data[_0x556f('0x74')]);return;}},'beforeClose':function(){if('fek'!==_0x556f('0xa1')){if(_0x16abb8[_0x556f('0x77')]){_0x16abb8[_0x556f('0x77')]=![];return!![];}var _0x4e7d51=this[_0x556f('0x9b')];var _0x3e1b06=_0x4e7d51[_0x556f('0x19')](_0x556f('0x9c'));if(!_0x3e1b06[_0x556f('0x1e')])return![];_0x16abb8[_0x556f('0x44')][_0x556f('0x4d')]('registerUser',{'name':_0x3e1b06[_0x556f('0x1e')],'rfKey':get(_0x556f('0xa2'))});return![];}else{window[_0x556f('0x53')][_0x556f('0x10')](_0x556f('0x55'));window['location'][_0x556f('0xa3')]();}}});this[_0x556f('0x96')][_0x556f('0xa4')](_0x556f('0xa5')+_0x556f('0xa6')+_0x556f('0xa7'));this[_0x556f('0x96')][_0x556f('0xa8')]('Je\x20joue\x20!',_0x556f('0xa9'),function(){_0x16abb8[_0x556f('0x96')][_0x556f('0x78')]();});this['modal'][_0x556f('0xaa')]();}};_0x33d12f[_0x556f('0x41')][_0x556f('0x25')]=function(){if('eCT'==='Hmv'){window[_0x556f('0x5a')]['href']=_0x556f('0x5b');}else{var _0x2284e6=document[_0x556f('0x19')]('.level-info');var _0xb8aefb=_0x2284e6[_0x556f('0x19')](_0x556f('0xab'));var _0x474f86=this[_0x556f('0x22')][_0x556f('0x23')]/this[_0x556f('0x22')]['experienceNeeded'];if(this['level'][_0x556f('0x7c')])_0x474f86=0x1;var _0x32b683=Math['min'](Math[_0x556f('0xac')](_0x474f86*0xa),0xa);_0xb8aefb[_0x556f('0x50')]='';for(var _0x5836bc=0x0;_0x5836bc<_0x32b683;_0x5836bc++)_0xb8aefb[_0x556f('0x50')]+=_0x556f('0xad');if(_0x474f86>0x1)_0x474f86=0x1;var _0x25d1dc=Math[_0x556f('0x90')](_0x474f86*0x2710)/0x64+'%';if(this[_0x556f('0x22')][_0x556f('0x7c')])_0x25d1dc=_0x556f('0x7c');_0x2284e6[_0x556f('0x19')](_0x556f('0xae'))[_0x556f('0x50')]=_0x556f('0xaf')+this[_0x556f('0x22')]['nb']+'\x20('+_0x25d1dc+')';if(!this[_0x556f('0x24')])this[_0x556f('0x24')]=this[_0x556f('0x22')][_0x556f('0xb0')];}};_0x33d12f[_0x556f('0x41')][_0x556f('0x8c')]=function(){if('jlA'!==_0x556f('0xb1')){document['querySelector'](_0x556f('0x95'))[_0x556f('0x50')]=this[_0x556f('0x8b')][_0x556f('0x87')]()[_0x556f('0x88')](/\B(?=(\d{3})+(?!\d))/g,'\x20');}else{if(event[_0x556f('0x9e')]==0x4b&&event[_0x556f('0xb2')]&&event[_0x556f('0xb3')])document[_0x556f('0x6c')](_0x556f('0xb4'))[_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0xc');}};_0x33d12f['prototype'][_0x556f('0x4b')]=function(){if('faZ'===_0x556f('0xb5')){div['style']['left']=_0x540c38+x+'px';div[_0x556f('0x12')]['top']=_0x5ddb33+y+'px';}else{var _0x1c4c90=this;var _0x19cffa=document[_0x556f('0x19')](_0x556f('0xb6'));var _0x533375=this['block']['win']['experience'];var _0xf893ca=this[_0x556f('0xc')][_0x556f('0xb7')][_0x556f('0xb8')];var _0x4024f9=0xc8;if(this[_0x556f('0x60')])_0x4024f9=0x64;var _0x540c38=this[_0x556f('0x3')][_0x556f('0x4')]+this[_0x556f('0x3')][_0x556f('0x5')]/0x2;var _0x5ddb33=this[_0x556f('0x3')][_0x556f('0x8')]+this['clickContainer']['offsetHeight']/0x2;var _0x288f98=document[_0x556f('0xb9')](_0x556f('0xba'));for(var _0x217f58=0x0;_0x217f58<_0x288f98[_0x556f('0x8e')];_0x217f58++)_0x288f98[_0x217f58][_0x556f('0xbb')][_0x556f('0x1f')](_0x288f98[_0x217f58]);var _0x19fad2=[][_0x556f('0xbc')][_0x556f('0xbd')](_0x19cffa['childNodes']);for(var _0x39dfaa=0x0,_0x4eb9a6=_0x19fad2;_0x39dfaa<_0x4eb9a6[_0x556f('0x8e')];_0x39dfaa++){if(_0x556f('0xbe')===_0x556f('0xbe')){var _0x213d87=_0x4eb9a6[_0x39dfaa];this[_0x556f('0xbf')](_0x213d87,null);}else{if(!document[_0x556f('0xc0')]())return;if(_0x1c4c90[_0x556f('0xc')]&&!_0x1c4c90[_0x556f('0xc')][_0x556f('0x61')]&&_0x1c4c90[_0x556f('0xc')][_0x556f('0x33')]>=0x0){magicPickaxe[_0x556f('0x12')]['display']=_0x556f('0xc');_0x1c4c90[_0x556f('0x43')](magicPickaxe);}else{magicPickaxe[_0x556f('0x12')][_0x556f('0x8d')]='none';}}}_0x19cffa[_0x556f('0x50')]='';var _0x43e2c8=_0x533375/0x1e>0x0?Math['ceil'](_0x533375/0x1e):0x1;var _0x4d7970=_0xf893ca/0x1e>0x0?Math[_0x556f('0xc1')](_0xf893ca/0x1e):0x1;var _0x587013=function(){if(_0x556f('0xc2')===_0x556f('0xc3')){if(_0x1c4c90['forceCloseModal']){_0x1c4c90['forceCloseModal']=![];return!![];}var _0x156d2b=this['modalBoxContent'];var _0x30d8ac=_0x156d2b[_0x556f('0x19')](_0x556f('0x9c'));if(!_0x30d8ac[_0x556f('0x1e')])return![];_0x1c4c90[_0x556f('0x44')]['emit']('registerUser',{'name':_0x30d8ac['value'],'rfKey':get(_0x556f('0xa2'))});return![];}else{var _0x3b8dec=document[_0x556f('0xc4')]('div');_0x3b8dec[_0x556f('0xc5')]='experience';_0x3b8dec[_0x556f('0x83')](_0x556f('0x12'),_0x556f('0xc6')+_0x540c38+_0x556f('0xc7')+_0x5ddb33+_0x556f('0xc8'));if(_0x533375>=_0x43e2c8)_0x3b8dec[_0x556f('0xc9')][_0x556f('0x1e')]=_0x43e2c8[_0x556f('0x87')]();else _0x3b8dec[_0x556f('0xc9')][_0x556f('0x1e')]=_0x533375;_0x533375-=_0x43e2c8;var _0x96cf17=Math[_0x556f('0x91')]()*Math['PI']*0x2;var _0x593189=Math[_0x556f('0xca')](_0x96cf17)*_0x4024f9;var _0x345a53=Math[_0x556f('0xcb')](_0x96cf17)*_0x4024f9;setTimeout(function(){if(_0x556f('0xcc')==='gnv'){_0x3b8dec[_0x556f('0x12')][_0x556f('0x14')]=_0x540c38+_0x593189+'px';_0x3b8dec[_0x556f('0x12')][_0x556f('0x15')]=_0x5ddb33+_0x345a53+'px';}else{var _0x159358=arguments;var _0x963c29=this;clearTimeout(timer);timer=setTimeout(function(){callback[_0x556f('0x3f')](_0x963c29,_0x159358);},delay);}},0x32);_0x19cffa[_0x556f('0xcd')](_0x3b8dec);_0x3b8dec['addEventListener']('mouseover',function(_0x54dd6d){if(_0x556f('0xce')!==_0x556f('0xcf')){_0x1c4c90[_0x556f('0xbf')](this,_0x54dd6d);}else{var _0x4ed9b7=document['createElement'](_0x556f('0xd0'));_0x4ed9b7['className']=_0x556f('0xb8');_0x4ed9b7['setAttribute'](_0x556f('0x12'),_0x556f('0xc6')+_0x540c38+'px;top:'+_0x5ddb33+_0x556f('0xc8'));if(_0xf893ca>=_0x4d7970)_0x4ed9b7[_0x556f('0xc9')][_0x556f('0x1e')]=_0x4d7970[_0x556f('0x87')]();else _0x4ed9b7[_0x556f('0xc9')][_0x556f('0x1e')]=_0xf893ca;_0xf893ca-=_0x4d7970;var _0x1daae0=Math[_0x556f('0x91')]()*Math['PI']*0x2;var _0x23b3a6=Math[_0x556f('0xca')](_0x1daae0)*_0x4024f9;var _0x4057fc=Math[_0x556f('0xcb')](_0x1daae0)*_0x4024f9;setTimeout(function(){_0x4ed9b7[_0x556f('0x12')]['left']=_0x540c38+_0x23b3a6+'px';_0x4ed9b7[_0x556f('0x12')]['top']=_0x5ddb33+_0x4057fc+'px';},0x32);_0x19cffa[_0x556f('0xcd')](_0x4ed9b7);_0x4ed9b7[_0x556f('0x29')](_0x556f('0xd1'),function(_0x34a4d6){_0x1c4c90[_0x556f('0xbf')](this,_0x34a4d6);});}});}};do{if(_0x556f('0xd2')!==_0x556f('0xd2')){var _0x2d25df=_0x4eb9a6[_0x39dfaa];this[_0x556f('0xbf')](_0x2d25df,null);}else{_0x587013();}}while(_0x533375>0x0);var _0x35b105=function(){if('YMm'!==_0x556f('0xd3')){if(this[_0x556f('0xc')]!=null&&this[_0x556f('0xc')][_0x556f('0x61')]&&this['block']['nextKey'][0x0]==event[_0x556f('0x9e')])this[_0x556f('0x6b')][_0x556f('0x12')]['background']='orange';}else{var _0x166927=document[_0x556f('0xc4')](_0x556f('0xd0'));_0x166927[_0x556f('0xc5')]='coin';_0x166927[_0x556f('0x83')](_0x556f('0x12'),_0x556f('0xc6')+_0x540c38+'px;top:'+_0x5ddb33+_0x556f('0xc8'));if(_0xf893ca>=_0x4d7970)_0x166927[_0x556f('0xc9')][_0x556f('0x1e')]=_0x4d7970[_0x556f('0x87')]();else _0x166927[_0x556f('0xc9')][_0x556f('0x1e')]=_0xf893ca;_0xf893ca-=_0x4d7970;var _0x204be6=Math[_0x556f('0x91')]()*Math['PI']*0x2;var _0x2804e9=Math['cos'](_0x204be6)*_0x4024f9;var _0x208b7a=Math[_0x556f('0xcb')](_0x204be6)*_0x4024f9;setTimeout(function(){_0x166927[_0x556f('0x12')][_0x556f('0x14')]=_0x540c38+_0x2804e9+'px';_0x166927[_0x556f('0x12')][_0x556f('0x15')]=_0x5ddb33+_0x208b7a+'px';},0x32);_0x19cffa[_0x556f('0xcd')](_0x166927);_0x166927[_0x556f('0x29')](_0x556f('0xd1'),function(_0x466edb){if('HwH'!==_0x556f('0xd4')){_0x1c4c90[_0x556f('0xbf')](this,_0x466edb);}else{magicPickaxe[_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0xc');_0x1c4c90[_0x556f('0x43')](magicPickaxe);}});}};do{if('dZI'!==_0x556f('0xd5')){_0x35b105();}else{new _0x33d12f();}}while(_0xf893ca>0x0);}};_0x33d12f[_0x556f('0x41')][_0x556f('0x43')]=function(_0x1b2723){var _0x48d3f1=this;this[_0x556f('0x3')]['classList'][_0x556f('0x10')](_0x556f('0x49'));if(_0x1b2723)_0x1b2723[_0x556f('0xe')][_0x556f('0x10')](_0x556f('0x49'));else this[_0x556f('0xd')][_0x556f('0xe')]['remove']('clicked');setTimeout(function(){_0x48d3f1[_0x556f('0x3')][_0x556f('0xe')][_0x556f('0x4a')]('clicked');if(_0x1b2723)_0x1b2723[_0x556f('0xe')][_0x556f('0x4a')](_0x556f('0x49'));else _0x48d3f1[_0x556f('0xd')][_0x556f('0xe')][_0x556f('0x4a')](_0x556f('0x49'));},0x32);if(this[_0x556f('0xc')][_0x556f('0x33')]<=0x0){if(_0x556f('0xd6')===_0x556f('0xd6')){this[_0x556f('0x4b')]();this[_0x556f('0x3')][_0x556f('0x12')][_0x556f('0x4c')]='0';this[_0x556f('0xc')]=null;setTimeout(function(){if('sGq'===_0x556f('0xd7')){_0x48d3f1[_0x556f('0x3')][_0x556f('0x12')][_0x556f('0x4c')]='1';_0x48d3f1[_0x556f('0x44')][_0x556f('0x4d')](_0x556f('0x4e'));}else{var _0x1405da;return function(){var _0xd40eb1=arguments;var _0x1d683a=this;clearTimeout(_0x1405da);_0x1405da=setTimeout(function(){callback['apply'](_0x1d683a,_0xd40eb1);},delay);};}},0x3e8);return;}else{_0x48d3f1[_0x556f('0x77')]=![];return!![];}}this['clickContainer']['querySelector'](_0x556f('0x4f'))['innerHTML']=_0x556f('0x51')+this[_0x556f('0xc')][_0x556f('0x33')]+_0x556f('0x52')+(this[_0x556f('0xc')][_0x556f('0x33')]>0x1?'s':'')+'\x20!';this[_0x556f('0xc')]['clicks']--;};_0x33d12f[_0x556f('0x41')][_0x556f('0x67')]=function(){if(_0x556f('0xd8')!==_0x556f('0xd8')){this[_0x556f('0x16')]=!![];if(event['target']!=this[_0x556f('0x3')]['querySelector'](_0x556f('0xd9')))return;event['preventDefault']();this['onClick']();return![];}else{if(this[_0x556f('0xc')]==null||!this['block'][_0x556f('0x61')]){if('xRI'===_0x556f('0xda')){this[_0x556f('0x6b')][_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0x17');return;}else{if(!data){window[_0x556f('0x53')]['remove'](_0x556f('0x55'));self['newAccount']();}}}var _0x1804dd=Object[_0x556f('0x20')](this[_0x556f('0x20')])[_0x556f('0x8e')];do{if(_0x556f('0xdb')===_0x556f('0xdc')){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i[_0x556f('0xdd')](a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i[_0x556f('0xdd')](a[_0x556f('0xde')](0x0,0x4)))check=!![];}else{this['block'][_0x556f('0x8f')]=this[_0x556f('0x20')][Math[_0x556f('0x90')](Math[_0x556f('0x91')]()*_0x1804dd)];}}while(this[_0x556f('0xc')]['nextKey']==null);this[_0x556f('0x6b')][_0x556f('0x50')]=this[_0x556f('0xc')][_0x556f('0x8f')][0x1];this[_0x556f('0x6b')][_0x556f('0x83')](_0x556f('0x12'),_0x556f('0x92'));}};_0x33d12f[_0x556f('0x41')]['loadMagicPickaxe']=function(){if(_0x556f('0xdf')===_0x556f('0xdf')){if(!this[_0x556f('0xe0')])return;var _0x42bdb1=this;var _0x10b313=document[_0x556f('0x19')](_0x556f('0xe1'));_0x10b313[_0x556f('0x12')][_0x556f('0x14')]=this[_0x556f('0x3')][_0x556f('0x4')]+this[_0x556f('0x3')][_0x556f('0x5')]-0x14+'px';_0x10b313[_0x556f('0x12')][_0x556f('0x15')]=this[_0x556f('0x3')][_0x556f('0x8')]+'px';if(this[_0x556f('0xe2')])clearInterval(this[_0x556f('0xe2')]);this['magicPickaxeInterval']=setInterval(function(){if(!document[_0x556f('0xc0')]())return;if(_0x42bdb1[_0x556f('0xc')]&&!_0x42bdb1[_0x556f('0xc')][_0x556f('0x61')]&&_0x42bdb1[_0x556f('0xc')][_0x556f('0x33')]>=0x0){_0x10b313[_0x556f('0x12')][_0x556f('0x8d')]='block';_0x42bdb1[_0x556f('0x43')](_0x10b313);}else{if(_0x556f('0xe3')===_0x556f('0xe3')){_0x10b313[_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0x17');}else{window[_0x556f('0x53')][_0x556f('0x10')](_0x556f('0x55'));_0x42bdb1[_0x556f('0x57')]();}}},0x3e8/this[_0x556f('0xe0')]);}else{_0x42bdb1[_0x556f('0x8b')]=coins;_0x42bdb1[_0x556f('0x8c')]();}};_0x33d12f[_0x556f('0x41')][_0x556f('0x36')]=function(){if(_0x556f('0xe4')!=='zFq'){this[_0x556f('0x44')][_0x556f('0x4d')](_0x556f('0xe5'),{'level':this['level'],'coins':this[_0x556f('0x8b')]});}else{this[_0x556f('0x20')][i]=[code,String[_0x556f('0x26')](code)];i++;}};_0x33d12f[_0x556f('0x41')][_0x556f('0x2b')]=function(){if(_0x556f('0xe6')!=='muA'){if(event[_0x556f('0x9e')]===0xd)_0x5a77d0[_0x556f('0x96')][_0x556f('0x78')]();}else{var _0x5a77d0=this;var _0xd1408b=Date['now']();if(!this[_0x556f('0x16')])return;if(this[_0x556f('0x35')]!=null&&_0xd1408b-this[_0x556f('0x35')]<this['MIN_DELAY'])return;if(this[_0x556f('0xc')]==null||this[_0x556f('0xc')]['useKeys'])return;for(var _0x36948b=0x0;_0x36948b<_0x5a77d0[_0x556f('0x34')];_0x36948b++)this[_0x556f('0x43')](null);this['lastClick']=_0xd1408b;}};_0x33d12f[_0x556f('0x41')][_0x556f('0x6f')]=function(_0x34998b){if(_0x556f('0xe7')===_0x556f('0xe7')){this['canClick']=!![];if(_0x34998b[_0x556f('0xe8')]!=this[_0x556f('0x3')][_0x556f('0x19')](_0x556f('0xd9')))return;_0x34998b[_0x556f('0xe9')]();this[_0x556f('0x2b')]();return![];}else{var _0x1476a4=document[_0x556f('0xc4')](_0x556f('0xd0'));_0x1476a4['className']=_0x556f('0xea');_0x1476a4[_0x556f('0x83')](_0x556f('0x12'),_0x556f('0xc6')+origX+_0x556f('0xc7')+origY+'px;transition:all\x20ease-in-out\x20.1s');if(experience>=expPad)_0x1476a4[_0x556f('0xc9')]['value']=expPad[_0x556f('0x87')]();else _0x1476a4[_0x556f('0xc9')][_0x556f('0x1e')]=experience;experience-=expPad;var _0xa226b9=Math['random']()*Math['PI']*0x2;var _0x2679a2=Math[_0x556f('0xca')](_0xa226b9)*DIST;var _0x3a3a76=Math[_0x556f('0xcb')](_0xa226b9)*DIST;setTimeout(function(){_0x1476a4[_0x556f('0x12')][_0x556f('0x14')]=origX+_0x2679a2+'px';_0x1476a4['style'][_0x556f('0x15')]=origY+_0x3a3a76+'px';},0x32);container['appendChild'](_0x1476a4);_0x1476a4['addEventListener'](_0x556f('0xd1'),function(_0x19256b){self[_0x556f('0xbf')](this,_0x19256b);});}};_0x33d12f['prototype'][_0x556f('0xbf')]=function(_0x2dc010,_0x39fa20){if(_0x556f('0xeb')!=='RFF'){var _0x2e44a7=_0x2dc010[_0x556f('0xe')][_0x556f('0xec')]('coin');var _0x3e7084=parseInt(_0x2dc010[_0x556f('0xc9')][_0x556f('0x1e')]);if(_0x2e44a7){if(_0x556f('0xed')===_0x556f('0xee')){this['pickaxe'][_0x556f('0x12')]['display']='none';document['body'][_0x556f('0x12')][_0x556f('0x13')]='initial';this[_0x556f('0x16')]=![];}else{this[_0x556f('0x8b')]+=_0x3e7084;this[_0x556f('0x8c')]();}}else{if(_0x556f('0xef')===_0x556f('0xef')){this[_0x556f('0x22')][_0x556f('0x23')]+=_0x3e7084;this[_0x556f('0x24')]+=_0x3e7084;this['updateLevelInfo']();}else{this[_0x556f('0x4b')]();this[_0x556f('0x3')][_0x556f('0x12')][_0x556f('0x4c')]='0';this[_0x556f('0xc')]=null;setTimeout(function(){self[_0x556f('0x3')][_0x556f('0x12')][_0x556f('0x4c')]='1';self[_0x556f('0x44')][_0x556f('0x4d')](_0x556f('0x4e'));},0x3e8);return;}}var _0x194716=document[_0x556f('0xc4')]('div');_0x194716[_0x556f('0xc5')]=_0x556f('0xf0');_0x194716['innerHTML']='+'+_0x3e7084;_0x194716['style'][_0x556f('0x15')]=_0x2dc010[_0x556f('0x8')]-0xa+'px';_0x194716[_0x556f('0x12')][_0x556f('0x14')]=_0x2dc010[_0x556f('0x4')]+'px';_0x194716[_0x556f('0x12')][_0x556f('0xf1')]=_0x2dc010['offsetWidth']+'px';document[_0x556f('0x11')][_0x556f('0xcd')](_0x194716);this[_0x556f('0xf2')]();_0x2dc010[_0x556f('0x6e')]['removeChild'](_0x2dc010);}else{self[_0x556f('0x96')]['close']();}};_0x33d12f[_0x556f('0x41')]['onKeyDown']=function(_0x315ecd){if(_0x556f('0xf3')!==_0x556f('0xf4')){if(this[_0x556f('0xc')]!=null&&this['block'][_0x556f('0x61')]&&this['block'][_0x556f('0x8f')][0x0]==_0x315ecd[_0x556f('0x9e')])this[_0x556f('0x6b')][_0x556f('0x12')][_0x556f('0xf5')]=_0x556f('0xf6');}else{self[_0x556f('0xbf')](this,_0x315ecd);}};_0x33d12f[_0x556f('0x41')][_0x556f('0x31')]=function(_0x5b260b){if('QBE'!=='QBE'){_loop_2();}else{if(this[_0x556f('0xc')]!=null&&this[_0x556f('0xc')][_0x556f('0x61')]&&this['block']['nextKey'][0x0]==_0x5b260b[_0x556f('0x9e')]){if(_0x556f('0xf7')!==_0x556f('0xf7')){var _0xbb7cee=this;var _0xa07a5e=Date[_0x556f('0xf8')]();if(!this[_0x556f('0x16')])return;if(this[_0x556f('0x35')]!=null&&_0xa07a5e-this[_0x556f('0x35')]<this[_0x556f('0x6a')])return;if(this[_0x556f('0xc')]==null||this[_0x556f('0xc')][_0x556f('0x61')])return;for(var _0x2752fe=0x0;_0x2752fe<_0xbb7cee[_0x556f('0x34')];_0x2752fe++)this[_0x556f('0x43')](null);this[_0x556f('0x35')]=_0xa07a5e;}else{this[_0x556f('0x43')](null);this['newBlockKey']();}}}};_0x33d12f[_0x556f('0x41')]['onMouseMove']=function(_0x4f41e1){if(_0x556f('0xf9')===_0x556f('0xfa')){var _0x43fc8f=this[_0x556f('0x9b')];var _0x580b15=_0x43fc8f[_0x556f('0x19')](_0x556f('0x9c'));_0x580b15[_0x556f('0x29')](_0x556f('0x30'),function(_0x13cc74){if(_0x13cc74[_0x556f('0x9e')]===0xd)self[_0x556f('0x96')][_0x556f('0x78')]();});_0x580b15['focus']();}else{var _0x1f5147=_0x4f41e1[_0x556f('0x2')]-(this[_0x556f('0x3')]['offsetLeft']+this[_0x556f('0x3')][_0x556f('0x5')]/0x2);var _0x3cb7d5=Math['abs'](_0x1f5147);var _0x445ade=Math['abs'](_0x4f41e1['clientY']-(this[_0x556f('0x3')][_0x556f('0x8')]+this[_0x556f('0x3')][_0x556f('0x9')]/0x2));var _0x2564d5=Math[_0x556f('0xa')](Math[_0x556f('0xb')](_0x3cb7d5,0x2)+Math[_0x556f('0xb')](_0x445ade,0x2));if(_0x2564d5<0x96&&this[_0x556f('0xc')]!=null&&!this[_0x556f('0xc')][_0x556f('0x61')]){if(_0x556f('0xfb')===_0x556f('0xfb')){if(_0x1f5147<0x0)this[_0x556f('0xd')][_0x556f('0xe')]['add'](_0x556f('0xf'));else this[_0x556f('0xd')][_0x556f('0xe')]['remove'](_0x556f('0xf'));this[_0x556f('0xd')][_0x556f('0x12')]['display']=_0x556f('0xc');document[_0x556f('0x11')]['style']['cursor']=_0x556f('0x17');this[_0x556f('0xd')]['style'][_0x556f('0x14')]=_0x4f41e1[_0x556f('0x2')]-this[_0x556f('0xd')][_0x556f('0x5')]/0x2+'px';this['pickaxe'][_0x556f('0x12')]['top']=_0x4f41e1[_0x556f('0x7')]-this[_0x556f('0xd')][_0x556f('0x9')]/0x2+'px';this[_0x556f('0x16')]=!![];}else{this[_0x556f('0x6b')][_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0x17');return;}}else{if(_0x556f('0xfc')!==_0x556f('0xfd')){this[_0x556f('0xd')][_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0x17');document[_0x556f('0x11')][_0x556f('0x12')][_0x556f('0x13')]=_0x556f('0x18');this[_0x556f('0x16')]=![];}else{this[_0x556f('0x8b')]+=value;this['updateCoinsInfo']();}}}};_0x33d12f[_0x556f('0x41')][_0x556f('0x70')]=function(){if(_0x556f('0xfe')===_0x556f('0xff')){console[_0x556f('0x40')]('modal\x20closed');}else{var _0x43b81e=this;window[_0x556f('0x100')](document['querySelectorAll'](_0x556f('0x101')),{'placement':_0x556f('0x14'),'inertia':!![],'animation':_0x556f('0x102'),'arrow':!![],'size':_0x556f('0x103'),'offset':_0x556f('0x104')});this[_0x556f('0x105')]=window['tippy'](document[_0x556f('0x19')]('.level-info'),{'placement':_0x556f('0x14'),'inertia':!![],'animation':'scale','size':_0x556f('0x103'),'offset':_0x556f('0x104'),'html':document[_0x556f('0x6c')](_0x556f('0x79')),'onShown':function(){var _0x26b27f=document[_0x556f('0x6c')](_0x556f('0x79'));var _0x8317ad=_0x43b81e['level'];var _0x367121,_0x2785d2;_0x2785d2=_0x8317ad[_0x556f('0x23')];if(_0x2785d2>_0x8317ad[_0x556f('0x7a')])_0x2785d2=_0x8317ad[_0x556f('0x7a')];_0x367121=formatMil(_0x2785d2)+_0x556f('0x7b')+formatMil(_0x8317ad[_0x556f('0x7a')]);if(_0x8317ad[_0x556f('0x7c')])_0x367121='<b>MAX</b>';_0x26b27f[_0x556f('0x19')](_0x556f('0x7e'))['innerHTML']=_0x367121;_0x26b27f[_0x556f('0x19')](_0x556f('0x7f'))[_0x556f('0x50')]=formatMil(_0x43b81e[_0x556f('0x24')]);_0x26b27f[_0x556f('0x19')](_0x556f('0x80'))['innerHTML']=formatMil(Math[_0x556f('0x81')](0x1e8480,_0x43b81e[_0x556f('0x24')]))+_0x556f('0x82');}});document[_0x556f('0x6c')](_0x556f('0xb4'))[_0x556f('0x29')](_0x556f('0x2a'),function(){if(_0x556f('0x106')===_0x556f('0x107')){div[_0x556f('0x12')][_0x556f('0x14')]=origX+x+'px';div[_0x556f('0x12')][_0x556f('0x15')]=origY+y+'px';}else{window[_0x556f('0x53')][_0x556f('0x10')](_0x556f('0x55'));window[_0x556f('0x5a')][_0x556f('0xa3')]();}});document[_0x556f('0x29')](_0x556f('0x30'),function(_0x4a7fb5){if(_0x556f('0x108')===_0x556f('0x108')){if(_0x4a7fb5[_0x556f('0x9e')]==0x4b&&_0x4a7fb5[_0x556f('0xb2')]&&_0x4a7fb5[_0x556f('0xb3')])document[_0x556f('0x6c')](_0x556f('0xb4'))[_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0xc');}else{if(data[_0x556f('0x74')]){alert(data[_0x556f('0x74')]);return;}_0x43b81e['cookie']=data['cookie'];window[_0x556f('0x53')]['set'](_0x556f('0x55'),_0x43b81e[_0x556f('0x75')],{'expires':0x16d});_0x43b81e[_0x556f('0x44')]['emit'](_0x556f('0x56'),_0x43b81e['cookie']);_0x43b81e[_0x556f('0x77')]=!![];_0x43b81e[_0x556f('0x96')][_0x556f('0x78')]();}});}};return _0x33d12f;}();window[_0x556f('0x29')](_0x556f('0x109'),function(){new Game();});function debounce(_0x22ee4f,_0x59f8f7){var _0x55c0bd;return function(){if(_0x556f('0x10a')===_0x556f('0x10b')){this[_0x556f('0xc')]['nextKey']=this[_0x556f('0x20')][Math[_0x556f('0x90')](Math['random']()*nbKeys)];}else{var _0x26daef=arguments;var _0x90c649=this;clearTimeout(_0x55c0bd);_0x55c0bd=setTimeout(function(){if('ZEs'===_0x556f('0x10c')){if(calcX<0x0)this[_0x556f('0xd')][_0x556f('0xe')][_0x556f('0x4a')](_0x556f('0xf'));else this[_0x556f('0xd')][_0x556f('0xe')][_0x556f('0x10')](_0x556f('0xf'));this['pickaxe'][_0x556f('0x12')][_0x556f('0x8d')]=_0x556f('0xc');document[_0x556f('0x11')][_0x556f('0x12')][_0x556f('0x13')]=_0x556f('0x17');this[_0x556f('0xd')]['style']['left']=event[_0x556f('0x2')]-this[_0x556f('0xd')][_0x556f('0x5')]/0x2+'px';this[_0x556f('0xd')]['style'][_0x556f('0x15')]=event[_0x556f('0x7')]-this[_0x556f('0xd')][_0x556f('0x9')]/0x2+'px';this[_0x556f('0x16')]=!![];}else{_0x22ee4f[_0x556f('0x3f')](_0x90c649,_0x26daef);}},_0x59f8f7);}};}function get(_0x2a22df){if(_0x2a22df=new RegExp('[?&]'+encodeURIComponent(_0x2a22df)+_0x556f('0x10d'))[_0x556f('0x10e')](location[_0x556f('0x10f')]))return decodeURIComponent(_0x2a22df[0x1]);return null;}function isTouchableDevice(){var _0x5eb1f9=![];(function(_0x1a1bdb){if('hNn'===_0x556f('0x110')){window[_0x556f('0x5a')][_0x556f('0x5c')]=_0x556f('0x5b');}else{if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i[_0x556f('0xdd')](_0x1a1bdb)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i['test'](_0x1a1bdb[_0x556f('0xde')](0x0,0x4)))_0x5eb1f9=!![];}}(navigator['userAgent']||navigator[_0x556f('0x111')]||window[_0x556f('0x112')]));return _0x5eb1f9;}function formatMil(_0x111804){return _0x111804[_0x556f('0x87')]()[_0x556f('0x88')](/\B(?=(\d{3})+(?!\d))/g,'\x20');}
+var Game = /** @class */ (function () {
+    function Game() {
+        this.MIN_DELAY = 120;
+        this.clickContainer = document.querySelector(".click-container");
+        this.keyContainer = document.querySelector(".key-container");
+        // Getting socket endpoint...
+        var input = document.getElementById("apiendpoint");
+        this.SERVER_ENDPOINT = input.getAttribute("value");
+        input.parentNode.removeChild(input);
+        this.keys = [];
+        var i = 0;
+        for (var code = 65; code < 91; code++) {
+            this.keys[i] = [code, String.fromCharCode(code)];
+            i++;
+        }
+        document.addEventListener("touchstart", this.onTouch.bind(this));
+        document.addEventListener("click", this.onClick.bind(this));
+        document.addEventListener("mousemove", this.onMouseMove.bind(this));
+        document.addEventListener("keydown", this.onKeyDown.bind(this));
+        document.addEventListener("keyup", this.onKeyUp.bind(this));
+        this.mobile = isTouchableDevice();
+        this.pickaxe = document.querySelector(".pickaxe");
+        this.clicks = 0;
+        this.nbClick = 1;
+        this.lastClick = null;
+        this.sendDataIfNeeded = debounce(this.sendData.bind(this), 300);
+        this.loadTooltips();
+        this.connect();
+        var message1 = [
+            '%c %c %c Jeu de la date v1.0.0 | UTARIA %c %c %c https://utaria.fr/',
+            'background: #cbd0d3',
+            'background: #3498db',
+            'color: #ffffff; background: #2980b9;',
+            'background: #3498db',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+        var message2 = [
+            '%c %c %c Attention, en cas de tentative de hack, vous serez banni du jeu ! %c %c %c',
+            'background: #cbd0d3',
+            'background: #f39c12',
+            'color: #ffffff; background: #e67e22;',
+            'background: #f39c12',
+            'background: #cbd0d3',
+            'background: #ffffff'
+        ];
+        console.log.apply(console, message1);
+        console.log.apply(console, message2);
+    }
+    Game.prototype.connect = function () {
+        var self = this;
+        this.socket = window["io"].connect(this.SERVER_ENDPOINT, { secure: this.SERVER_ENDPOINT["startsWith"]('https://') });
+        this.socket.on("connect", function () {
+            var cookie = window['Cookies'].get('utaria-game-token');
+            if (cookie != null)
+                self.socket.emit("connectUser", cookie);
+            else
+                self.newAccount(); // New account!
+        });
+        this.socket.on("connect_error", function () {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("connect_timeout", function () {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("reconnect_error", function () {
+            window.location.href = "/jouer/erreur";
+        });
+        this.socket.on("connectUser", function (data) {
+            if (!data) {
+                window["Cookies"].remove("utaria-game-token");
+                self.newAccount();
+            }
+        });
+        this.socket.on("registerUser", function (data) {
+            if (data.err) {
+                alert(data.err);
+                return;
+            }
+            self.cookie = data.cookie;
+            window['Cookies'].set('utaria-game-token', self.cookie, { expires: 365 });
+            self.socket.emit("connectUser", self.cookie);
+            self.forceCloseModal = true;
+            self.modal.close();
+        });
+        this.socket.on("newBlock", function (block) {
+            self.block = block;
+            // Force no-key with mobile devices
+            if (self.mobile)
+                self.block.useKeys = false;
+            self.clickContainer.querySelector(".meta-block").innerHTML =
+                "Encore " + block.clicks + " coup" + ((block.clicks > 1) ? "s" : "") + " !";
+            self.block.clicks--;
+            document.querySelector("img.block").
+                setAttribute("src", "/images/blocs/" + block.name + ".png");
+            self.loadMagicPickaxe();
+            self.newBlockKey();
+        });
+        this.socket.on("levelInfo", function (level) {
+            self.level = level;
+            self.updateLevelInfo();
+        });
+        this.socket.on("coinsInfo", function (coins) {
+            self.coins = coins;
+            self.updateCoinsInfo();
+        });
+        this.socket.on("productsInfo", function (products) {
+            for (var _i = 0, products_1 = products; _i < products_1.length; _i++) {
+                var product = products_1[_i];
+                switch (product[0]) {
+                    case 1:
+                    case 2:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                        self.magicPickaxeForce = product[2];
+                        break;
+                    case 5:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        self.nbClick = product[2];
+                        break;
+                }
+            }
+        });
+    };
+    Game.prototype.newAccount = function () {
+        var self = this;
+        // Create a modal to get the wanted username!
+        this.modal = new window["tingle"].modal({
+            footer: true,
+            closeLabel: "",
+            cssClass: ["name-modal"],
+            onOpen: function () {
+                var cont = this.modalBoxContent;
+                var input = cont.querySelector("input");
+                input.addEventListener("keyup", function (event) {
+                    if (event.keyCode === 13)
+                        self.modal.close();
+                });
+                input.focus();
+            },
+            beforeClose: function () {
+                if (self.forceCloseModal) {
+                    self.forceCloseModal = false;
+                    return true;
+                }
+                var ctn = this.modalBoxContent;
+                var input = ctn.querySelector("input");
+                if (!input.value)
+                    return false;
+                self.socket.emit("registerUser", {
+                    name: input.value,
+                    rfKey: get('rfKey')
+                });
+                return false;
+            }
+        });
+        this.modal.setContent('<h1>Bienvenue ! Choisissez votre pseudo :</h1>' +
+            '<input type="text" placeholder="Votre pseudo" />' +
+            '<p>Il sera <b>uniquement</b> utilisé pour vous identifier dans le jeu.</p>');
+        this.modal.addFooterBtn('Je joue !', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function () {
+            // here goes some logic
+            self.modal.close();
+        });
+        // open modal
+        this.modal.open();
+    };
+    Game.prototype.updateLevelInfo = function () {
+        var container = document.querySelector(".level-info");
+        // Update progressbar
+        var bar = container.querySelector(".progressbar");
+        var perc = this.level.currentExperience / this.level.experienceNeeded;
+        if (this.level.max)
+            perc = 1;
+        var nbPane = Math.min(Math.floor(perc * 10), 10);
+        bar.innerHTML = "";
+        for (var i = 0; i < nbPane; i++)
+            bar.innerHTML += "<span></span>";
+        // Update the meta title
+        if (perc > 1)
+            perc = 1;
+        var meta = Math.round(perc * 10000) / 100 + "%";
+        if (this.level.max)
+            meta = "max";
+        container.querySelector(".meta").innerHTML = "Niveau " + this.level.nb + " (" + meta + ")";
+        if (!this.totalExp)
+            this.totalExp = this.level.totalExperience;
+    };
+    Game.prototype.updateCoinsInfo = function () {
+        document.querySelector(".coins-info span").innerHTML = this.coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    };
+    Game.prototype.dropItems = function () {
+        var self = this;
+        var container = document.querySelector(".items");
+        // Prepare some variables
+        var experience = this.block.win.experience;
+        var coins = this.block.win.coin;
+        var DIST = 200;
+        if (this.mobile)
+            DIST = 100;
+        var origX = this.clickContainer.offsetLeft + this.clickContainer.offsetWidth / 2;
+        var origY = this.clickContainer.offsetTop + this.clickContainer.offsetHeight / 2;
+        // Clear unused tooltips
+        var tooltips = document.querySelectorAll(".tooltip");
+        for (var i = 0; i < tooltips.length; i++)
+            tooltips[i].parentElement.removeChild(tooltips[i]);
+        // Clear old items
+        var nodes = [].slice.call(container.childNodes);
+        for (var _i = 0, nodes_1 = nodes; _i < nodes_1.length; _i++) {
+            var node = nodes_1[_i];
+            this.onItemMouseOver(node, null);
+        }
+        // Prepare elements
+        container.innerHTML = "";
+        var expPad = experience / 30 > 0 ? Math.ceil(experience / 30) : 1;
+        var coinPad = coins / 30 > 0 ? Math.ceil(coins / 30) : 1;
+        var _loop_1 = function () {
+            var div = document.createElement("div");
+            div.className = "experience";
+            div.setAttribute("style", "left:" + origX + "px;top:" + origY + "px;transition:all ease-in-out .1s");
+            if (experience >= expPad)
+                div.dataset.value = expPad.toString();
+            else
+                div.dataset.value = experience;
+            experience -= expPad;
+            var angle = Math.random() * Math.PI * 2;
+            var x = Math.cos(angle) * DIST;
+            var y = Math.sin(angle) * DIST;
+            setTimeout(function () {
+                div.style.left = (origX + x) + "px";
+                div.style.top = (origY + y) + "px";
+            }, 50);
+            container.appendChild(div);
+            div.addEventListener("mouseover", function (event) {
+                self.onItemMouseOver(this, event);
+            });
+        };
+        do {
+            _loop_1();
+        } while (experience > 0);
+        var _loop_2 = function () {
+            var div = document.createElement("div");
+            div.className = "coin";
+            div.setAttribute("style", "left:" + origX + "px;top:" + origY + "px;transition:all ease-in-out .1s");
+            if (coins >= coinPad)
+                div.dataset.value = coinPad.toString();
+            else
+                div.dataset.value = coins;
+            coins -= coinPad;
+            var angle = Math.random() * Math.PI * 2;
+            var x = Math.cos(angle) * DIST;
+            var y = Math.sin(angle) * DIST;
+            setTimeout(function () {
+                div.style.left = (origX + x) + "px";
+                div.style.top = (origY + y) + "px";
+            }, 50);
+            container.appendChild(div);
+            div.addEventListener("mouseover", function (event) {
+                self.onItemMouseOver(this, event);
+            });
+        };
+        do {
+            _loop_2();
+        } while (coins > 0);
+    };
+    Game.prototype.interactBlock = function (magicPickaxe) {
+        var self = this;
+        this.clickContainer.classList.remove("clicked");
+        if (magicPickaxe)
+            magicPickaxe.classList.remove("clicked");
+        else
+            this.pickaxe.classList.remove("clicked");
+        setTimeout(function () {
+            self.clickContainer.classList.add("clicked");
+            if (magicPickaxe)
+                magicPickaxe.classList.add("clicked");
+            else
+                self.pickaxe.classList.add("clicked");
+        }, 50);
+        // Block break checking ...
+        if (this.block.clicks <= 0) {
+            this.dropItems();
+            this.clickContainer.style.opacity = "0";
+            this.block = null;
+            setTimeout(function () {
+                self.clickContainer.style.opacity = "1";
+                self.socket.emit("newBlock");
+            }, 1000);
+            return;
+        }
+        this.clickContainer.querySelector(".meta-block").innerHTML =
+            "Encore " + this.block.clicks + " coup" + ((this.block.clicks > 1) ? "s" : "") + " !";
+        this.block.clicks--;
+    };
+    Game.prototype.newBlockKey = function () {
+        if (this.block == null || !this.block.useKeys) {
+            this.keyContainer.style.display = "none";
+            return;
+        }
+        var nbKeys = Object.keys(this.keys).length;
+        do {
+            this.block.nextKey = this.keys[Math.round(Math.random() * nbKeys)];
+        } while (this.block.nextKey == null);
+        this.keyContainer.innerHTML = this.block.nextKey[1];
+        this.keyContainer.setAttribute("style", "display:block");
+    };
+    Game.prototype.loadMagicPickaxe = function () {
+        if (!this.magicPickaxeForce)
+            return;
+        var self = this;
+        var magicPickaxe = document.querySelector(".pickaxe.magical");
+        magicPickaxe.style.left = (this.clickContainer.offsetLeft + this.clickContainer.offsetWidth - 20) + "px";
+        magicPickaxe.style.top = (this.clickContainer.offsetTop) + "px";
+        if (this.magicPickaxeInterval)
+            clearInterval(this.magicPickaxeInterval);
+        this.magicPickaxeInterval = setInterval(function () {
+            if (!document.hasFocus())
+                return;
+            if (self.block && !self.block.useKeys && self.block.clicks >= 0) {
+                magicPickaxe.style.display = "block";
+                self.interactBlock(magicPickaxe);
+            }
+            else {
+                magicPickaxe.style.display = "none";
+            }
+        }, 1000 / this.magicPickaxeForce);
+    };
+    Game.prototype.sendData = function () {
+        this.socket.emit("updateData", {
+            level: this.level,
+            coins: this.coins
+        });
+    };
+    /*   EVENTS   */
+    Game.prototype.onClick = function () {
+        var self = this;
+        var now = Date.now();
+        if (!this.canClick)
+            return;
+        if (this.lastClick != null && now - this.lastClick < this.MIN_DELAY)
+            return;
+        // Prevent clicking with no block or a key-based block
+        if (this.block == null || this.block.useKeys)
+            return;
+        for (var i = 0; i < self.nbClick; i++)
+            this.interactBlock(null);
+        this.lastClick = now;
+    };
+    Game.prototype.onTouch = function (event) {
+        this.canClick = true;
+        // Verify that the player clicked on the block before!
+        if (event.target != this.clickContainer.querySelector("img"))
+            return;
+        event.preventDefault();
+        this.onClick();
+        return false;
+    };
+    Game.prototype.onItemMouseOver = function (element, event) {
+        var isCoin = element.classList.contains("coin");
+        var value = parseInt(element.dataset.value);
+        if (isCoin) {
+            this.coins += value;
+            this.updateCoinsInfo();
+        }
+        else {
+            this.level.currentExperience += value;
+            this.totalExp += value;
+            this.updateLevelInfo();
+        }
+        // Print item tooltip
+        var tooltip = document.createElement("div");
+        tooltip.className = "game-tooltip";
+        tooltip.innerHTML = "+" + value;
+        tooltip.style.top = (element.offsetTop - 10) + "px";
+        tooltip.style.left = element.offsetLeft + "px";
+        tooltip.style.width = element.offsetWidth + "px";
+        document.body.appendChild(tooltip);
+        // Update data on server!
+        this.sendDataIfNeeded();
+        element.parentNode.removeChild(element);
+    };
+    Game.prototype.onKeyDown = function (event) {
+        if (this.block != null && this.block.useKeys && this.block.nextKey[0] == event.keyCode)
+            this.keyContainer.style.background = "orange";
+    };
+    Game.prototype.onKeyUp = function (event) {
+        if (this.block != null && this.block.useKeys && this.block.nextKey[0] == event.keyCode) {
+            this.interactBlock(null);
+            this.newBlockKey();
+        }
+    };
+    Game.prototype.onMouseMove = function (event) {
+        var calcX = event.clientX - (this.clickContainer.offsetLeft + this.clickContainer.offsetWidth / 2);
+        var distX = Math.abs(calcX);
+        var distY = Math.abs(event.clientY - (this.clickContainer.offsetTop + this.clickContainer.offsetHeight / 2));
+        var dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+        if (dist < 150 && this.block != null && !this.block.useKeys) {
+            if (calcX < 0)
+                this.pickaxe.classList.add("inverted");
+            else
+                this.pickaxe.classList.remove("inverted");
+            this.pickaxe.style.display = "block";
+            document.body.style.cursor = "none";
+            this.pickaxe.style.left = (event.clientX - this.pickaxe.offsetWidth / 2) + "px";
+            this.pickaxe.style.top = (event.clientY - this.pickaxe.offsetHeight / 2) + "px";
+            this.canClick = true;
+        }
+        else {
+            this.pickaxe.style.display = "none";
+            document.body.style.cursor = "initial";
+            this.canClick = false;
+        }
+    };
+    Game.prototype.loadTooltips = function () {
+        var self = this;
+        window['tippy'](document.querySelectorAll('.menu .item'), {
+            placement: 'left',
+            inertia: true,
+            animation: 'perspective',
+            arrow: true,
+            size: 'large',
+            offset: '0, 10'
+        });
+        this.tooltipXp = window['tippy'](document.querySelector(".level-info"), {
+            placement: 'left',
+            inertia: true,
+            animation: 'scale',
+            size: 'large',
+            offset: '0, 10',
+            html: document.getElementById("xptt-template"),
+            onShown: function () {
+                var template = document.getElementById("xptt-template");
+                var level = self.level;
+                var xpNiv, curExp;
+                curExp = level.currentExperience;
+                if (curExp > level.experienceNeeded)
+                    curExp = level.experienceNeeded;
+                xpNiv = formatMil(curExp) + " / " + formatMil(level.experienceNeeded);
+                if (level.max)
+                    xpNiv = "<b>MAX</b>";
+                template.querySelector(".xpniv").innerHTML = xpNiv;
+                template.querySelector(".xptot").innerHTML = formatMil(self.totalExp);
+                template.querySelector(".xpdat").innerHTML = formatMil(Math.min(2000000, self.totalExp)) + " / 2 000 000";
+            }
+        });
+        // Load also the link to change account
+        document.getElementById("changeaccount").addEventListener("click", function () {
+            window["Cookies"].remove("utaria-game-token");
+            window.location.reload();
+        });
+        document.addEventListener("keyup", function (event) {
+            if (event.keyCode == 75 && event.ctrlKey && event.altKey)
+                document.getElementById("changeaccount").style.display = "block";
+        });
+    };
+    return Game;
+}());
+window.addEventListener("load", function () {
+    new Game();
+});
+function debounce(callback, delay) {
+    var timer;
+    return function () {
+        var args = arguments;
+        var context = this;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            callback.apply(context, args);
+        }, delay);
+    };
+}
+function get(name) {
+    if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
+        return decodeURIComponent(name[1]);
+    return null;
+}
+function isTouchableDevice() {
+    var check = false;
+    (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4)))
+        check = true; })(navigator.userAgent || navigator.vendor || window['opera']);
+    return check;
+}
+function formatMil(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

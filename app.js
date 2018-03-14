@@ -32,11 +32,11 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/jouer', jouer);
+//app.use('/jouer', jouer);
 app.use('/classement', classement);
-app.use('/date', date);
+//app.use('/date', date);
 app.use('/apropos', apropos);
-app.use('/boutique', boutique);
+//app.use('/boutique', boutique);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
