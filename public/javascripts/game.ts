@@ -204,6 +204,9 @@ class Game {
 
                 input.focus();
             },
+            onClose: function () {
+                console.log('modal closed');
+            },
             beforeClose: function () {
                 if (self.forceCloseModal) {
                     self.forceCloseModal = false;
