@@ -1,7 +1,3 @@
-use jeudeladate;
-
--- INSERTS
-
 INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (1, 'charbon', 10, 5, 10, 1, 2, 0.5);
 INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (2, 'fer', 50, 25, 50, 5, 10, 0.05);
 INSERT INTO jeudeladate.blocks (id, name, clicks, experience_min, experience_max, coin_min, coin_max, usekeys_chance) VALUES (3, 'or', 100, 500, 1500, 25, 50, 0);
@@ -92,3 +88,6 @@ INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (12, 4, 12, 4, 16, 80000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (13, 5, 15, 4, 18, 100000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (14, 6, 25, 4, 20, 125000);
+
+INSERT INTO jeudeladate.date_breakpoints VALUES (1,'XX0X',100000),(2,'XX03',5000000),(3,'0X03',36000000),(4,'0303',38673818);
+
