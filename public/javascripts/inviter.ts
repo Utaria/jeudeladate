@@ -10,11 +10,11 @@ if (token) {
             if (xmlhttp.status === 200) {
                 value = xmlhttp.responseText;
 
-                const clipboard = new window["Clipboard"]('.linkfield', {
+                /*const clipboard = new Clipboard('.linkfield', {
                     target: function(trigger) {
                         return document.getElementById("linkfield");
                     }
-                });
+                });*/
             }
 
             field.setAttribute("value", value);

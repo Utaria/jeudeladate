@@ -22,6 +22,8 @@ SocketServer.prototype = {
     newSocket: function(socket) {
         const self = this;
 
+	this.log("Socket connected.");
+
         // User actions
         socket.on("connectUser", function(cookie) {
             if (cookie !== null) {
@@ -111,7 +113,7 @@ SocketServer.prototype = {
         // Global
         socket.on("disconnect", function() {
             Player.removeInstance(socket);
-            self.log("A player disconnects! (" + Player.players.length + ")");
+            self.log("Socket disconnected. " + Player.players.length + " sockets remaining.");
         });
     },
 

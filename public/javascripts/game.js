@@ -52,7 +52,7 @@ var Game = /** @class */ (function () {
         this.socket = window["io"].connect(this.SERVER_ENDPOINT, { secure: this.SERVER_ENDPOINT["startsWith"]('https://') });
         this.socket.on("connect", function () {
             var cookie = window['Cookies'].get('utaria-game-token');
-            if (cookie != null)
+            if (cookie != null) // Existing account on PC!
                 self.socket.emit("connectUser", cookie);
             else
                 self.newAccount(); // New account!

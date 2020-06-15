@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS levels (
 
 CREATE TABLE IF NOT EXISTS players (
   id integer not null primary key auto_increment,
-  name varchar(80) not null,
+  name varchar(80) default null,
   cookie varchar(150) not null,
   refererkey varchar(10) not null,
   ip varchar(50) default null,

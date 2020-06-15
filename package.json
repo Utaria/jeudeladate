@@ -1,25 +1,33 @@
 {
   "name": "jeudeladate",
-  "version": "0.0.0",
-  "private": true,
+  "version": "2.0.0",
+  "author": "Utarwyn <maxime.malgorn@laposte.net>",
+  "bin": {
+    "jeudeladate": "bin/www"
+  },
   "scripts": {
-    "start": "node ./bin/www",
-    "sql": "M:\\logiciels\\PuTTY\\plink.exe -ssh vagrant@utaria.local -i \"C:\\Vagrant-Box\\utaria.dev\\puphpet\\files\\dot\\ssh\\id_rsa.ppk\" -N -L 3307:127.0.0.1:3306",
-    "sync": "browser-sync start --proxy \"localhost:3000\" --files \"**/*\""
+    "start": "npm run build && node ./bin/www",
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "proxy": "browser-sync start --proxy \"localhost:3000\" --files \"public/**/*\""
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "less-middleware": "~2.2.1",
-    "morgan": "~1.9.0",
-    "mysql": "^2.15.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.18.1",
     "randomstring": "^1.1.5",
     "serve-favicon": "~2.4.5",
-    "socket.io": "^2.0.4",
-    "uuid": "^3.1.0",
-    "websocket": "^1.0.25"
+    "socket.io": "^2.3.0",
+    "uuid": "^3.4.0",
+    "websocket": "^1.0.31"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "typescript": "^3.9.5"
   }
 }
