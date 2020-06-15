@@ -78,15 +78,15 @@ INSERT INTO jeudeladate.products (id, name, description, image) VALUES (2, 'Je s
 INSERT INTO jeudeladate.products (id, name, description, image) VALUES (3, 'Pioche magique', 'Une SUPER-PIOCHE qui va miner pour vous !', 'https://www.hexxit-wiki.com/w/images/hexxit/c/cc/Magic_Pickaxe.png');
 INSERT INTO jeudeladate.products (id, name, description, image) VALUES (4, 'Super-clic !', 'Cet objet booste votre souris et double le nombre de coups à chaque clic ! ', 'https://i.imgur.com/vWOopil.png');
 
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (1, 1, 1.5, 3, 5, 200);
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (2, 2, 2, 3, 7, 1000);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (1, 1, 1, 3, 5, 200);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (2, 2, 1.5, 3, 7, 1000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (3, 1, 1, 1, 1, 30000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (4, 1, 1, 2, 1, 15000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (5, 1, 2, 4, 8, 5000);
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (6, 3, 2.5, 3, 10, 20000);
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (7, 4, 3, 3, 12, 40000);
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (8, 5, 5, 3, 15, 80000);
-INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (9, 6, 8, 3, 18, 100000);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (6, 3, 1.75, 3, 10, 20000);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (7, 4, 2, 3, 12, 40000);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (8, 5, 3, 3, 15, 80000);
+INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (9, 6, 4, 3, 18, 100000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (10, 2, 5, 4, 10, 25000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (11, 3, 8, 4, 13, 40000);
 INSERT INTO jeudeladate.products_levels (id, level, value, product_id, min_level, price) VALUES (12, 4, 12, 4, 16, 80000);
