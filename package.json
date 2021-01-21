@@ -2,6 +2,10 @@
   "name": "jeudeladate",
   "version": "2.0.0",
   "author": "Utarwyn <maxime.malgorn@laposte.net>",
+  "license": "BSD",
+  "repository": {
+    "url": "https://github.com/Utaria/jeudeladate"
+  },
   "bin": {
     "jeudeladate": "bin/www"
   },
@@ -12,22 +16,22 @@
     "proxy": "browser-sync start --proxy \"localhost:3000\" --files \"public/**/*\""
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "jade": "~1.11.0",
-    "less-middleware": "~2.2.1",
-    "morgan": "^1.9.1",
+    "debug": "^2.6.9",
+    "express": "^4.17.1",
+    "jade": "^1.11.0",
+    "less-middleware": "^2.2.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "randomstring": "^1.1.5",
-    "serve-favicon": "~2.4.5",
-    "socket.io": "^2.4.0",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^3.1.0",
     "uuid": "^3.4.0",
-    "websocket": "^1.0.31"
+    "websocket": "^1.0.33"
   },
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "typescript": "^3.9.5"
+    "concurrently": "^5.3.0",
+    "typescript": "^4.1.3"
   }
 }

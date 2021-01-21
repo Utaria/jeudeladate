@@ -32,7 +32,7 @@ if (config.base.startsWith('https://')) {
 /**
  * Create the socket.io server.
  */
-const io = require('socket.io').listen(server);
+const io = new (require('socket.io').Server)(server);
 
 /**
  * Listen on provided port, on all network interfaces.

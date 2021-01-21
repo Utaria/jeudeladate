@@ -24,7 +24,7 @@ class Game {
 
     // Magic pickaxe
     private magicPickaxeForce: number;
-    private magicPickaxeInterval: number;
+    private magicPickaxeInterval: NodeJS.Timeout;
     private nbClick: number;
 
     private mobile: boolean;
