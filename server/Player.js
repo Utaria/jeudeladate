@@ -2,7 +2,7 @@ const Model = require('./Model');
 const Level = require('./Level');
 const Block = require('./Block');
 const Product = require('./Product');
-const uuidv4 = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 
 function Player(socket, cookie) {
     this._id = null;
