@@ -6,7 +6,7 @@
 <h4 align="center">
 Réalisé pour le démarrage de la V2 de notre survie
 <br>
-Utilise Express, TypeScript, Jade, WebSocket
+Utilise Express, TypeScript, Pug, WebSocket
 </h4>
 
 <p align="center">
@@ -39,7 +39,7 @@ Ce jeu est un __"clicker"__. Il faut donc cliquer sur des blocs avec une pioche 
 
 ## Comment ce jeu a-t-il été mis en place ?
 
-L'outil utilise **NodeJS**, la mise en page **Jade** ainsi que du **TypeScript** et du **LESS** pour le jeu côté Client.
+L'outil utilise **NodeJS**, la mise en page **Pug** ainsi que du **TypeScript** et du **LESS** pour le jeu côté Client.
 Le programme utilise les **Websockets *(Socket.io)*** pour communiquer avec le serveur en temps-réel.
 
 ## Guide d'installation
